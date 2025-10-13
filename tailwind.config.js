@@ -1,22 +1,3 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        darkBlue: '#001f3f',
-        darkerBlue: '#00122a',
-        darkBrown: '#4B2E16', // Define a custom dark brown color
-      },
-    },
-  },
-  variants: {
-    extend: {
-      backgroundColor: ['dark'],
-    },
-  },
-  plugins: [],
-  darkMode: 'class',
-};
+version https://git-lfs.github.com/spec/v1
+oid sha256:332f9314fb48a1a995f6d6a57fadfc28e2a1115d0ef8ebfadad0d5a146e02a81
+size 437

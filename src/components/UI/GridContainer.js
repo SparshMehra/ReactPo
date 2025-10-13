@@ -1,19 +1,3 @@
-import React from "react";
-
-export default function GridContainer({
-  children,
-  type = "horizontal",
-  gridCols = "2",
-  gap = "6",
-  maxWidth = "7xl",
-  className = "",
-}) {
-  if (type === "horizontal")
-    return (
-      <div
-        className={`max-w-${maxWidth} mx-auto grid md:grid-cols-${gridCols} gap-${gap} ${className}`}
-      >
-        {children}
-      </div>
-    );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e7eeb01a990c77e68cce9d857d30bde29642b885fb51c4c5bf6e213c064666f8
+size 381

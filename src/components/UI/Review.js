@@ -1,10 +1,3 @@
-import React from "react";
-import Box from "./Box";
-export default function Review({ label, author }) {
-  return (
-    <Box>
-      <p className="italic text-lg">{label}</p>
-      <p className="mt-4 text-right">{author}</p>
-    </Box>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ae7c0bf2385895bc5d0d4fe486abbb5ddff3b7e54bbcae2194364e7190bbc9f7
+size 241

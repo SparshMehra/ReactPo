@@ -1,2 +1,14 @@
 node_modules/
 node_modules/.cache/
+# dependencies
+node_modules/
+.cache/
+dist/
+build/
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
