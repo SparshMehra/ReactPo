@@ -1,5 +1,5 @@
 //Authors: Kunal Singla(A00461346), Cole Turner (A00469026)/Author: Bahnu Prakash (A00468530)
-//Purpose: This file represents a componet to display a flora fauna fungi page.
+//Purpose: This file represents a component to display a flora fauna fungi page.
 
 import React, { useState } from "react";
 import redMaple from "../../assets/download-4.jpg";
