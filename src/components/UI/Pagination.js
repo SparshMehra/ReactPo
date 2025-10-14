@@ -18,9 +18,9 @@ export default function Pagination({
         <div
           key={i}
           onClick={() => setTracker(i)}
-          className={`h-8 w-8   rounded-full flex ring-amber-400 ring-2  items-center justify-center ${
-            i <= tracker ? "bg-yellow-200 shadow-gray-500 shadow-lg" : ""
-          } `}
+          className={`h-8 w-8 rounded-full flex ring-amber-400 ring-2 items-center justify-center${
+            i <= tracker ? " bg-yellow-200 shadow-gray-500 shadow-lg" : ""
+          }`}
         >
           {i + 1}
         </div>
