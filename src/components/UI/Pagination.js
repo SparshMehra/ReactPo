@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ea7432d14a5b471911617837aa62dd154ca7fdbd47ef10ed4a3f99e0b30ac5a4
-size 838
+import React, { useEffect, useState } from "react";
+
+export default function Pagination({
+  num = 3,
+  classes = ["bodyTextxlg", "bodyTextxxlg"],
+  tracker,
+  setTracker,
+}) {
+  useEffect(() => {
+    // First, remove any previous size classes
+    document.body.classList.remove(...classes);
+    if (tracker === 1 || tracker === 2)
+      return document.body.classList.add(classes[tracker - 1]);
+  }, [tracker]);
+  return (
+    <div className="flex gap-4">
+      {Array.from({ length: num }, (_, i) => (
+        <div
+          key={i}
+          onClick={() => setTracker(i)}
+          className={`h-8 w-8   rounded-full flex ring-amber-400 ring-2  items-center justify-center ${
+            i <= tracker ? "bg-yellow-200 shadow-gray-500 shadow-lg" : ""
+          } `}
+        >
+          {i + 1}
+        </div>
+      ))}
+    </div>
+  );
+}

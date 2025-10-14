@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b3a1a6d881d67e2f29a2cbdb1443a4ebd09ade72b927c0ec7beb3211af65f0a1
-size 335
+import React from "react";
+
+export default function HeadingAndText({
+  headingType = "primaryHeading",
+  verticalGap = "4",
+  hLabel = "",
+  pLabel = "",
+  pSize = "lg",
+}) {
+  return (
+    <>
+      <h2 className={`${headingType} mb-${verticalGap}`}>{hLabel}</h2>
+      <p className={`text-${pSize} mb-4 `}>{pLabel}</p>
+    </>
+  );
+}
