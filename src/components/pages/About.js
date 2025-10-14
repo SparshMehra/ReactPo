@@ -1,5 +1,5 @@
 // Author: Lakshay Bansal (A00467478)
-// Prupose: This file represents an about component.
+// Purpose: This file represents an about component.
 
 import React, { useRef, useState, useEffect } from "react";
 import outlookImage from "../../assets/outlook.jpg";
