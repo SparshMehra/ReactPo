@@ -1,4 +1,4 @@
 
 
-#api related SiThingiverse, logical reusable code other than hooks we can write it BiDownArrow, fetch(), Timeformat, geocoding 
-#service.js
+// API-related: Si Thingiverse, logical reusable code (other than hooks) such as BiArrowDown, fetch(), Timeformat, geocoding, etc.
+// service.js
