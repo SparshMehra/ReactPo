@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  font-family: 'Calibri', sans-serif;
+  font-family: "Calibri", sans-serif;
   line-height: 1.5;
   color: #555; /* Adjust color to ensure medium/bright contrast */
 }
@@ -11,4 +11,76 @@ a {
   display: block;
   text-decoration: none;
   overflow-wrap: break-word; /* Ensures no word-breaking over lines */
+}
+
+.clipPolygon {
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 68%,
+    99% 90%,
+    96% 97%,
+    93% 100%,
+    6% 100%,
+    3% 98%,
+    1% 87%,
+    0 66%
+  );
+}
+
+@layer components {
+  .form-input {
+    @apply w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500;
+  }
+
+  .form-label {
+    @apply block text-lg font-medium mb-2 flex items-center;
+  }
+
+  .primaryHeading {
+    @apply text-4xl font-bold;
+  }
+
+  .secondaryHeading {
+    @apply text-3xl font-bold;
+  }
+
+  .tertiaryHeading {
+    @apply text-2xl font-semibold;
+  }
+  /* css to adjust the line-height for accessibility */
+  .lineHeightBigger {
+    @apply leading-[10];
+  }
+
+  .lineHeightBiggest {
+    @apply leading-[20];
+  }
+
+  /* css to adjust the text for accessibility */
+  .bodyTextxlg {
+    @apply text-xl;
+  }
+  .bodyTextxlg .primaryHeading {
+    @apply text-5xl;
+  }
+  .bodyTextxlg .secondaryHeading {
+    @apply text-4xl;
+  }
+  .bodyTextxlg .tertiaryHeading {
+    @apply text-3xl;
+  }
+
+  .bodyTextxxlg {
+    @apply text-2xl;
+  }
+  .bodyTextxxlg .primaryHeading {
+    @apply text-6xl;
+  }
+  .bodyTextxxlg .secondaryHeading {
+    @apply text-5xl;
+  }
+  .bodyTextxxlg .tertiaryHeading {
+    @apply text-4xl;
+  }
 }
