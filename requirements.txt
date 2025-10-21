@@ -1,0 +1,8 @@
+transformers
+datasets
+accelerate
+torch
+safetensors
+flask
+flask-cors
+

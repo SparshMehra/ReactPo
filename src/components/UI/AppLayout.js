@@ -3,6 +3,8 @@ import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { useState } from "react";
 import StyleModalContext from "./StyleModalContext";
+import ChatbotBubble from "../chatbot/ChatbotBubble";
+
 const AppLayout = () => {
   const [dark, setDark] = useState(false); // State to manage dark mode
 
@@ -19,6 +21,7 @@ const AppLayout = () => {
       <Outlet />
 
       <Footer />
+      <ChatbotBubble />
     </div>
   );
 };
