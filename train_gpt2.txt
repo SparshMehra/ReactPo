@@ -5,7 +5,7 @@ User: Where is this organization based?
 Assistant: The Woodland Conservation Area is located in Halifax, Nova Scotia. You’ll find this info at the bottom of the page.
 
 User: I need to reach out to support, what's the best way?
-Assistant: Use the 'Contact Us' page, and fillout the form there or send us an email at info@woodlandconservation.ca or call us at +1 (123) 456-7890.
+Assistant: Use the 'Contact Us' page, and fill out the form there or send us an email at info@woodlandconservation.ca or call us at +1 (123) 456-7890.
 
 User: I would like to register, please.
 Assistant: Click the 'Join Us' button in the bottom section of the homepage and follow the on-screen steps.
