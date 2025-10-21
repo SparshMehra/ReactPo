@@ -1,38 +1,47 @@
 // Author: Lakshay Bansal (A00467478)
 // Purpose: To display the Contact section of the Woodland Conservation website.
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { IoVolumeHigh } from "react-icons/io5";
 
 const Contact = () => {
   const [voices, setVoices] = useState([]);
+  const speechSynthesisRef = useRef(null);
 
   useEffect(() => {
     const loadVoices = () => {
       const voicesList = window.speechSynthesis.getVoices();
       setVoices(voicesList);
     };
-
     loadVoices();
     window.speechSynthesis.onvoiceschanged = loadVoices;
   }, []);
 
-  const speakText = (text) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    
-    // Select a soft female voice
-    const selectedVoice = voices.find(voice => voice.name.includes("Female") && voice.lang === "en-US");
-    if (selectedVoice) {
-      utterance.voice = selectedVoice;
-    }
-    
-    // Adjust pitch and rate for a softer tone
-    utterance.pitch = 1.2; // Slightly higher pitch
-    utterance.rate = 0.9; // Slightly slower rate
+ const speakText = (text) => {
+  if (!voices.length) {
+    alert('Voices not loaded yet. Please wait a moment.');
+    return;
+  }
+  window.speechSynthesis.cancel();
 
-    window.speechSynthesis.speak(utterance);
+  const utterance = new SpeechSynthesisUtterance(text);
+  const selectedVoice = voices.find(
+    (voice) => voice.name.includes('Female') && voice.lang === 'en-US'
+  ) || voices[0];
+
+  if (selectedVoice) utterance.voice = selectedVoice;
+  utterance.pitch = 1.2;
+  utterance.rate = 0.9;
+
+  speechSynthesisRef.current = utterance;
+  utterance.onend = () => {
+    speechSynthesisRef.current = null;
   };
+
+  window.speechSynthesis.speak(utterance);
+};
+
 
   return (
     <div
@@ -47,15 +56,16 @@ const Contact = () => {
 
       {/* Contact Form */}
       <div className="bg-white dark:bg-darkerBlue rounded-lg shadow-lg p-6 md:p-10 max-w-4xl w-full">
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Name Input */}
             <div>
               <label htmlFor="name" className="block text-lg font-medium mb-2 flex items-center">
                 Name
                 <button
-                  onClick={() => speakText('Please enter a name')}
+                  onClick={(e) => { e.preventDefault(); speakText('Please enter a name'); }}
                   className="ml-2 text-gray-900 dark:text-gray-100 focus:outline-none"
+                  type="button"
                 >
                   <IoVolumeHigh className="text-2xl" />
                 </button>
@@ -73,8 +83,9 @@ const Contact = () => {
               <label htmlFor="email" className="block text-lg font-medium mb-2 flex items-center">
                 Email
                 <button
-                  onClick={() => speakText('Please enter an email')}
+                  onClick={e => { e.preventDefault(); speakText('Please enter an email'); }}
                   className="ml-2 text-gray-900 dark:text-gray-100 focus:outline-none"
+                  type="button"
                 >
                   <IoVolumeHigh className="text-2xl" />
                 </button>
@@ -93,8 +104,9 @@ const Contact = () => {
             <label htmlFor="message" className="block text-lg font-medium mb-2 flex items-center">
               Message
               <button
-                onClick={() => speakText('Please enter a message')}
+                onClick={(e) => { e.preventDefault(); speakText('Please enter your message'); }}
                 className="ml-2 text-gray-900 dark:text-gray-100 focus:outline-none"
+                type="button"
               >
                 <IoVolumeHigh className="text-2xl" />
               </button>
