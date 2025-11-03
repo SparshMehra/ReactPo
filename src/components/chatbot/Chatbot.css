@@ -2,7 +2,7 @@
 .chatbot-bubble {
   position: fixed;
   bottom: 24px;
-  right: 24px;
+  left: 24px;
   width: 60px;
   height: 60px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -45,7 +45,7 @@
 .chatbot-window {
   position: fixed;
   bottom: 24px;
-  right: 24px;
+  left: 24px;
   width: 380px;
   height: 600px;
   background: white;

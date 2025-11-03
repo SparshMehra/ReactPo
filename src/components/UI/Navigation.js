@@ -11,6 +11,7 @@ const navLinks = [
   { to: "about", label: "About" },
   { to: "sitemap", label: "Site Map" },
   { to: "gallery", label: "Gallery" },
+  { to: "events", label: "Events" },
   { to: "ecosystem", label: "Ecosystem" },
   { to: "flora", label: "Vegetation" },
   { to: "natural-burial", label: "Natural Burial" },
