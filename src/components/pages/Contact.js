@@ -1,11 +1,71 @@
 // Author: Lakshay Bansal (A00467478)
 // Purpose: To display the Contact section of the Woodland Conservation website.
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Speaker from "../UI/Speaker";
-import { IoVolumeHigh } from "react-icons/io5";
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate form
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await axios.post('http://localhost:5001/api/contact', formData);
+
+      if (response.data.success) {
+        toast.success('Message sent successfully! We\'ll get back to you soon.');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      } else {
+        toast.error('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      if (error.response?.data?.error) {
+        toast.error(`Error: ${error.response.data.error}`);
+      } else {
+        toast.error('Failed to send message. Please ensure the server is running.');
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div
       id="contact"
@@ -21,7 +81,7 @@ const Contact = () => {
 
       {/* Contact Form */}
       <div className="bg-white dark:bg-darkerBlue rounded-lg shadow-lg p-6 md:p-10 max-w-4xl w-full">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Name Input */}
             <div>
@@ -32,8 +92,11 @@ const Contact = () => {
               <input
                 type="text"
                 id="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Your Name"
                 className="form-input"
+                required
               />
             </div>
 
@@ -46,8 +109,11 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Your Email"
                 className="form-input"
+                required
               />
             </div>
           </div>
@@ -61,17 +127,21 @@ const Contact = () => {
             <textarea
               id="message"
               rows="5"
+              value={formData.message}
+              onChange={handleChange}
               placeholder="Your Message"
               className="form-input"
+              required
             ></textarea>
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-bold py-3 px-6 rounded-md transition-all duration-300"
+            disabled={isSubmitting}
+            className="w-full bg-green-600 hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white text-lg font-bold py-3 px-6 rounded-md transition-all duration-300"
           >
-            Send Message
+            {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
         </form>
       </div>

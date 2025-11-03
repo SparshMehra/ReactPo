@@ -4,6 +4,17 @@ node_modules/.cache/
 dist/
 build/
 
+# Environment variables
+.env
+.env.local
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
 # OS files
 .DS_Store
 
