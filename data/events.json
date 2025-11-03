@@ -1,0 +1,248 @@
+{
+  "events": [
+    {
+      "id": "evt_001",
+      "title": "Morning Bird Watching Tour",
+      "description": "Join us for an early morning bird watching adventure! Our experienced guides will help you spot and identify various bird species native to the St. Margaret's Bay woodland area. Bring your binoculars and camera to capture these beautiful creatures in their natural habitat. Perfect for both beginners and experienced bird watchers.",
+      "category": "wildlife",
+      "date": "2025-11-10",
+      "startTime": "06:00",
+      "endTime": "08:00",
+      "location": "Main Trail Entrance",
+      "coordinates": {
+        "lat": 44.6488,
+        "lng": -63.5752
+      },
+      "capacity": 15,
+      "spotsAvailable": 12,
+      "price": 0,
+      "imageUrl": "/images/bird-watching.jpg",
+      "requirements": [
+        "Binoculars (optional, we provide some)",
+        "Comfortable walking shoes",
+        "Warm clothing for early morning",
+        "Water bottle"
+      ],
+      "difficulty": "easy",
+      "ageRestriction": "All ages welcome",
+      "status": "open",
+      "tags": [
+        "birds",
+        "wildlife",
+        "morning",
+        "nature"
+      ],
+      "instructor": {
+        "name": "Sarah Mitchell",
+        "bio": "Sarah has been a bird enthusiast for over 15 years and is certified by the Audubon Society.",
+        "photo": "/images/instructor-sarah.jpg"
+      },
+      "createdAt": "2025-11-01T10:00:00Z",
+      "updatedAt": "2025-11-03T15:01:23.284629Z"
+    },
+    {
+      "id": "evt_002",
+      "title": "Native Plant Identification Workshop",
+      "description": "Learn to identify native plants, trees, and shrubs found throughout the conservation area. This hands-on workshop will teach you about the ecological importance of native species and how they support local wildlife. Perfect for gardeners, nature enthusiasts, and anyone interested in botany.",
+      "category": "workshop",
+      "date": "2025-11-12",
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "location": "Education Center",
+      "coordinates": {
+        "lat": 44.649,
+        "lng": -63.575
+      },
+      "capacity": 25,
+      "spotsAvailable": 20,
+      "price": 0,
+      "imageUrl": "/images/plant-workshop.jpg",
+      "requirements": [
+        "Notebook and pen",
+        "Comfortable outdoor clothing",
+        "Water bottle"
+      ],
+      "difficulty": "beginner",
+      "ageRestriction": "12+",
+      "status": "open",
+      "tags": [
+        "plants",
+        "education",
+        "workshop",
+        "botany"
+      ],
+      "instructor": {
+        "name": "Dr. James Thompson",
+        "bio": "Dr. Thompson is a botanist with 20 years of experience studying Maritime flora.",
+        "photo": "/images/instructor-james.jpg"
+      },
+      "createdAt": "2025-11-01T10:00:00Z",
+      "updatedAt": "2025-11-01T10:00:00Z"
+    },
+    {
+      "id": "evt_003",
+      "title": "Trail Maintenance Day",
+      "description": "Help us maintain and improve our beautiful trail system! This volunteer day includes clearing brush, repairing trail markers, and general maintenance work. All tools and refreshments provided. A great way to give back to the community while getting some exercise and fresh air.",
+      "category": "volunteer",
+      "date": "2025-11-16",
+      "startTime": "09:00",
+      "endTime": "13:00",
+      "location": "South Trail Head",
+      "coordinates": {
+        "lat": 44.6485,
+        "lng": -63.5755
+      },
+      "capacity": 30,
+      "spotsAvailable": 22,
+      "price": 0,
+      "imageUrl": "/images/trail-maintenance.jpg",
+      "requirements": [
+        "Work gloves (we provide extras)",
+        "Sturdy boots or hiking shoes",
+        "Long pants and long sleeves",
+        "Water bottle and snacks",
+        "Sun protection"
+      ],
+      "difficulty": "moderate",
+      "ageRestriction": "16+ (under 18 with parent/guardian)",
+      "status": "open",
+      "tags": [
+        "volunteer",
+        "trails",
+        "conservation",
+        "community"
+      ],
+      "instructor": {
+        "name": "Mark Davidson",
+        "bio": "Mark is our head trail coordinator with extensive experience in trail building and maintenance.",
+        "photo": "/images/instructor-mark.jpg"
+      },
+      "createdAt": "2025-11-01T10:00:00Z",
+      "updatedAt": "2025-11-01T10:00:00Z"
+    },
+    {
+      "id": "evt_004",
+      "title": "Fall Foliage Photography Walk",
+      "description": "Capture the stunning autumn colors of the woodland conservation area! This guided photography walk will take you to the most scenic spots while our instructor shares tips on landscape and nature photography. All skill levels welcome, from smartphone photographers to DSLR enthusiasts.",
+      "category": "seasonal",
+      "date": "2025-11-20",
+      "startTime": "10:00",
+      "endTime": "12:00",
+      "location": "Main Trail Entrance",
+      "coordinates": {
+        "lat": 44.6488,
+        "lng": -63.5752
+      },
+      "capacity": 20,
+      "spotsAvailable": 17,
+      "price": 0,
+      "imageUrl": "/images/fall-photography.jpg",
+      "requirements": [
+        "Camera (smartphone or professional)",
+        "Comfortable walking shoes",
+        "Weather-appropriate clothing",
+        "Extra batteries/memory cards"
+      ],
+      "difficulty": "easy",
+      "ageRestriction": "All ages welcome",
+      "status": "open",
+      "tags": [
+        "photography",
+        "fall",
+        "autumn",
+        "scenic",
+        "nature"
+      ],
+      "instructor": {
+        "name": "Emma Rodriguez",
+        "bio": "Emma is a professional nature photographer with work featured in National Geographic.",
+        "photo": "/images/instructor-emma.jpg"
+      },
+      "createdAt": "2025-11-01T10:00:00Z",
+      "updatedAt": "2025-11-03T13:59:21.776163Z"
+    },
+    {
+      "id": "evt_005",
+      "title": "Family Nature Scavenger Hunt",
+      "description": "A fun-filled adventure for the whole family! Teams will explore the trails while searching for items on our nature scavenger hunt list. Learn about local plants, animals, and ecosystems while having a blast. Prizes for all participants! Perfect for families with children aged 5-12.",
+      "category": "family",
+      "date": "2025-11-23",
+      "startTime": "11:00",
+      "endTime": "13:00",
+      "location": "Visitor Center",
+      "coordinates": {
+        "lat": 44.6492,
+        "lng": -63.5748
+      },
+      "capacity": 40,
+      "spotsAvailable": 34,
+      "price": 0,
+      "imageUrl": "/images/scavenger-hunt.jpg",
+      "requirements": [
+        "Comfortable walking shoes",
+        "Weather-appropriate clothing",
+        "Water bottle and snacks",
+        "Sense of adventure!"
+      ],
+      "difficulty": "easy",
+      "ageRestriction": "Family-friendly (children must be with adults)",
+      "status": "open",
+      "tags": [
+        "family",
+        "kids",
+        "fun",
+        "education",
+        "game"
+      ],
+      "instructor": {
+        "name": "Jennifer Lee",
+        "bio": "Jennifer is an environmental educator specializing in family programming.",
+        "photo": "/images/instructor-jennifer.jpg"
+      },
+      "createdAt": "2025-11-01T10:00:00Z",
+      "updatedAt": "2025-11-03T02:01:07.474855Z"
+    },
+    {
+      "id": "evt_006",
+      "title": "Guided Nature Walk: Winter Preparation",
+      "description": "Discover how plants and animals prepare for the coming winter months. This educational walk will explore the fascinating adaptations that allow local flora and fauna to survive harsh winter conditions. Learn about hibernation, migration, and dormancy while enjoying a peaceful walk through the woods.",
+      "category": "guided-tour",
+      "date": "2025-11-27",
+      "startTime": "14:00",
+      "endTime": "16:00",
+      "location": "Main Trail Entrance",
+      "coordinates": {
+        "lat": 44.6488,
+        "lng": -63.5752
+      },
+      "capacity": 20,
+      "spotsAvailable": 19,
+      "price": 0,
+      "imageUrl": "/images/winter-prep.jpg",
+      "requirements": [
+        "Warm clothing (layered)",
+        "Waterproof boots",
+        "Water bottle",
+        "Notebook (optional)"
+      ],
+      "difficulty": "easy",
+      "ageRestriction": "10+",
+      "status": "open",
+      "tags": [
+        "nature",
+        "education",
+        "winter",
+        "wildlife",
+        "guided"
+      ],
+      "instructor": {
+        "name": "Robert Chen",
+        "bio": "Robert is a naturalist with expertise in wildlife behavior and ecology.",
+        "photo": "/images/instructor-robert.jpg"
+      },
+      "createdAt": "2025-11-01T10:00:00Z",
+      "updatedAt": "2025-11-03T13:43:05.158513Z"
+    }
+  ],
+  "lastId": 6
+}
