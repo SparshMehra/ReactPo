@@ -9,7 +9,7 @@ import { MdOutlineClose } from "react-icons/md";
 let ModalContext = createContext();
 
 export default function Modal2({ children }) {
-  const [open, setOpen] = useState("form"); // ""- false, and "name"=true
+  const [open, setOpen] = useState(""); // ""- false, and "name"=true
 
   let openFunc = (name) => setOpen(name);
   let closeFunc = () => setOpen("");
@@ -37,7 +37,7 @@ function Open({ children, name, className = "" }) {
 function Window({ children, name }) {
   const { open } = useContext(ModalContext);
 
-  if (open == "") return;
+  if (open === "") return;
   return <StyledWindow>{children}</StyledWindow>;
 }
 

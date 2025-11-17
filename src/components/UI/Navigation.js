@@ -15,11 +15,12 @@ const navLinks = [
   { to: "ecosystem", label: "Ecosystem" },
   { to: "flora", label: "Vegetation" },
   { to: "natural-burial", label: "Natural Burial" },
-  { to: "ecommerce", label: "eCommerce" },
   { to: "contact", label: "Contact" },
+  { to: "ecoveg", label: "Ecosystem & Vegetation" },
+  { to: "ecommerce", label: "eCommerce" },
 ];
 
-const Navigation = ({ toggleDarkMode, dark }) => {
+const Navigation = ({ toggleDarkMode, dark,cart=[] }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNav = () => setIsOpen(!isOpen);
@@ -54,6 +55,18 @@ const Navigation = ({ toggleDarkMode, dark }) => {
           ))}
           <DarkModeToggle toggleDarkMode={toggleDarkMode} dark={dark} />
         </div>
+{/* 🛒 Cart Button */}
+          <Link
+            to="/cart"
+            className="relative ml-4 bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors"
+          >
+            🛒
+            {cart.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {cart.length}
+              </span>
+            )}
+          </Link>
 
         {/* Mobile menu & dark mode toggle */}
         <div className="flex items-center md:hidden">

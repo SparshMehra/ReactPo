@@ -10,6 +10,7 @@ import Contact from "./components/pages/Contact"; // Importing Contact component
 import Gallery from "./components/pages/gallery";
 import Flora from "./components/pages/flora";
 import Events from "./components/pages/Events"; // Importing Events component
+import NaturalBurial from "./components/pages/NaturalBurial"; // Importing NaturalBurial component
 import AppLayout from "./components/UI/AppLayout";
 
 // App component definition
@@ -25,8 +26,10 @@ function App() {
           <Route path="sitemap" element={<SiteMap />} />{" "}
           <Route path="contact" element={<Contact />} />{" "}
           <Route path="events" element={<Events />} />
+          <Route path="natural-burial" element={<NaturalBurial />} />
           <Route path="gallery" element={<Gallery />} />
           <Route path="flora" element={<Flora />} />
+          
         </Route>
       </Routes>
     </Router>
