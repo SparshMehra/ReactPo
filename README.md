@@ -48,7 +48,7 @@ Before you begin, ensure you have the following installed:
 ### Step 1: Clone or Download the Project
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Prezzo-K/ReactPoff.git
 cd ReactPoff
 ```
 
@@ -356,3 +356,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
