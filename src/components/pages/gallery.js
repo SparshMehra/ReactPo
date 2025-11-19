@@ -7,11 +7,17 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import Button from "@mui/material/Button";
 import CreateGalleryForm from "../features/gallery/CreateGalleryForm";
 import useGallery from "../features/gallery/useGallery";
+import CircularProgress from "@mui/material/CircularProgress";
 const Gallery = () => {
   const [isFormOpen, setFormOpen] = useState(false);
   console.log(isFormOpen);
   const { isLoading, galleries, error } = useGallery();
-  if (isLoading) return <div className="h-screen text-center">Loading...</div>;
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center min-h-screen  bg-gray-100">
+        <CircularProgress size="3rem" />
+      </div>
+    );
 
   return (
     <div className="p-8 bg-gray-100 dark:bg-gray-900 min-h-screen">

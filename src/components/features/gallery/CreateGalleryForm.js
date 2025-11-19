@@ -12,7 +12,7 @@ import { useFormStatus } from "react-dom";
 import useCreateGallery from "./useCreateGallery";
 
 const CreateGalleryForm = () => {
-  let { register, handleSubmit, formState, control } = useForm();
+  let { register, handleSubmit, formState, control, reset } = useForm();
   let { errors, isSubmitting } = formState;
   let { isInserting, mutate } = useCreateGallery();
 
@@ -26,7 +26,14 @@ const CreateGalleryForm = () => {
     };
     console.log("--------------updatedGallery------------\n", updatedGallery);
     console.log("--------------File------------\n", file);
-    mutate({ gallery: updatedGallery, file });
+    mutate(
+      { gallery: updatedGallery, file },
+      {
+        onSuccess: () => {
+          reset(); // <-- resets all form fields
+        },
+      }
+    );
   }
   function onError(error) {
     console.log(error);
@@ -109,9 +116,21 @@ const CreateGalleryForm = () => {
           </div>
         </div>
         <div className="text-right">
-          <Button variant="outlined" color="primary" type="submit">
-            {isSubmitting ? "Submitting..." : "submit"}
-          </Button>{" "}
+          <Button
+            disabled={isInserting}
+            variant="outlined"
+            color="primary"
+            type="submit"
+            sx={{
+              "&.Mui-disabled": {
+                backgroundColor: "rgb(203 213 225)", // slate-300
+                color: "rgb(248 250 252)", // slate-50
+                cursor: "not-allowed",
+              },
+            }}
+          >
+            {isInserting ? "Submitting..." : "Submit"}
+          </Button>
         </div>
       </form>
     </div>

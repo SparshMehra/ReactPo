@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Navigation from "./Navigation";
-import BasicSpeedDial from "./BasicSpeedDial";
 import PlaygroundSpeedDial from "./PlaygroundSpeedDial";
 
 const AppLayout = () => {
