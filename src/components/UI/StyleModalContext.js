@@ -11,7 +11,7 @@ export default function StyleModalContext() {
   const [lineHeightTracker, setLineHeightTracker] = useState(0);
   const [fontTracker, setFontTracker] = useState(0);
   return (
-    <div className="fixed right-[5%] bottom-[5%] z-50">
+    <div className="z-50">
       <Modal2>
         <Modal2.Open name="createForm">
           <RxAccessibility className="text-white bg-amber-500 rounded-full p-2 w-10 h-10" />

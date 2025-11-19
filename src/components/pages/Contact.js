@@ -5,7 +5,9 @@ import React from "react";
 import Speaker from "../UI/Speaker";
 import { useForm } from "react-hook-form";
 import FormError from "../UI/FormError";
-
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 const Contact = () => {
   let { register, handleSubmit, formState } = useForm();
   let { errors } = formState;
@@ -34,13 +36,14 @@ const Contact = () => {
                 Name
                 <Speaker content="please enter a name"></Speaker>
               </label>
-              <input
-                type="text"
+              <TextField
                 id="name"
-                placeholder="Your Name"
+                label="Your Name"
                 className="form-input"
+                variant="outlined"
                 {...register("name", { required: "Name field is mandatory" })}
               />
+
               {/** Displaying error message if any occured in name field */}
               {errors?.name?.message && (
                 <FormError>{errors.name.message}</FormError>
@@ -53,11 +56,11 @@ const Contact = () => {
                 Email
                 <Speaker content="please enter an email"></Speaker>
               </label>
-              <input
-                type="email"
+              <TextField
                 id="email"
-                placeholder="Your Email"
+                label="Email"
                 className="form-input"
+                variant="outlined"
                 {...register("email", {
                   required: "Email field is mandatory",
                   pattern: {
@@ -79,15 +82,16 @@ const Contact = () => {
               Message
               <Speaker content="please enter a message"></Speaker>
             </label>
-            <textarea
+            <TextField
               id="message"
-              rows="5"
-              placeholder="Your Message"
+              label="Your Message"
               className="form-input"
+              variant="outlined"
               {...register("message", {
                 required: "Message field is mandatory",
               })}
-            ></textarea>
+            />
+
             {/** Displaying error message if any occured in name field */}
             {errors?.message?.message && (
               <FormError>{errors.message.message}</FormError>
@@ -95,12 +99,17 @@ const Contact = () => {
           </div>
 
           {/* Submit Button */}
-          <button
+          {/* <button
             type="submit"
             className="w-full bg-green-600 hover:bg-green-700 text-white  py-3 px-6 rounded-md transition-all duration-300"
           >
             Send Message
-          </button>
+          </button> */}
+          <div className="text-right">
+            <Button type="submit" variant="contained">
+              Submit
+            </Button>
+          </div>
         </form>
       </div>
     </div>

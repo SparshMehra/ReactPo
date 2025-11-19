@@ -8,11 +8,12 @@ import { BsArrowRightCircle } from "react-icons/bs";
 import Review from "../UI/Review";
 import GridContainer from "../UI/GridContainer";
 import HeadingAndText from "../UI/HeadingAndText";
+import { getGallery } from "../utils/helper";
 
 const Homepage = ({ dark }) => {
   return (
     <div
-      className={`flex flex-col min-h-screen bg-cover bg-center transition-all duration-500`}
+      className={` flex flex-col min-h-screen bg-cover bg-center transition-all duration-500`}
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url(${
           dark ? nightBackground : dayBackground
@@ -20,16 +21,16 @@ const Homepage = ({ dark }) => {
       }}
     >
       {/* Header Section */}
-      <section className="text-center text-white py-20 px-6">
-        <h1 className="text-6xl md:text-8xl font-bold mb-6 drop-shadow-md">
-          Woodland Conservation Area
-        </h1>
-        <p className="text-xl md:text-3xl max-w-3xl mx-auto drop-shadow-md">
-          Immerse yourself in nature's wonders. Discover. Learn. Protect.
-        </p>
+      <section className=" text-center text-white py-20 px-6">
+        <HeadingAndText
+          headingType="primaryHeading"
+          hLabel=" Woodland Conservation Area"
+          verticalGap="4"
+          pLabel=" Immerse yourself in nature's wonders. Discover. Learn. Protect."
+        />
         <button
           className="bg-green-500 hover:bg-green-400 text-white px-8 py-4 mt-6 rounded-full shadow-lg font-semibold transition"
-          onClick={() => alert("Explore Section Coming Soon!")}
+          onClick={() => getGallery()}
         >
           Explore Now
         </button>

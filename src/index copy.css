@@ -5,7 +5,7 @@ body {
   font-family: "Calibri", sans-serif;
   line-height: 1.5;
   color: #555; /* Adjust color to ensure medium/bright contrast */
-  font-size: 20px;
+  font-size: 24px;
 }
 
 a {
@@ -49,6 +49,14 @@ a {
   .tertiaryHeading {
     @apply text-2xl font-semibold;
   }
+  /* css to adjust the line-height for accessibility */
+  .lineHeightBigger {
+    @apply leading-[10];
+  }
+
+  .lineHeightBiggest {
+    @apply leading-[20];
+  }
 
   /* css to adjust the text for accessibility */
   .bodyTextxlg {
@@ -76,22 +84,4 @@ a {
   .bodyTextxxlg .tertiaryHeading {
     @apply text-5xl;
   }
-}
-
-input[type="file"]::file-selector-button {
-  font: inherit;
-  font-weight: 500;
-  font-size: 1rem;
-  padding: 0.8rem 1.2rem;
-  margin-right: 1.2rem;
-  height: 100%;
-  border-radius: 5px;
-  border: none;
-  color: ghostwhite;
-  background-color: #8c9eff;
-  cursor: pointer;
-  transition: color 0.2s, background-color 0.2s;
-}
-input[type="file"]::file-selector-button:hover {
-  background-color: #536dfe;
 }
