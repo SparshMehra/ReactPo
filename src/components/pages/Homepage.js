@@ -378,16 +378,3 @@ const Homepage = ({ dark }) => {
 };
 
 export default Homepage;
-                    View Events
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        </Container>
-      </Section>
-    </div>
-  );
-};
-
-export default Homepage;
