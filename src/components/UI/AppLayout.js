@@ -4,7 +4,8 @@ import Footer from "./Footer";
 import Navigation from "./Navigation";
 import PlaygroundSpeedDial from "./PlaygroundSpeedDial";
 
-const AppLayout = () => {
+const AppLayout = ({ cart, setCart }) => {
+
   const [dark, setDark] = useState(false); // State to manage dark mode
 
   // Function to toggle dark mode
@@ -15,7 +16,13 @@ const AppLayout = () => {
 
   return (
     <div className="bg-yellow-100 dark:bg-blue-900 min-h-screen">
-      <Navigation toggleDarkMode={darkModeHandler} dark={dark} />
+      <Navigation
+        toggleDarkMode={darkModeHandler}
+        dark={dark}
+        cart={cart}
+        setCart={setCart}
+      />
+
       <Outlet />
       <PlaygroundSpeedDial />
       <Footer />
