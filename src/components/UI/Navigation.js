@@ -16,7 +16,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo_woodland.png";
 import DarkModeToggle from "./DarkModeToggle";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
@@ -163,11 +163,11 @@ const Navigation = ({ toggleDarkMode, dark, cart = [] }) => {
       <div className={`${baseclass} flex items-center justify-between h-16 px-6`}>
 
         {/* Logo Section */}
-        <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
+        <Link to="/" className="flex items-center group hover:opacity-90 transition-all duration-300">
           <img
             src={logo}
             alt="Woodland Conservation Logo"
-            className="h-12 w-12 md:h-14 md:w-14 object-contain"
+            className="h-10 w-auto md:h-12 lg:h-14 object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
           />
         </Link>
 
