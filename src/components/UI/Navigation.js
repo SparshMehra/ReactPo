@@ -65,9 +65,11 @@ const Navigation = ({ toggleDarkMode, dark, cart = [] }) => {
   // Calculate total cart items including quantities
   const totalCartItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
-  // Dynamic navigation bar styling based on dark mode
+  // Dynamic navigation bar styling with nature theme
   const baseclass = `transition-colors duration-300 ${
-    dark ? "bg-darkerBlue" : "bg-darkBrown"
+    dark 
+      ? "bg-gradient-to-r from-forest-800 via-forest-900 to-stone-900" 
+      : "bg-gradient-to-r from-forest-600 via-forest-700 to-forest-800"
   } text-white p-4 shadow-lg`;
 
   /**
