@@ -3,6 +3,9 @@
  *
  * @file App.js
  * @author Marko Ostrovitsa (A00448932)
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, code cleanup, events integration
+ * @author Sadikshya Oli (A00457938) - Ecommerce/cart wiring in routes/state
+ * @author Sparsh Mehra (A00472261) - Navigation/route structure input
  * @description Main application component that sets up routing, state management,
  *              and provides the application layout structure.
  *

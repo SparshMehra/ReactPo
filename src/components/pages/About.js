@@ -4,6 +4,7 @@
  * @file About.js
  * @author Bhabin Chudal (A00464169) - Code cleanup, UI improvements
  * @author Lakshay Bansal (A00467478)
+ * @author Abdiaziz Muse (A00471783) - UI revamp, scroll animations, code cleanup
  * @description About page for Woodland Conservation Area with mission statement,
  *              accordion sections, and text-to-speech functionality.
  *
@@ -17,14 +18,12 @@
  * @returns {JSX.Element} About page component with interactive elements
  */
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import outlookImage from "../../assets/outlook.jpg";
-import { IoVolumeHigh, IoVolumeOff } from "react-icons/io5";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import Speaker from "../UI/Speaker";
 
 const About = () => {
-  const [isPaused, setIsPaused] = useState(false);
   const [accordionState, setAccordionState] = useState({
     floraFauna: false,
     heritageLegacy: false,

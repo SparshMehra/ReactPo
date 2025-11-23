@@ -2,6 +2,8 @@
  * Footer Component
  *
  * @file Footer.js
+ * @author Bhabin Chudal (A00464169) - UI improvements, code cleanup
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, consistency
  * @description Site footer with contact information, social media links,
  *              and copyright information. Responsive design for all screen sizes.
  *

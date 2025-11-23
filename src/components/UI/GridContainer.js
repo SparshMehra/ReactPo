@@ -2,6 +2,8 @@
  * GridContainer Component
  *
  * @file GridContainer.js
+ * @author Bhabin Chudal (A00464169) - UI improvements, code cleanup
+ * @author Abdiaziz Muse (A00471783) - UI consistency and layout utilities
  * @description Reusable grid layout container with customizable columns, gap, and max width.
  *              Provides responsive grid layouts for content organization.
  *
