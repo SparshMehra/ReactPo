@@ -1,3 +1,28 @@
+/**
+ * BookingForm Component
+ *
+ * @file BookingForm.js
+ * @author Abdiaziz Muse (A00471783)
+ * @description Modal booking form with validation for event registration.
+ *              Includes form validation, error handling, and attendee information collection.
+ *
+ * Features:
+ * - React Hook Form integration with Yup validation
+ * - Required fields: first name, last name, email, phone, number of attendees
+ * - Optional special requirements field
+ * - Real-time validation with error messages
+ * - Submit loading state
+ * - Modal overlay with backdrop blur
+ * - Event details summary in header
+ * - Responsive design
+ *
+ * @param {Object} event - Event object for booking
+ * @param {Function} onSubmit - Callback with attendee information
+ * @param {Function} onClose - Callback to close modal
+ * @param {boolean} submitting - Loading state for form submission
+ * @returns {JSX.Element} Booking form modal
+ */
+
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';

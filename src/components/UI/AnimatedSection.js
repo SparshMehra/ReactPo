@@ -2,15 +2,26 @@
  * AnimatedSection Component
  *
  * @file AnimatedSection.js
- * @description Reusable component for scroll-triggered animations with nature theme
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animation system
+ * @description Reusable component for scroll-triggered animations with nature theme.
+ *              Provides 8 different animation types for consistent scroll effects across pages.
+ *
+ * Features:
+ * - 8 animation types: fadeUp, fadeDown, slideLeft, slideRight, scale, rotate, blur, bounce
+ * - Configurable delay for staggered animations
+ * - Once-only animation option for performance
+ * - Viewport-based triggering with margin control
+ * - GPU-accelerated transforms
+ * - Smooth easing functions
  *
  * @component
  * @param {React.ReactNode} children - Content to animate
  * @param {string} animation - Type of animation (fadeUp, slideLeft, slideRight, scale, etc.)
  * @param {number} delay - Animation delay in seconds
  * @param {string} className - Additional CSS classes
+ * @param {boolean} once - Whether animation triggers only once (default: true)
  *
- * @returns {JSX.Element} Animated section wrapper
+ * @returns {JSX.Element} Animated section wrapper with Framer Motion
  */
 
 import React, { useRef } from "react";
