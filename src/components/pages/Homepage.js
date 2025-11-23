@@ -15,7 +15,7 @@ import ParallaxSection from "../UI/ParallaxSection";
 import StatsCounter from "../UI/StatsCounter";
 import FeatureCard from "../UI/FeatureCard";
 import TestimonialCarousel from "../UI/TestimonialCarousel";
-import forestImage from "../../assets/forest.jpg";
+import forestImage from "../../assets/forest1.png"; // Using forest1.png instead of deleted forest.jpg
 import hikingImage from "../../assets/hiking.png";
 import birchImage from "../../assets/birch.png";
 import outlookImage from "../../assets/outlook.jpg";
