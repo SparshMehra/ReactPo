@@ -1,16 +1,23 @@
-// Authors:
-// Bhanu Prakash(A00468530) - 'Get Directions' functionality
-// Cole Turner (A00469026) - Map interaction, UI design, TailWind CSS
-// Purpose: Site map component for the conservation area
+/**
+ * Sitemap Component
+ *
+ * @file Sitemap.js
+ * @authors Bhanu Prakash (A00468530), Cole Turner (A00469026)
+ * @description Interactive site map with animations, route tracking, and user location
+ *
+ * Features:
+ * - Interactive Leaflet map with POI markers
+ * - "YOU ARE HERE" button with map centering
+ * - Route tracking with live distance updates
+ * - Framer Motion animations for scroll effects
+ * - Proper z-index to stay below navbar
+ *
+ * @returns {JSX.Element} Interactive site map page
+ */
 
 import React, { useState, useEffect, useRef } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  Polyline,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
+import { motion } from "framer-motion";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import trailHead from "../../assets/hiking.png";
@@ -30,36 +37,11 @@ const poiDescriptions = {
 
 // List of POIs with coordinates and icons
 const pointsOfInterest = [
-  {
-    id: 1,
-    name: "Trailhead",
-    position: [44.625028, -63.921417],
-    icon: trailHead,
-  },
-  {
-    id: 2,
-    name: "Farmhouse Foundation",
-    position: [44.625833, -63.920972],
-    icon: farm,
-  },
-  {
-    id: 3,
-    name: "Well",
-    position: [44.624022, -63.920028],
-    icon: well,
-  },
-  {
-    id: 4,
-    name: "Sitting Area",
-    position: [44.625028, -63.920417],
-    icon: sitting,
-  },
-  {
-    id: 5,
-    name: "Coastal Yellow Birch",
-    position: [44.624, -63.920056],
-    icon: birch,
-  },
+  { id: 1, name: "Trailhead", position: [44.625028, -63.921417], icon: trailHead },
+  { id: 2, name: "Farmhouse Foundation", position: [44.625833, -63.920972], icon: farm },
+  { id: 3, name: "Well", position: [44.624022, -63.920028], icon: well },
+  { id: 4, name: "Sitting Area", position: [44.625028, -63.920417], icon: sitting },
+  { id: 5, name: "Coastal Yellow Birch", position: [44.624, -63.920056], icon: birch },
 ];
 
 // Available paths on the map (for route calculation)
@@ -71,13 +53,16 @@ const availablePaths = [
     [44.624, -63.920056],    // Coastal Yellow Birch
     [44.624022, -63.920028], // Well
   ],
-  // Add more paths if needed
 ];
 
-// Calculate the shortest path using available paths (simple slicing)
+/**
+ * Calculate the shortest path between two points
+ * @param {Array} start - Starting coordinates [lat, lng]
+ * @param {Array} end - Ending coordinates [lat, lng]
+ * @returns {Array} Path coordinates
+ */
 const findShortestPath = (start, end) => {
   const path = availablePaths[0];
-  // Find closest point in path to start
   let startIdx = 0, minStartDist = Infinity;
   path.forEach((pt, idx) => {
     const dist = haversineDistance(start[0], start[1], pt[0], pt[1]);
@@ -86,7 +71,6 @@ const findShortestPath = (start, end) => {
       startIdx = idx;
     }
   });
-  // Find closest point in path to end
   let endIdx = 0, minEndDist = Infinity;
   path.forEach((pt, idx) => {
     const dist = haversineDistance(end[0], end[1], pt[0], pt[1]);
@@ -95,7 +79,6 @@ const findShortestPath = (start, end) => {
       endIdx = idx;
     }
   });
-  // Return path slice between start and end
   if (startIdx <= endIdx) {
     return [start, ...path.slice(startIdx, endIdx + 1), end];
   } else {
@@ -103,7 +86,14 @@ const findShortestPath = (start, end) => {
   }
 };
 
-// Calculate distance between two coordinates (meters)
+/**
+ * Calculate distance between two coordinates (meters)
+ * @param {number} lat1 - Latitude of point 1
+ * @param {number} lon1 - Longitude of point 1
+ * @param {number} lat2 - Latitude of point 2
+ * @param {number} lon2 - Longitude of point 2
+ * @returns {number} Distance in meters
+ */
 const haversineDistance = (lat1, lon1, lat2, lon2) => {
   const toRad = (x) => (x * Math.PI) / 180;
   const R = 6371000; // meters
@@ -111,10 +101,7 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
   const dLon = toRad(lon2 - lon1);
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRad(lat1)) *
-      Math.cos(toRad(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 };
@@ -122,13 +109,81 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
 // Default hardcoded user location
 const defaultUserLocation = { lat: 44.623917, lng: -63.920472 };
 
+/**
+ * Map Center Controller Component
+ * Centers map on user location when triggered
+ */
+const MapCenterController = ({ center, zoom }) => {
+  const map = useMap();
+  useEffect(() => {
+    if (center) {
+      map.flyTo(center, zoom || 17, {
+        duration: 1.5,
+        easeLinearity: 0.5,
+      });
+    }
+  }, [center, zoom, map]);
+  return null;
+};
+
+/**
+ * Framer Motion animation variants
+ */
+const containerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
+
+const titleVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: -20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
+const buttonVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.4, ease: "easeOut" }
+  },
+  hover: {
+    scale: 1.05,
+    boxShadow: "0 10px 30px rgba(34, 197, 94, 0.3)",
+    transition: { duration: 0.2 }
+  },
+  tap: { scale: 0.95 }
+};
+
 const SiteMap = () => {
-  // State for user location, tracking, selected POI, and distance
   const [userLocation, setUserLocation] = useState(null);
   const [tracking, setTracking] = useState(false);
   const [selectedPOI, setSelectedPOI] = useState(null);
   const [distance, setDistance] = useState(null);
+  const [mapCenter, setMapCenter] = useState(null);
   const watchIdRef = useRef(null);
+  const mapRef = useRef(null);
 
   // Live tracking: update user location and distance as user moves
   useEffect(() => {
@@ -152,7 +207,6 @@ const SiteMap = () => {
         );
       }
     }
-    // Cleanup geolocation watcher
     return () => {
       if (watchIdRef.current) {
         navigator.geolocation.clearWatch(watchIdRef.current);
@@ -161,7 +215,19 @@ const SiteMap = () => {
     };
   }, [tracking, selectedPOI]);
 
-  // Start route tracking to selected POI
+  /**
+   * Handle "YOU ARE HERE" button click
+   * Sets user location and centers map with animation
+   */
+  const handleUserLocation = () => {
+    const location = [defaultUserLocation.lat, defaultUserLocation.lng];
+    setUserLocation(location);
+    setMapCenter(location);
+  };
+
+  /**
+   * Handle route tracking to POI
+   */
   const handleGetDirectionsClick = (poi) => {
     setSelectedPOI(poi);
     setTracking(true);
@@ -177,47 +243,65 @@ const SiteMap = () => {
     }
   };
 
-  // Set hardcoded user location when "YOU ARE HERE" is clicked
-  const handleUserLocation = () => {
-    setUserLocation([defaultUserLocation.lat, defaultUserLocation.lng]);
-  };
-
-  // Calculate route points using available paths
+  // Calculate route points
   let routePoints = [];
   if (tracking && selectedPOI && userLocation) {
     routePoints = findShortestPath(userLocation, selectedPOI.position);
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 px-4 transition-colors duration-300">
-      {/* Page Title */}
-      <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white drop-shadow-lg">
-        Woodland Conservation Area
-      </h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 px-4 transition-colors duration-300 relative">
 
-      {/* Button to display hardcoded user location */}
-      <button
+      {/* Page Title with Animation */}
+      <motion.h1
+        className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white drop-shadow-lg"
+        variants={titleVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        Woodland Conservation Area
+      </motion.h1>
+
+      {/* YOU ARE HERE Button with Animation */}
+      <motion.button
         onClick={handleUserLocation}
-        className="mb-8 px-6 py-3 bg-green-600 hover:bg-green-500 dark:bg-green-700 dark:hover:bg-green-600 text-white rounded-lg shadow-lg transition-all duration-300 font-semibold"
+        className="mb-8 px-8 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 dark:from-green-700 dark:to-green-800 dark:hover:from-green-600 dark:hover:to-green-700 text-white rounded-lg shadow-lg transition-all duration-300 font-semibold text-lg"
+        variants={buttonVariants}
+        initial="hidden"
+        animate="visible"
+        whileHover="hover"
+        whileTap="tap"
       >
         📍 YOU ARE HERE
-      </button>
+      </motion.button>
 
-      <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto gap-8">
-        {/* Map Section */}
-        <div className="w-full lg:w-4/5">
-          <div className="rounded-2xl shadow-2xl border-4 border-green-300 dark:border-green-700 overflow-hidden bg-white dark:bg-gray-800">
+      {/* Main Container with Animation */}
+      <motion.div
+        className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto gap-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Map Section with Fixed z-index */}
+        <motion.div
+          className="w-full lg:w-4/5"
+          variants={itemVariants}
+        >
+          <div className="rounded-2xl shadow-2xl border-4 border-green-300 dark:border-green-700 overflow-hidden bg-white dark:bg-gray-800 relative z-0">
             <MapContainer
               center={[44.6245, -63.9209]}
               zoom={16}
-              style={{ height: "88vh", width: "100%" }}
+              style={{ height: "88vh", width: "100%", position: "relative", zIndex: 0 }}
               scrollWheelZoom={true}
+              ref={mapRef}
             >
-              {/* OpenStreetMap tiles */}
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
+
+              {/* Map Center Controller */}
+              <MapCenterController center={mapCenter} zoom={17} />
 
               {/* Render POI markers */}
               {pointsOfInterest.map((poi) => (
@@ -247,7 +331,7 @@ const SiteMap = () => {
                 </Marker>
               ))}
 
-              {/* User location marker (red pin) */}
+              {/* User location marker */}
               {userLocation && (
                 <Marker
                   position={userLocation}
@@ -263,54 +347,86 @@ const SiteMap = () => {
                 </Marker>
               )}
 
-              {/* Route Polyline (green, follows available path) */}
+              {/* Route Polyline */}
               {routePoints.length > 1 && (
                 <Polyline positions={routePoints} color="green" weight={7} />
               )}
             </MapContainer>
           </div>
-          {/* Distance display */}
+
+          {/* Distance display with animation */}
           {tracking && selectedPOI && (
-            <div className="mt-4 text-center text-gray-900 dark:text-white text-lg font-semibold bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg">
+            <motion.div
+              className="mt-4 text-center text-gray-900 dark:text-white text-lg font-semibold bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               Distance to {selectedPOI.name}:{" "}
               {distance
                 ? `${(distance / 1000).toFixed(2)} km (${Math.round(distance)} m)`
                 : "Calculating..."}
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
 
-        {/* Points of Interest Section */}
-        <div className="w-full lg:w-1/5 flex flex-col bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-2xl text-gray-900 dark:text-gray-100 border-2 border-green-300 dark:border-green-700 transition-colors duration-300">
-          <h2 className="text-2xl font-bold mb-6 text-green-700 dark:text-green-400">Points of Interest</h2>
+        {/* Points of Interest Section with Animation */}
+        <motion.div
+          className="w-full lg:w-1/5 flex flex-col bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-2xl text-gray-900 dark:text-gray-100 border-2 border-green-300 dark:border-green-700 transition-colors duration-300 relative z-0"
+          variants={itemVariants}
+        >
+          <h2 className="text-2xl font-bold mb-6 text-green-700 dark:text-green-400">
+            Points of Interest
+          </h2>
           <ul className="space-y-6">
-            {pointsOfInterest.map((poi) => (
-              <li key={poi.id} className="flex items-center space-x-4">
-                <img src={poi.icon} alt={poi.name} className="w-10 h-10 drop-shadow-lg" />
+            {pointsOfInterest.map((poi, index) => (
+              <motion.li
+                key={poi.id}
+                className="flex items-center space-x-4 p-2 rounded-lg hover:bg-green-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05, x: 5 }}
+              >
+                <img
+                  src={poi.icon}
+                  alt={poi.name}
+                  className="w-10 h-10 drop-shadow-lg"
+                />
                 <div>
-                  <span className="font-semibold text-lg text-gray-900 dark:text-white">{poi.name}</span>
+                  <span className="font-semibold text-lg text-gray-900 dark:text-white">
+                    {poi.name}
+                  </span>
                   <span className="block text-xs text-gray-600 dark:text-gray-400">
                     {poiDescriptions[poi.name]}
                   </span>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </ul>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      {/* Instructions Section */}
-      <div className="mt-12 text-center text-gray-800 dark:text-gray-200 max-w-3xl bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
-        <h2 className="text-2xl font-bold mb-4 text-green-700 dark:text-green-400">Instructions</h2>
+      {/* Instructions Section with Animation */}
+      <motion.div
+        className="mt-12 text-center text-gray-800 dark:text-gray-200 max-w-3xl bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg relative z-0"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
+        <h2 className="text-2xl font-bold mb-4 text-green-700 dark:text-green-400">
+          Instructions
+        </h2>
         <p className="mb-2">
           Click the <span className="font-semibold text-blue-600 dark:text-blue-400">Track Route</span> button on any marker to see the route and live distance to the selected point of interest.
         </p>
         <p className="mt-4">
-          You can also click <span className="font-semibold text-green-600 dark:text-green-400">📍 YOU ARE HERE</span> to display your location on the map.
+          Click <span className="font-semibold text-green-600 dark:text-green-400">📍 YOU ARE HERE</span> to display and focus on your location on the map.
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };
 
 export default SiteMap;
+
