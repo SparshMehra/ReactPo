@@ -1,3 +1,25 @@
+/**
+ * ChatbotWindow Component
+ *
+ * @file ChatbotWindow.js
+ * @author Abdiaziz Muse (A00471783)
+ * @description Main chatbot interface window with AI-powered conversation capabilities.
+ *              Connects to the chatbot API for intelligent responses about the conservation area.
+ *
+ * Features:
+ * - Real-time chat interface with message history
+ * - Integration with fine-tuned GPT-2 model via API
+ * - Suggested questions for quick access
+ * - Auto-scroll to latest messages
+ * - Loading states during API calls
+ * - Error handling for API failures
+ * - Timestamp display for messages
+ * - Responsive design with dark mode support
+ *
+ * @param {Function} onClose - Callback to close the chatbot window
+ * @returns {JSX.Element} Chatbot window with conversation interface
+ */
+
 import React, { useState, useRef, useEffect } from 'react';
 import './Chatbot.css';
 

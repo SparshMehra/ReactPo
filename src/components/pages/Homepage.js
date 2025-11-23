@@ -1,5 +1,26 @@
-// Authors: Lakshay Bansal (A00467478), Marko Ostrovitsa (A00448932)
-// Purpose: Modern homepage with hero section, features, and smooth animations
+/**
+ * Homepage Component
+ *
+ * @file Homepage.js
+ * @author Bhabin Chudal (A00464169) - Code cleanup, UI improvements
+ * @author Abdiaziz Muse (A00471783) - UI revamp, nature theme integration, animations
+ * @author Lakshay Bansal (A00467478)
+ * @author Marko Ostrovitsa (A00448932)
+ * @description Modern homepage with hero section, features, parallax effects,
+ *              animated statistics, and call-to-action sections.
+ *
+ * Features:
+ * - Responsive hero section with animated scroll indicator
+ * - Nature-themed gradient backgrounds throughout
+ * - Parallax scrolling effects
+ * - Animated statistics with large gradient numbers
+ * - Feature cards with hover animations
+ * - Testimonial carousel
+ * - Dark mode support with adaptive gradients
+ *
+ * @param {boolean} dark - Current dark mode state
+ * @returns {JSX.Element} Homepage with comprehensive animations and modern UI
+ */
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";

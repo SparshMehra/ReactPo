@@ -2,16 +2,20 @@
  * Navigation Component
  *
  * @file Navigation.js
+ * @author Sadikshya Oli (A00457938)
+ * @author Sparsh Mehra (A00472261)
  * @author Marko Ostrovitsa (A00448932)
+ * @author Abdiaziz Muse (A00471783) - UI revamp with nature theme colors
  * @description Responsive navigation bar with dark mode toggle and shopping cart.
- *              Includes desktop navigation with hover effects and mobile drawer menu.
+ *              Includes desktop navigation with hover effects, mobile drawer menu,
+ *              and nature-themed gradient background.
  *
  * @component
  * @param {Function} toggleDarkMode - Function to toggle dark/light mode
  * @param {boolean} dark - Current dark mode state
  * @param {Array} cart - Array of cart items
  *
- * @returns {JSX.Element} Navigation bar component
+ * @returns {JSX.Element} Navigation bar component with forest green gradient
  */
 
 import React, { useState } from "react";

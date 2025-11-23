@@ -1,5 +1,23 @@
-// Authors: Sadikshya Oli (Integration), Kunal Singla (A00461346), Cole Turner (A00469026), Bahnu Prakash (A00468530)
-// Purpose: Combined Ecosystem and Flora/Fauna/Fungi interactive page
+/**
+ * EcoVeg Component (Ecosystem & Vegetation)
+ *
+ * @file EcoVeg.js
+ * @author Sadikshya Oli (A00457938) - Merging vegetation and ecosystem sections
+ * @author Kunal Singla (A00461346)
+ * @author Cole Turner (A00469026)
+ * @author Bhanu Prakash (A00468530)
+ * @description Combined interactive page displaying ecosystem information,
+ *              flora, fauna, and fungi species with filtering and search.
+ *
+ * Features:
+ * - Interactive species cards with images and descriptions
+ * - Category filtering (All, Flora, Fauna, Fungi)
+ * - Search functionality
+ * - Responsive grid layout
+ * - Detailed species information
+ *
+ * @returns {JSX.Element} Combined ecosystem and vegetation page
+ */
 
 import React, { useState } from "react";
 import redMaple from "../../assets/download-4.jpg";

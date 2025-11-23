@@ -2,11 +2,21 @@
  * Contact Component
  *
  * @file Contact.js
+ * @author Bhabin Chudal (A00464169) - Code cleanup, UI improvements
+ * @author Abdiaziz Muse (A00471783) - UI revamp, scroll animations, dark mode fixes
  * @author Lakshay Bansal (A00467478)
- * @description Enhanced contact form with dark mode support, modern animations,
- *              and proper text field visibility in all themes
+ * @description Enhanced contact form with dark mode support, scroll-triggered animations,
+ *              proper text field visibility, and information cards.
  *
- * @returns {JSX.Element} Contact page with animated form
+ * Features:
+ * - Scroll-triggered animations for form and info cards
+ * - Dark mode support with visible text fields
+ * - Form validation with React Hook Form
+ * - Staggered card animations
+ * - Nature-themed gradient backgrounds
+ * - Responsive design
+ *
+ * @returns {JSX.Element} Contact page with animated form and info cards
  */
 
 import React, { useRef } from "react";

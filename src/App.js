@@ -126,7 +126,7 @@ function App() {
       </Router>
 
       {/* React Query DevTools (only in development) */}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
     </QueryClientProvider>
   );
 }

@@ -2,17 +2,21 @@
  * Sitemap Component
  *
  * @file Sitemap.js
- * @authors Bhanu Prakash (A00468530), Cole Turner (A00469026)
- * @description Interactive site map with animations, route tracking, and user location
+ * @author Tongol Banguot (A00479259)
+ * @author Bhanu Prakash (A00468530)
+ * @author Cole Turner (A00469026)
+ * @author Abdiaziz Muse (A00471783) - UI revamp, scroll animations, code cleanup
+ * @description Interactive site map with animations, route tracking, and user location.
  *
  * Features:
- * - Interactive Leaflet map with POI markers
- * - "YOU ARE HERE" button with map centering
- * - Route tracking with live distance updates
- * - Framer Motion animations for scroll effects
- * - Proper z-index to stay below navbar
+ * - Interactive Leaflet map with POI markers and custom icons
+ * - "YOU ARE HERE" button with smooth map centering animation
+ * - Real-time route tracking with live distance updates
+ * - Framer Motion scroll-triggered animations
+ * - Proper z-index management to stay below navbar
+ * - Nature-themed styling with gradient backgrounds
  *
- * @returns {JSX.Element} Interactive site map page
+ * @returns {JSX.Element} Interactive site map page with enhanced UI
  */
 
 import React, { useState, useEffect, useRef } from "react";

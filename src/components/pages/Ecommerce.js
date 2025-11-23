@@ -2,15 +2,18 @@
  * Ecommerce Component
  *
  * @file Ecommerce.js
- * @author Sadikshya Oli
+ * @author Sadikshya Oli (A00457938)
+ * @author Sparsh Mehra (A00472261)
+ * @author Abdiaziz Muse (A00471783) - UI revamp, code cleanup
  * @description eCommerce page for Woodland Conservation merchandise.
- *              Displays eco-friendly products with add-to-cart functionality.
+ *              Displays eco-friendly products with add-to-cart functionality
+ *              and scroll-triggered animations.
  *
  * @component
  * @param {Array} cart - Current cart items array
  * @param {Function} setCart - Function to update cart state
  *
- * @returns {JSX.Element} Ecommerce page with product grid
+ * @returns {JSX.Element} Ecommerce page with product grid and animations
  */
 
 import React, { useRef } from "react";

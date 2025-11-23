@@ -2,15 +2,16 @@
  * Cart Component
  *
  * @file Cart.js
- * @author Sadikshya Oli
+ * @author Sadikshya Oli (A00457938)
+ * @author Abdiaziz Muse (A00471783) - UI revamp, code cleanup
  * @description Shopping cart page with item management, quantity controls,
- *              order summary, and localStorage persistence.
+ *              order summary, localStorage persistence, and modern UI design.
  *
  * @component
  * @param {Array} cart - Array of cart items with product details
  * @param {Function} setCart - Function to update cart state
  *
- * @returns {JSX.Element} Shopping cart page
+ * @returns {JSX.Element} Shopping cart page with enhanced UI
  */
 
 import React, { useEffect } from "react";

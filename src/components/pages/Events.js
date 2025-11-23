@@ -1,5 +1,23 @@
-// Author: Implementation of Events & Booking System
-// Purpose: Main events page displaying all conservation area events with booking functionality
+/**
+ * Events Component
+ *
+ * @file Events.js
+ * @author Abdiaziz Muse (A00471783) - Events system, booking functionality, UI revamp
+ * @description Main events page displaying conservation area events with comprehensive
+ *              booking system, filtering, and real-time availability.
+ *
+ * Features:
+ * - Event listing with category and date filters
+ * - Real-time availability tracking
+ * - Complete booking workflow (details → form → confirmation)
+ * - Email confirmation system
+ * - Booking code generation and management
+ * - Error handling with toast notifications
+ * - Responsive design with enhanced event cards
+ * - Glassmorphism effects and animations
+ *
+ * @returns {JSX.Element} Events page with booking system
+ */
 
 import React, { useState, useEffect } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
