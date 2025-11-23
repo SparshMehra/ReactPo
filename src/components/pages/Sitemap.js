@@ -17,7 +17,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import trailHead from "../../assets/hiking.png";
@@ -127,14 +127,62 @@ const MapCenterController = ({ center, zoom }) => {
 };
 
 /**
- * Framer Motion animation variants
+ * Framer Motion animation variants for scroll-triggered animations
  */
+const fadeInUpVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInLeftVariants = {
+  hidden: { opacity: 0, x: -80 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInRightVariants = {
+  hidden: { opacity: 0, x: 80 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+
+const scaleInVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { 
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
 const containerVariants = {
   hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
+  visible: { 
+    opacity: 1, 
     y: 0,
-    transition: {
+    transition: { 
       duration: 0.6,
       ease: "easeOut",
       staggerChildren: 0.1
@@ -144,8 +192,8 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, x: -30 },
-  visible: {
-    opacity: 1,
+  visible: { 
+    opacity: 1, 
     x: 0,
     transition: { duration: 0.5, ease: "easeOut" }
   }
@@ -153,9 +201,9 @@ const itemVariants = {
 
 const titleVariants = {
   hidden: { opacity: 0, scale: 0.9, y: -20 },
-  visible: {
-    opacity: 1,
-    scale: 1,
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
     y: 0,
     transition: { duration: 0.6, ease: "easeOut" }
   }
@@ -163,12 +211,12 @@ const titleVariants = {
 
 const buttonVariants = {
   hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
+  visible: { 
+    opacity: 1, 
     scale: 1,
     transition: { duration: 0.4, ease: "easeOut" }
   },
-  hover: {
+  hover: { 
     scale: 1.05,
     boxShadow: "0 10px 30px rgba(34, 197, 94, 0.3)",
     transition: { duration: 0.2 }
@@ -184,6 +232,16 @@ const SiteMap = () => {
   const [mapCenter, setMapCenter] = useState(null);
   const watchIdRef = useRef(null);
   const mapRef = useRef(null);
+
+  // Refs for scroll-triggered animations
+  const mapContainerRef = useRef(null);
+  const poiPanelRef = useRef(null);
+  const instructionsRef = useRef(null);
+  
+  // Track when elements are in view
+  const isMapInView = useInView(mapContainerRef, { once: true, margin: "-100px" });
+  const isPoiInView = useInView(poiPanelRef, { once: true, margin: "-100px" });
+  const isInstructionsInView = useInView(instructionsRef, { once: true, margin: "-50px" });
 
   // Live tracking: update user location and distance as user moves
   useEffect(() => {
@@ -276,16 +334,19 @@ const SiteMap = () => {
       </motion.button>
 
       {/* Main Container with Animation */}
-      <motion.div
+      <motion.div 
         className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto gap-8"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Map Section with Fixed z-index */}
-        <motion.div
+        {/* Map Section with Scroll Animation */}
+        <motion.div 
+          ref={mapContainerRef}
           className="w-full lg:w-4/5"
-          variants={itemVariants}
+          variants={fadeInLeftVariants}
+          initial="hidden"
+          animate={isMapInView ? "visible" : "hidden"}
         >
           <div className="rounded-2xl shadow-2xl border-4 border-green-300 dark:border-green-700 overflow-hidden bg-white dark:bg-gray-800 relative z-0">
             <MapContainer
@@ -295,15 +356,14 @@ const SiteMap = () => {
               scrollWheelZoom={true}
               ref={mapRef}
             >
+              {/* ...existing map content... */}
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
 
-              {/* Map Center Controller */}
               <MapCenterController center={mapCenter} zoom={17} />
 
-              {/* Render POI markers */}
               {pointsOfInterest.map((poi) => (
                 <Marker
                   key={poi.id}
@@ -331,7 +391,6 @@ const SiteMap = () => {
                 </Marker>
               ))}
 
-              {/* User location marker */}
               {userLocation && (
                 <Marker
                   position={userLocation}
@@ -347,7 +406,6 @@ const SiteMap = () => {
                 </Marker>
               )}
 
-              {/* Route Polyline */}
               {routePoints.length > 1 && (
                 <Polyline positions={routePoints} color="green" weight={7} />
               )}
@@ -356,7 +414,7 @@ const SiteMap = () => {
 
           {/* Distance display with animation */}
           {tracking && selectedPOI && (
-            <motion.div
+            <motion.div 
               className="mt-4 text-center text-gray-900 dark:text-white text-lg font-semibold bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -370,28 +428,31 @@ const SiteMap = () => {
           )}
         </motion.div>
 
-        {/* Points of Interest Section with Animation */}
-        <motion.div
+        {/* Points of Interest Section with Scroll Animation */}
+        <motion.div 
+          ref={poiPanelRef}
           className="w-full lg:w-1/5 flex flex-col bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-2xl text-gray-900 dark:text-gray-100 border-2 border-green-300 dark:border-green-700 transition-colors duration-300 relative z-0"
-          variants={itemVariants}
+          variants={fadeInRightVariants}
+          initial="hidden"
+          animate={isPoiInView ? "visible" : "hidden"}
         >
           <h2 className="text-2xl font-bold mb-6 text-green-700 dark:text-green-400">
             Points of Interest
           </h2>
           <ul className="space-y-6">
             {pointsOfInterest.map((poi, index) => (
-              <motion.li
-                key={poi.id}
+              <motion.li 
+                key={poi.id} 
                 className="flex items-center space-x-4 p-2 rounded-lg hover:bg-green-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={isPoiInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05, x: 5 }}
               >
-                <img
-                  src={poi.icon}
-                  alt={poi.name}
-                  className="w-10 h-10 drop-shadow-lg"
+                <img 
+                  src={poi.icon} 
+                  alt={poi.name} 
+                  className="w-10 h-10 drop-shadow-lg" 
                 />
                 <div>
                   <span className="font-semibold text-lg text-gray-900 dark:text-white">
@@ -407,12 +468,13 @@ const SiteMap = () => {
         </motion.div>
       </motion.div>
 
-      {/* Instructions Section with Animation */}
-      <motion.div
+      {/* Instructions Section with Scroll Animation */}
+      <motion.div 
+        ref={instructionsRef}
         className="mt-12 text-center text-gray-800 dark:text-gray-200 max-w-3xl bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg relative z-0"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
+        variants={fadeInUpVariants}
+        initial="hidden"
+        animate={isInstructionsInView ? "visible" : "hidden"}
       >
         <h2 className="text-2xl font-bold mb-4 text-green-700 dark:text-green-400">
           Instructions

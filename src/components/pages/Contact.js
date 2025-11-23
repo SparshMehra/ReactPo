@@ -9,18 +9,27 @@
  * @returns {JSX.Element} Contact page with animated form
  */
 
-import React from "react";
+import React, { useRef } from "react";
 import Speaker from "../UI/Speaker";
 import { useForm } from "react-hook-form";
 import FormError from "../UI/FormError";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { motion, useInView } from "framer-motion";
 import { FaEnvelope, FaUser, FaCommentDots } from "react-icons/fa";
 
 const Contact = () => {
   const { register, handleSubmit, formState, reset } = useForm();
   const { errors } = formState;
+
+  // Refs for scroll-triggered animations
+  const formRef = useRef(null);
+  const infoCardsRef = useRef(null);
+
+  // Track when elements are in view
+  const isFormInView = useInView(formRef, { once: true, margin: "-100px" });
+  const isInfoInView = useInView(infoCardsRef, { once: true, margin: "-50px" });
 
   /**
    * Handle form submission
@@ -38,6 +47,36 @@ const Contact = () => {
       mode: document.body.classList.contains('dark') ? 'dark' : 'light',
     },
   });
+
+  // Animation variants
+  const fadeInUpVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
+  };
+
+  const staggerContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -64,8 +103,14 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Contact Form with Enhanced Styling */}
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 md:p-12 max-w-4xl w-full transition-all duration-300 animate-slideIn border border-gray-200 dark:border-gray-700">
+        {/* Contact Form with Enhanced Styling and Scroll Animation */}
+        <motion.div
+          ref={formRef}
+          className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 md:p-12 max-w-4xl w-full transition-all duration-300 animate-slideIn border border-gray-200 dark:border-gray-700"
+          variants={fadeInUpVariants}
+          initial="hidden"
+          animate={isFormInView ? "visible" : "hidden"}
+        >
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name Input */}
@@ -230,35 +275,50 @@ const Contact = () => {
               </Button>
             </div>
           </form>
-        </div>
+        </motion.div>
 
-        {/* Additional Info Section */}
-        <div className="mt-12 max-w-4xl w-full grid md:grid-cols-3 gap-6">
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-200 dark:border-gray-700">
+        {/* Additional Info Section with Scroll Animation */}
+        <motion.div
+          ref={infoCardsRef}
+          className="mt-12 max-w-4xl w-full grid md:grid-cols-3 gap-6"
+          variants={staggerContainerVariants}
+          initial="hidden"
+          animate={isInfoInView ? "visible" : "hidden"}
+        >
+          <motion.div
+            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-200 dark:border-gray-700"
+            variants={cardVariants}
+          >
             <h3 className="text-xl font-bold mb-3 text-green-700 dark:text-green-400">📍 Visit Us</h3>
             <p className="text-gray-700 dark:text-gray-300">
               St. Margaret's Bay<br />
               Halifax, Nova Scotia<br />
               Canada
             </p>
-          </div>
+          </motion.div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-200 dark:border-gray-700">
+          <motion.div
+            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-200 dark:border-gray-700"
+            variants={cardVariants}
+          >
             <h3 className="text-xl font-bold mb-3 text-green-700 dark:text-green-400">⏰ Hours</h3>
             <p className="text-gray-700 dark:text-gray-300">
               Monday - Friday: 9am - 5pm<br />
               Saturday: 10am - 4pm<br />
               Sunday: Closed
             </p>
-          </div>
+          </motion.div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-200 dark:border-gray-700">
+          <motion.div
+            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border border-gray-200 dark:border-gray-700"
+            variants={cardVariants}
+          >
             <h3 className="text-xl font-bold mb-3 text-green-700 dark:text-green-400">💬 Response Time</h3>
             <p className="text-gray-700 dark:text-gray-300">
               We typically respond to inquiries within 24-48 hours during business days.
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </ThemeProvider>
   );

@@ -13,7 +13,8 @@
  * @returns {JSX.Element} Ecommerce page with product grid
  */
 
-import React from "react";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import GridContainer from "../UI/GridContainer";
 import tshirt from "../../assets/eco_tshirt.jpeg";
 import tote from "../../assets/eco_bag.jpeg";
@@ -60,6 +61,34 @@ const products = [
 ];
 
 const Ecommerce = ({ cart, setCart }) => {
+  // Ref for scroll-triggered animations
+  const productsRef = useRef(null);
+  const isProductsInView = useInView(productsRef, { once: true, margin: "-100px" });
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const productCardVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   /**
    * Adds a product to the shopping cart
    * @param {Object} product - Product object to add to cart
@@ -105,13 +134,20 @@ const Ecommerce = ({ cart, setCart }) => {
         )}
       </div>
 
-      {/* Product Grid */}
-      <GridContainer gridCols="2" gap="8" maxWidth="6xl">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden flex flex-col transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:-translate-y-2"
-          >
+      {/* Product Grid with Scroll Animation */}
+      <motion.div
+        ref={productsRef}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isProductsInView ? "visible" : "hidden"}
+      >
+        <GridContainer gridCols="2" gap="8" maxWidth="6xl">
+          {products.map((product) => (
+            <motion.div
+              key={product.id}
+              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden flex flex-col transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:-translate-y-2"
+              variants={productCardVariants}
+            >
             {/* Product Image */}
             <div className="relative overflow-hidden bg-white">
               <img
@@ -162,9 +198,10 @@ const Ecommerce = ({ cart, setCart }) => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </GridContainer>
+      </motion.div>
 
       {/* Bottom Call to Action */}
       <div className="mt-16 text-center bg-green-100 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
