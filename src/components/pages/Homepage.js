@@ -356,14 +356,14 @@ const Homepage = ({ dark }) => {
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link to="/contact">
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button size="lg" variant="primary" icon={<FaUsers />} className="shadow-2xl backdrop-blur-sm bg-white text-forest-700 hover:bg-white/90">
+                    <Button size="lg" variant="primary" icon={<FaUsers />} className="shadow-2xl backdrop-blur-sm bg-gradient-to-r from-memorial-500 to-memorial-600 text-white hover:from-memorial-400 hover:to-memorial-500 border-2 border-white/30">
                       Join Us Today
                     </Button>
                   </motion.div>
                 </Link>
                 <Link to="/events">
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button size="lg" variant="secondary" icon={<FaMapMarkedAlt />} className="shadow-2xl backdrop-blur-md bg-white/10 border-2 border-white/50 text-white hover:bg-white/20">
+                    <Button size="lg" variant="secondary" icon={<FaMapMarkedAlt />} className="shadow-2xl backdrop-blur-md bg-white/10 border-2 border-white/70 text-white hover:bg-white/20 hover:border-white">
                       View Events
                     </Button>
                   </motion.div>

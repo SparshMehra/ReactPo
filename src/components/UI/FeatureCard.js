@@ -66,7 +66,7 @@ const FeatureCard = ({
         transition={{ duration: 0.6 }}
       />
 
-      <div className="relative z-10">
+      <div className="relative z-10 p-6">
         {/* Icon */}
         <motion.div
           whileHover={{ rotate: 360, scale: 1.1 }}
@@ -77,19 +77,19 @@ const FeatureCard = ({
         </motion.div>
 
         {/* Title */}
-        <h3 className={`${size === 'large' ? 'heading-md' : 'heading-sm'} mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors`}>
+        <h3 className={`${size === 'large' ? 'heading-md' : 'text-2xl font-bold'} mb-4 text-stone-900 dark:text-white group-hover:text-forest-600 dark:group-hover:text-forest-400 transition-colors`}>
           {title}
         </h3>
 
         {/* Description */}
-        <p className="body-base text-neutral-600 dark:text-neutral-400 mb-6">
+        <p className="text-base md:text-lg text-stone-700 dark:text-stone-200 mb-6 leading-relaxed">
           {description}
         </p>
 
         {/* Arrow */}
         {link && (
           <motion.div
-            className="flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold"
+            className="flex items-center gap-2 text-forest-600 dark:text-forest-400 font-semibold text-lg"
             whileHover={{ x: 5 }}
             transition={{ duration: 0.2 }}
           >
