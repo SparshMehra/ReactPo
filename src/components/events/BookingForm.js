@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,7 +8,7 @@ const bookingSchema = yup.object().shape({
   firstName: yup.string().required('First name is required').min(2, 'Must be at least 2 characters'),
   lastName: yup.string().required('Last name is required').min(2, 'Must be at least 2 characters'),
   email: yup.string().email('Invalid email address').required('Email is required'),
-  phone: yup.string().required('Phone number is required').matches(/^[0-9\s\-\+\(\)]+$/, 'Invalid phone number'),
+  phone: yup.string().required('Phone number is required').matches(/^[0-9\s\-+()]+$/, 'Invalid phone number'),
   numberOfAttendees: yup.number().required('Number of attendees is required').min(1, 'At least 1 attendee').max(10, 'Maximum 10 attendees'),
   specialRequirements: yup.string(),
   agreedToTerms: yup.boolean().oneOf([true], 'You must agree to terms and conditions'),
@@ -19,7 +18,6 @@ const BookingForm = ({ event, onSubmit, onClose, submitting }) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(bookingSchema),
@@ -29,7 +27,6 @@ const BookingForm = ({ event, onSubmit, onClose, submitting }) => {
     },
   });
 
-  const numberOfAttendees = watch('numberOfAttendees');
 
   const handleFormSubmit = (data) => {
     onSubmit({
