@@ -1,13 +1,23 @@
-// Author: Marko Ostrovitsa (A00448932)
-// Purpose: Responsive navigation bar for desktop and mobile with dark mode toggle
+/**
+ * Navigation Component
+ *
+ * @file Navigation.js
+ * @author Marko Ostrovitsa (A00448932)
+ * @description Responsive navigation bar with dark mode toggle and shopping cart.
+ *              Includes desktop navigation with hover effects and mobile drawer menu.
+ *
+ * @component
+ * @param {Function} toggleDarkMode - Function to toggle dark/light mode
+ * @param {boolean} dark - Current dark mode state
+ * @param {Array} cart - Array of cart items
+ *
+ * @returns {JSX.Element} Navigation bar component
+ */
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import DarkModeToggle from "./DarkModeToggle";
-import Homepage from "../pages/Homepage";
-
-// ⬇️ NEW: MUI imports
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
@@ -16,6 +26,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 
+/**
+ * Navigation links configuration
+ * @constant {Array<Object>} navLinks
+ */
 const navLinks = [
   { to: "about", label: "About" },
   { to: "sitemap", label: "Site Map" },
@@ -25,17 +39,19 @@ const navLinks = [
   { to: "contact", label: "Contact" },
   { to: "ecoveg", label: "Ecosystem/Vegetation" },
   { to: "ecommerce", label: "Ecommerce" }
-
 ];
 
 const Navigation = ({ toggleDarkMode, dark, cart = [] }) => {
-  console.log("NAV CART =", cart);
-
-  const [isOpen, setIsOpen] = useState(false);
-  // ⬇️ replaced isOpen with drawerOpen for MUI
+  // State for mobile drawer menu
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  /**
+   * Toggles the mobile drawer menu
+   * @param {boolean} open - Whether to open or close the drawer
+   * @returns {Function} Event handler function
+   */
   const toggleDrawer = (open) => (event) => {
+    // Prevent toggle when using Tab or Shift keys
     if (
       event &&
       event.type === "keydown" &&
@@ -46,38 +62,63 @@ const Navigation = ({ toggleDarkMode, dark, cart = [] }) => {
     setDrawerOpen(open);
   };
 
-  const baseclass = `transition-colors duration-300 ${dark ? "bg-darkerBlue" : "bg-darkBrown"
-    } text-white  p-4`;
+  // Calculate total cart items including quantities
+  const totalCartItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
-  // ⬇️ Drawer content
+  // Dynamic navigation bar styling based on dark mode
+  const baseclass = `transition-colors duration-300 ${
+    dark ? "bg-darkerBlue" : "bg-darkBrown"
+  } text-white p-4 shadow-lg`;
+
+  /**
+   * Mobile drawer content with navigation links
+   */
   const drawerList = (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 280 }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
+      className="bg-white dark:bg-gray-800"
     >
+      {/* Drawer Header */}
+      <Box sx={{ p: 2, textAlign: "center", borderBottom: 1, borderColor: "divider" }}>
+        <h2 className="text-xl font-bold text-gray-800 dark:text-white">Menu</h2>
+      </Box>
+
+      {/* Navigation Links */}
       <List>
         {navLinks.map((link) => (
           <ListItem key={link.to} disablePadding>
-            <ListItemButton component={Link} to={link.to}>
-              <ListItemText primary={link.label} />
+            <ListItemButton
+              component={Link}
+              to={link.to}
+              className="hover:bg-yellow-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              <ListItemText
+                primary={link.label}
+                className="text-gray-800 dark:text-white"
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+
       <Divider />
-      {/* Optional: Dark mode & cart inside drawer too */}
-      <Box sx={{ p: 2, display: "flex", justifyContent: "center", gap: 1 }}>
+
+      {/* Mobile Drawer Actions: Dark Mode Toggle & Cart */}
+      <Box sx={{ p: 3, display: "flex", justifyContent: "center", gap: 2, alignItems: "center" }}>
         <DarkModeToggle toggleDarkMode={toggleDarkMode} dark={dark} />
+
+        {/* Mobile Cart Button */}
         <Link
           to="/cart"
-          className="relative bg-yellow-500 text-black px-3 py-1 rounded-lg hover:bg-yellow-400 transition-colors"
+          className="relative bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg hover:from-yellow-400 hover:to-yellow-500 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
         >
-          🛒
-          {cart.length > 0 && (
-            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              {cart.length}
+          <span className="text-xl">🛒</span>
+          {totalCartItems > 0 && (
+            <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-md animate-pulse">
+              {totalCartItems}
             </span>
           )}
         </Link>
@@ -86,73 +127,65 @@ const Navigation = ({ toggleDarkMode, dark, cart = [] }) => {
   );
 
   return (
-    <div>
-      {/* Main navigation bar */}
-      <div className={`${baseclass} flex items-center justify-between h-16`}>
-        {/* Logo */}
-        <Link to="/" element={<Homepage />}>
+    <nav className="sticky top-0 z-50">
+      {/* Main Navigation Bar */}
+      <div className={`${baseclass} flex items-center justify-between h-16 px-6`}>
+
+        {/* Logo Section */}
+        <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
           <img
             src={logo}
-            alt="Logo"
-            className="h-10 w-10 mr-2 md:h-14 md:w-14"
+            alt="Woodland Conservation Logo"
+            className="h-12 w-12 md:h-14 md:w-14 object-contain"
           />
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center justify-center flex-1 space-x-4 text-xl">
+        {/* Desktop Navigation Links */}
+        <div className="hidden md:flex items-center justify-center flex-1 space-x-2 lg:space-x-4">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className="py-2 px-4 transition-colors duration-500 ease-in-out hover:bg-yellow-400 rounded-lg"
+              className="py-2 px-3 lg:px-4 text-base lg:text-lg font-medium transition-all duration-300 ease-in-out hover:bg-yellow-400 hover:text-black rounded-lg hover:shadow-md transform hover:scale-105"
             >
               {link.label}
             </Link>
           ))}
-
-          {/* 🛒 Cart FIRST with nice spacing */}
-          <div className="flex items-center mr-24">
-            <Link
-              to="/cart"
-              className="relative bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors"
-            >
-              🛒
-              {cart && cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
-                </span>
-              )}
-            </Link>
-          </div>
-
-          {/* 🌙 Dark Mode SECOND */}
-          <DarkModeToggle toggleDarkMode={toggleDarkMode} dark={dark} />
         </div>
-        
-        {/* 🛒 Cart Button (desktop & tablet) */}
-        <div className="hidden md:block">
+
+        {/* Desktop Right Section: Cart & Dark Mode */}
+        <div className="hidden md:flex items-center space-x-4">
+          {/* Dark Mode Toggle */}
+          <DarkModeToggle toggleDarkMode={toggleDarkMode} dark={dark} />
+
+          {/* Cart Button */}
           <Link
             to="/cart"
-            className="relative ml-4 bg-yellow-500 text-black px-4 py-2 rounded-lg hover:bg-yellow-400 transition-colors"
+            className="relative bg-gradient-to-r from-yellow-500 to-yellow-600 text-black px-4 py-2 rounded-lg hover:from-yellow-400 hover:to-yellow-500 transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105 font-medium"
+            aria-label="Shopping Cart"
           >
-            🛒
-            {cart.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                {cart.length}
+            <span className="text-xl">🛒</span>
+            {totalCartItems > 0 && (
+              <span
+                className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-md animate-pulse"
+                aria-label={`${totalCartItems} items in cart`}
+              >
+                {totalCartItems}
               </span>
             )}
           </Link>
         </div>
 
-        {/* Mobile menu & dark mode toggle */}
-        <div className="flex items-center md:hidden">
+        {/* Mobile Menu Section */}
+        <div className="flex items-center space-x-3 md:hidden">
+          {/* Mobile Dark Mode Toggle */}
           <DarkModeToggle toggleDarkMode={toggleDarkMode} dark={dark} />
 
-          {/* Hamburger opens MUI Drawer */}
+          {/* Hamburger Menu Button */}
           <button
             onClick={toggleDrawer(true)}
-            className="text-white focus:outline-none z-20 ml-2"
-            aria-label="Toggle menu"
+            className="text-white focus:outline-none hover:bg-white hover:bg-opacity-20 p-2 rounded-lg transition-all duration-300"
+            aria-label="Toggle navigation menu"
           >
             <svg
               className="w-8 h-8"
@@ -166,36 +199,24 @@ const Navigation = ({ toggleDarkMode, dark, cart = [] }) => {
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h16M4 18h16"
-              ></path>
+              />
             </svg>
           </button>
         </div>
       </div>
 
-      {/* Mobile navigation menu */}
-      <div
-        className={`md:hidden absolute top-0 right-0  bg-opacity-50 backdrop-blur-md ${baseclass} w-64 h-screen p-4 z-10 transform transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+      {/* Mobile Drawer Menu */}
+      <Drawer
+        anchor="right"
+        open={drawerOpen}
+        onClose={toggleDrawer(false)}
+        className="md:hidden"
       >
-        <nav className="flex flex-col items-center mt-10 text-lg z-[200] ">
-          {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="py-2 transition-colors duration-500 ease-in-out hover:bg-yellow-400 w-full text-center rounded-lg hover:rounded-xl"
-              onClick={() => setIsOpen(false)} // close menu when link is clicked
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      </div>
-      {/* ⬇️ MUI Drawer that pops up from the right of the nav bar */}
-      <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
         {drawerList}
       </Drawer>
-    </div>
+    </nav>
   );
 };
 
 export default Navigation;
+

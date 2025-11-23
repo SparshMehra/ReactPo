@@ -1,19 +1,37 @@
+/**
+ * Global Styles and Tailwind Configuration
+ *
+ * @file index.css
+ * @description Main stylesheet with Tailwind CSS imports, custom animations,
+ *              and global component styles for consistent UI/UX
+ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global Body Styles */
 body {
   font-family: "Calibri", sans-serif;
   line-height: 1.5;
-  color: #555; /* Adjust color to ensure medium/bright contrast */
+  color: #555;
   font-size: 20px;
+  scroll-behavior: smooth;
 }
 
+/* Smooth Scrolling for All Elements */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Link Styles */
 a {
   display: block;
   text-decoration: none;
-  overflow-wrap: break-word; /* Ensures no word-breaking over lines */
+  overflow-wrap: break-word;
 }
 
+/* Custom Clip Path for Hero Sections */
 .clipPolygon {
   clip-path: polygon(
     0% 0%,
@@ -29,15 +47,73 @@ a {
   );
 }
 
+/* Custom Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation Utilities */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.4s ease-out;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+/* Tailwind Component Layer */
 @layer components {
+  /* Form Input Styles */
   .form-input {
     @apply w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500;
   }
 
+  /* Form Label Styles */
   .form-label {
     @apply block text-lg font-medium mb-2 flex items-center;
   }
 
+  /* Typography Hierarchy */
   .primaryHeading {
     @apply text-4xl font-bold;
   }
@@ -50,7 +126,7 @@ a {
     @apply text-2xl font-semibold;
   }
 
-  /* css to adjust the text for accessibility */
+  /* Accessibility - Extra Large Text Sizes */
   .bodyTextxlg {
     @apply text-2xl;
   }
@@ -64,6 +140,7 @@ a {
     @apply text-4xl;
   }
 
+  /* Accessibility - Extra Extra Large Text Sizes */
   .bodyTextxxlg {
     @apply text-3xl;
   }
@@ -78,6 +155,7 @@ a {
   }
 }
 
+/* Custom File Input Styles */
 input[type="file"]::file-selector-button {
   font: inherit;
   font-weight: 500;
@@ -92,6 +170,43 @@ input[type="file"]::file-selector-button {
   cursor: pointer;
   transition: color 0.2s, background-color 0.2s;
 }
+
 input[type="file"]::file-selector-button:hover {
   background-color: #536dfe;
 }
+
+/* Dark Mode Specific Styles */
+.dark {
+  color-scheme: dark;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
