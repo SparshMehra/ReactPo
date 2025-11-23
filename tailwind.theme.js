@@ -1,17 +1,13 @@
-/** @type {import('tailwindcss').Config} */
+/**
+ * Nature-Inspired Color Palette
+ * Theme: Natural Burial & Woodland Conservation
+ */
+
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
-  darkMode: 'class',
   theme: {
     extend: {
-      // Legacy colors (keep for backward compatibility)
       colors: {
-        darkBlue: '#001f3f',
-        darkerBlue: '#00122a',
-        darkBrown: '#4B2E16',
-        // New nature-inspired palette
+        // Earth tones for natural burial theme
         earth: {
           50: '#f9f7f4',
           100: '#f0ebe4',
@@ -24,6 +20,7 @@ module.exports = {
           800: '#4a4031',
           900: '#2a231c',
         },
+        // Forest greens
         forest: {
           50: '#f0f9f4',
           100: '#d9f2e3',
@@ -36,6 +33,7 @@ module.exports = {
           800: '#164d2f',
           900: '#113524',
         },
+        // Sky/peaceful blues
         peaceful: {
           50: '#f0f7ff',
           100: '#e0efff',
@@ -48,6 +46,7 @@ module.exports = {
           800: '#003272',
           900: '#001f47',
         },
+        // Stone grays
         stone: {
           50: '#fafaf9',
           100: '#f5f5f4',
@@ -60,6 +59,7 @@ module.exports = {
           800: '#292524',
           900: '#1c1917',
         },
+        // Sunset/memorial
         memorial: {
           50: '#fff7ed',
           100: '#ffedd5',
@@ -75,7 +75,6 @@ module.exports = {
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
-        'fade-in-up': 'fadeInUp 0.8s ease-out',
         'slide-up': 'slideUp 0.6s ease-out',
         'slide-down': 'slideDown 0.6s ease-out',
         'slide-left': 'slideLeft 0.6s ease-out',
@@ -84,17 +83,11 @@ module.exports = {
         'float': 'float 3s ease-in-out infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'shimmer': 'shimmer 2s linear infinite',
-        'bounce-gentle': 'bounceGentle 2s ease-in-out infinite',
-        'rotate-slow': 'rotateSlow 10s linear infinite',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
-        },
-        fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(30px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         slideUp: {
           '0%': { transform: 'translateY(40px)', opacity: '0' },
@@ -124,35 +117,19 @@ module.exports = {
           '0%': { backgroundPosition: '-1000px 0' },
           '100%': { backgroundPosition: '1000px 0' },
         },
-        bounceGentle: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-5px)' },
-        },
-        rotateSlow: {
-          '0%': { transform: 'rotate(0deg)' },
-          '100%': { transform: 'rotate(360deg)' },
-        },
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-nature': 'linear-gradient(135deg, #2da160 0%, #113524 100%)',
+        'gradient-nature': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
         'gradient-earth': 'linear-gradient(135deg, #a89578 0%, #6b5d47 100%)',
-        'gradient-forest': 'linear-gradient(135deg, #47be7d 0%, #1a653c 100%)',
-        'gradient-peaceful': 'linear-gradient(135deg, #7dbfff 0%, #0047a3 100%)',
-        'gradient-memorial': 'linear-gradient(135deg, #fed7aa 0%, #c2410c 100%)',
+        'gradient-forest': 'linear-gradient(135deg, #2da160 0%, #113524 100%)',
+        'gradient-peaceful': 'linear-gradient(135deg, #0c7cff 0%, #001f47 100%)',
       },
       boxShadow: {
         'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
         'glow': '0 0 20px rgba(45, 161, 96, 0.3)',
         'glow-lg': '0 0 30px rgba(45, 161, 96, 0.4)',
-        'glow-memorial': '0 0 25px rgba(249, 115, 22, 0.3)',
       },
-    },
-  },
-  variants: {
-    extend: {
-      backgroundColor: ['dark'],
-      animation: ['hover', 'focus'],
     },
   },
   plugins: [],

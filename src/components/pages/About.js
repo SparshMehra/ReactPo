@@ -1,5 +1,21 @@
-// Author: Lakshay Bansal (A00467478)
-// Purpose: This file represents an about component.
+/**
+ * About Component
+ *
+ * @file About.js
+ * @author Bhabin Chudal (A00464169) - Code cleanup, UI improvements
+ * @author Lakshay Bansal (A00467478)
+ * @description About page for Woodland Conservation Area with mission statement,
+ *              accordion sections, and text-to-speech functionality.
+ *
+ * Features:
+ * - Text-to-speech for accessibility
+ * - Expandable accordion sections for Flora/Fauna and Heritage
+ * - Responsive image gallery
+ * - Show more/less functionality for mission text
+ * - Audio controls for narration
+ *
+ * @returns {JSX.Element} About page component with interactive elements
+ */
 
 import React, { useRef, useState, useEffect } from "react";
 import outlookImage from "../../assets/outlook.jpg";

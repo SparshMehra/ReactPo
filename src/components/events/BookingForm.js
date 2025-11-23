@@ -1,4 +1,28 @@
-import React, { useState } from 'react';
+/**
+ * BookingForm Component
+ *
+ * @file BookingForm.js
+ * @author Abdiaziz Muse (A00471783)
+ * @description Modal booking form with validation for event registration.
+ *              Includes form validation, error handling, and attendee information collection.
+ *
+ * Features:
+ * - React Hook Form integration with Yup validation
+ * - Required fields: first name, last name, email, phone, number of attendees
+ * - Optional special requirements field
+ * - Real-time validation with error messages
+ * - Submit loading state
+ * - Modal overlay with backdrop blur
+ * - Event details summary in header
+ * - Responsive design
+ *
+ * @param {Object} event - Event object for booking
+ * @param {Function} onSubmit - Callback with attendee information
+ * @param {Function} onClose - Callback to close modal
+ * @param {boolean} submitting - Loading state for form submission
+ * @returns {JSX.Element} Booking form modal
+ */
+
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,7 +33,7 @@ const bookingSchema = yup.object().shape({
   firstName: yup.string().required('First name is required').min(2, 'Must be at least 2 characters'),
   lastName: yup.string().required('Last name is required').min(2, 'Must be at least 2 characters'),
   email: yup.string().email('Invalid email address').required('Email is required'),
-  phone: yup.string().required('Phone number is required').matches(/^[0-9\s\-\+\(\)]+$/, 'Invalid phone number'),
+  phone: yup.string().required('Phone number is required').matches(/^[0-9\s\-+()]+$/, 'Invalid phone number'),
   numberOfAttendees: yup.number().required('Number of attendees is required').min(1, 'At least 1 attendee').max(10, 'Maximum 10 attendees'),
   specialRequirements: yup.string(),
   agreedToTerms: yup.boolean().oneOf([true], 'You must agree to terms and conditions'),
@@ -19,7 +43,6 @@ const BookingForm = ({ event, onSubmit, onClose, submitting }) => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(bookingSchema),
@@ -29,7 +52,6 @@ const BookingForm = ({ event, onSubmit, onClose, submitting }) => {
     },
   });
 
-  const numberOfAttendees = watch('numberOfAttendees');
 
   const handleFormSubmit = (data) => {
     onSubmit({

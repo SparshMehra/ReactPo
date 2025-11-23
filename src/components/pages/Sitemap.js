@@ -1,16 +1,27 @@
-// Authors:
-// Bhanu Prakash(A00468530) - 'Get Directions' functionality
-// Cole Turner (A00469026) - Map interaction, UI design, TailWind CSS
-// Purpose: Site map component for the conservation area
+/**
+ * Sitemap Component
+ *
+ * @file Sitemap.js
+ * @author Tongol Banguot (A00479259)
+ * @author Bhanu Prakash (A00468530)
+ * @author Cole Turner (A00469026)
+ * @author Abdiaziz Muse (A00471783) - UI revamp, scroll animations, code cleanup
+ * @description Interactive site map with animations, route tracking, and user location.
+ *
+ * Features:
+ * - Interactive Leaflet map with POI markers and custom icons
+ * - "YOU ARE HERE" button with smooth map centering animation
+ * - Real-time route tracking with live distance updates
+ * - Framer Motion scroll-triggered animations
+ * - Proper z-index management to stay below navbar
+ * - Nature-themed styling with gradient backgrounds
+ *
+ * @returns {JSX.Element} Interactive site map page with enhanced UI
+ */
 
 import React, { useState, useEffect, useRef } from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  Polyline,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
+import { motion, useInView } from "framer-motion";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import trailHead from "../../assets/hiking.png";
@@ -30,36 +41,11 @@ const poiDescriptions = {
 
 // List of POIs with coordinates and icons
 const pointsOfInterest = [
-  {
-    id: 1,
-    name: "Trailhead",
-    position: [44.625028, -63.921417],
-    icon: trailHead,
-  },
-  {
-    id: 2,
-    name: "Farmhouse Foundation",
-    position: [44.625833, -63.920972],
-    icon: farm,
-  },
-  {
-    id: 3,
-    name: "Well",
-    position: [44.624022, -63.920028],
-    icon: well,
-  },
-  {
-    id: 4,
-    name: "Sitting Area",
-    position: [44.625028, -63.920417],
-    icon: sitting,
-  },
-  {
-    id: 5,
-    name: "Coastal Yellow Birch",
-    position: [44.624, -63.920056],
-    icon: birch,
-  },
+  { id: 1, name: "Trailhead", position: [44.625028, -63.921417], icon: trailHead },
+  { id: 2, name: "Farmhouse Foundation", position: [44.625833, -63.920972], icon: farm },
+  { id: 3, name: "Well", position: [44.624022, -63.920028], icon: well },
+  { id: 4, name: "Sitting Area", position: [44.625028, -63.920417], icon: sitting },
+  { id: 5, name: "Coastal Yellow Birch", position: [44.624, -63.920056], icon: birch },
 ];
 
 // Available paths on the map (for route calculation)
@@ -71,13 +57,16 @@ const availablePaths = [
     [44.624, -63.920056],    // Coastal Yellow Birch
     [44.624022, -63.920028], // Well
   ],
-  // Add more paths if needed
 ];
 
-// Calculate the shortest path using available paths (simple slicing)
+/**
+ * Calculate the shortest path between two points
+ * @param {Array} start - Starting coordinates [lat, lng]
+ * @param {Array} end - Ending coordinates [lat, lng]
+ * @returns {Array} Path coordinates
+ */
 const findShortestPath = (start, end) => {
   const path = availablePaths[0];
-  // Find closest point in path to start
   let startIdx = 0, minStartDist = Infinity;
   path.forEach((pt, idx) => {
     const dist = haversineDistance(start[0], start[1], pt[0], pt[1]);
@@ -86,7 +75,6 @@ const findShortestPath = (start, end) => {
       startIdx = idx;
     }
   });
-  // Find closest point in path to end
   let endIdx = 0, minEndDist = Infinity;
   path.forEach((pt, idx) => {
     const dist = haversineDistance(end[0], end[1], pt[0], pt[1]);
@@ -95,7 +83,6 @@ const findShortestPath = (start, end) => {
       endIdx = idx;
     }
   });
-  // Return path slice between start and end
   if (startIdx <= endIdx) {
     return [start, ...path.slice(startIdx, endIdx + 1), end];
   } else {
@@ -103,7 +90,14 @@ const findShortestPath = (start, end) => {
   }
 };
 
-// Calculate distance between two coordinates (meters)
+/**
+ * Calculate distance between two coordinates (meters)
+ * @param {number} lat1 - Latitude of point 1
+ * @param {number} lon1 - Longitude of point 1
+ * @param {number} lat2 - Latitude of point 2
+ * @param {number} lon2 - Longitude of point 2
+ * @returns {number} Distance in meters
+ */
 const haversineDistance = (lat1, lon1, lat2, lon2) => {
   const toRad = (x) => (x * Math.PI) / 180;
   const R = 6371000; // meters
@@ -111,10 +105,7 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
   const dLon = toRad(lon2 - lon1);
   const a =
     Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(toRad(lat1)) *
-      Math.cos(toRad(lat2)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   return R * c;
 };
@@ -122,13 +113,139 @@ const haversineDistance = (lat1, lon1, lat2, lon2) => {
 // Default hardcoded user location
 const defaultUserLocation = { lat: 44.623917, lng: -63.920472 };
 
+/**
+ * Map Center Controller Component
+ * Centers map on user location when triggered
+ */
+const MapCenterController = ({ center, zoom }) => {
+  const map = useMap();
+  useEffect(() => {
+    if (center) {
+      map.flyTo(center, zoom || 17, {
+        duration: 1.5,
+        easeLinearity: 0.5,
+      });
+    }
+  }, [center, zoom, map]);
+  return null;
+};
+
+/**
+ * Framer Motion animation variants for scroll-triggered animations
+ */
+const fadeInUpVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInLeftVariants = {
+  hidden: { opacity: 0, x: -80 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInRightVariants = {
+  hidden: { opacity: 0, x: 80 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      duration: 0.8,
+      ease: "easeOut"
+    }
+  }
+};
+
+const scaleInVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { 
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.6,
+      ease: "easeOut",
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -30 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
+  }
+};
+
+const titleVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: -20 },
+  visible: { 
+    opacity: 1, 
+    scale: 1, 
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
+const buttonVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.4, ease: "easeOut" }
+  },
+  hover: { 
+    scale: 1.05,
+    boxShadow: "0 10px 30px rgba(34, 197, 94, 0.3)",
+    transition: { duration: 0.2 }
+  },
+  tap: { scale: 0.95 }
+};
+
 const SiteMap = () => {
-  // State for user location, tracking, selected POI, and distance
   const [userLocation, setUserLocation] = useState(null);
   const [tracking, setTracking] = useState(false);
   const [selectedPOI, setSelectedPOI] = useState(null);
   const [distance, setDistance] = useState(null);
+  const [mapCenter, setMapCenter] = useState(null);
   const watchIdRef = useRef(null);
+  const mapRef = useRef(null);
+
+  // Refs for scroll-triggered animations
+  const mapContainerRef = useRef(null);
+  const poiPanelRef = useRef(null);
+  const instructionsRef = useRef(null);
+  
+  // Track when elements are in view
+  const isMapInView = useInView(mapContainerRef, { once: true, margin: "-100px" });
+  const isPoiInView = useInView(poiPanelRef, { once: true, margin: "-100px" });
+  const isInstructionsInView = useInView(instructionsRef, { once: true, margin: "-50px" });
 
   // Live tracking: update user location and distance as user moves
   useEffect(() => {
@@ -152,7 +269,6 @@ const SiteMap = () => {
         );
       }
     }
-    // Cleanup geolocation watcher
     return () => {
       if (watchIdRef.current) {
         navigator.geolocation.clearWatch(watchIdRef.current);
@@ -161,7 +277,19 @@ const SiteMap = () => {
     };
   }, [tracking, selectedPOI]);
 
-  // Start route tracking to selected POI
+  /**
+   * Handle "YOU ARE HERE" button click
+   * Sets user location and centers map with animation
+   */
+  const handleUserLocation = () => {
+    const location = [defaultUserLocation.lat, defaultUserLocation.lng];
+    setUserLocation(location);
+    setMapCenter(location);
+  };
+
+  /**
+   * Handle route tracking to POI
+   */
   const handleGetDirectionsClick = (poi) => {
     setSelectedPOI(poi);
     setTracking(true);
@@ -177,49 +305,69 @@ const SiteMap = () => {
     }
   };
 
-  // Set hardcoded user location when "YOU ARE HERE" is clicked
-  const handleUserLocation = () => {
-    setUserLocation([defaultUserLocation.lat, defaultUserLocation.lng]);
-  };
-
-  // Calculate route points using available paths
+  // Calculate route points
   let routePoints = [];
   if (tracking && selectedPOI && userLocation) {
     routePoints = findShortestPath(userLocation, selectedPOI.position);
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-800 via-lime-700 to-green-900">
-      {/* Page Title */}
-      <h1 className="text-4xl font-bold mb-6 text-white drop-shadow-lg">
-        Woodland Conservation Area
-      </h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 px-4 transition-colors duration-300 relative">
 
-      {/* Button to display hardcoded user location */}
-      <button
-        onClick={handleUserLocation}
-        className="mb-8 px-6 py-3 bg-orange-900 text-white rounded-lg shadow-lg hover:bg-orange-700 transition"
+      {/* Page Title with Animation */}
+      <motion.h1
+        className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white drop-shadow-lg"
+        variants={titleVariants}
+        initial="hidden"
+        animate="visible"
       >
-        YOU ARE HERE
-      </button>
+        Woodland Conservation Area
+      </motion.h1>
 
-      <div className="flex w-full max-w-7xl mx-auto gap-8">
-        {/* Map Section */}
-        <div className="w-4/5">
-          <div className="rounded-2xl shadow-2xl border-4 border-green-300 overflow-hidden bg-green-950 bg-opacity-80">
+      {/* YOU ARE HERE Button with Animation */}
+      <motion.button
+        onClick={handleUserLocation}
+        className="mb-8 px-8 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 dark:from-green-700 dark:to-green-800 dark:hover:from-green-600 dark:hover:to-green-700 text-white rounded-lg shadow-lg transition-all duration-300 font-semibold text-lg"
+        variants={buttonVariants}
+        initial="hidden"
+        animate="visible"
+        whileHover="hover"
+        whileTap="tap"
+      >
+        📍 YOU ARE HERE
+      </motion.button>
+
+      {/* Main Container with Animation */}
+      <motion.div 
+        className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto gap-8"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Map Section with Scroll Animation */}
+        <motion.div 
+          ref={mapContainerRef}
+          className="w-full lg:w-4/5"
+          variants={fadeInLeftVariants}
+          initial="hidden"
+          animate={isMapInView ? "visible" : "hidden"}
+        >
+          <div className="rounded-2xl shadow-2xl border-4 border-green-300 dark:border-green-700 overflow-hidden bg-white dark:bg-gray-800 relative z-0">
             <MapContainer
               center={[44.6245, -63.9209]}
               zoom={16}
-              style={{ height: "88vh", width: "100%" }}
+              style={{ height: "88vh", width: "100%", position: "relative", zIndex: 0 }}
               scrollWheelZoom={true}
+              ref={mapRef}
             >
-              {/* OpenStreetMap tiles */}
+              {/* ...existing map content... */}
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
 
-              {/* Render POI markers */}
+              <MapCenterController center={mapCenter} zoom={17} />
+
               {pointsOfInterest.map((poi) => (
                 <Marker
                   key={poi.id}
@@ -247,7 +395,6 @@ const SiteMap = () => {
                 </Marker>
               ))}
 
-              {/* User location marker (red pin) */}
               {userLocation && (
                 <Marker
                   position={userLocation}
@@ -263,54 +410,89 @@ const SiteMap = () => {
                 </Marker>
               )}
 
-              {/* Route Polyline (green, follows available path) */}
               {routePoints.length > 1 && (
                 <Polyline positions={routePoints} color="green" weight={7} />
               )}
             </MapContainer>
           </div>
-          {/* Distance display */}
+
+          {/* Distance display with animation */}
           {tracking && selectedPOI && (
-            <div className="mt-4 text-center text-white text-lg font-semibold">
+            <motion.div 
+              className="mt-4 text-center text-gray-900 dark:text-white text-lg font-semibold bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
               Distance to {selectedPOI.name}:{" "}
               {distance
                 ? `${(distance / 1000).toFixed(2)} km (${Math.round(distance)} m)`
                 : "Calculating..."}
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
 
-        {/* Points of Interest Section */}
-        <div className="w-1/5 flex flex-col bg-green-950 bg-opacity-90 rounded-2xl p-8 shadow-2xl text-white dark:text-gray-200 border-2 border-green-400">
-          <h2 className="text-2xl font-bold mb-6 text-green-200">Points of Interest</h2>
+        {/* Points of Interest Section with Scroll Animation */}
+        <motion.div 
+          ref={poiPanelRef}
+          className="w-full lg:w-1/5 flex flex-col bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-2xl text-gray-900 dark:text-gray-100 border-2 border-green-300 dark:border-green-700 transition-colors duration-300 relative z-0"
+          variants={fadeInRightVariants}
+          initial="hidden"
+          animate={isPoiInView ? "visible" : "hidden"}
+        >
+          <h2 className="text-2xl font-bold mb-6 text-green-700 dark:text-green-400">
+            Points of Interest
+          </h2>
           <ul className="space-y-6">
-            {pointsOfInterest.map((poi) => (
-              <li key={poi.id} className="flex items-center space-x-4">
-                <img src={poi.icon} alt={poi.name} className="w-10 h-10 drop-shadow-lg" />
+            {pointsOfInterest.map((poi, index) => (
+              <motion.li 
+                key={poi.id} 
+                className="flex items-center space-x-4 p-2 rounded-lg hover:bg-green-50 dark:hover:bg-gray-700 transition-colors cursor-pointer"
+                initial={{ opacity: 0, x: 20 }}
+                animate={isPoiInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                whileHover={{ scale: 1.05, x: 5 }}
+              >
+                <img 
+                  src={poi.icon} 
+                  alt={poi.name} 
+                  className="w-10 h-10 drop-shadow-lg" 
+                />
                 <div>
-                  <span className="font-semibold text-lg">{poi.name}</span>
-                  <span className="block text-xs text-green-100 dark:text-green-300">
+                  <span className="font-semibold text-lg text-gray-900 dark:text-white">
+                    {poi.name}
+                  </span>
+                  <span className="block text-xs text-gray-600 dark:text-gray-400">
                     {poiDescriptions[poi.name]}
                   </span>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </ul>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      {/* Instructions Section */}
-      <div className="mt-12 text-center text-white dark:text-gray-300">
-        <h2 className="text-2xl font-bold mb-2">Instructions</h2>
-        <p>
-          Click the <span className="font-semibold">Track Route</span> button on any marker to see the route and live distance to the selected point of interest.
+      {/* Instructions Section with Scroll Animation */}
+      <motion.div 
+        ref={instructionsRef}
+        className="mt-12 text-center text-gray-800 dark:text-gray-200 max-w-3xl bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg relative z-0"
+        variants={fadeInUpVariants}
+        initial="hidden"
+        animate={isInstructionsInView ? "visible" : "hidden"}
+      >
+        <h2 className="text-2xl font-bold mb-4 text-green-700 dark:text-green-400">
+          Instructions
+        </h2>
+        <p className="mb-2">
+          Click the <span className="font-semibold text-blue-600 dark:text-blue-400">Track Route</span> button on any marker to see the route and live distance to the selected point of interest.
         </p>
         <p className="mt-4">
-          You can also click <span className="font-semibold">YOU ARE HERE</span> to display your location on the map.
+          Click <span className="font-semibold text-green-600 dark:text-green-400">📍 YOU ARE HERE</span> to display and focus on your location on the map.
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };
 
 export default SiteMap;
+

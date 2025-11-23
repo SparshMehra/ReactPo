@@ -9,30 +9,37 @@ A comprehensive web application for the St. Margaret's Bay Woodland Conservation
 - **Events & Booking System** with calendar integration and email confirmations
 - **Image Gallery** showcasing the conservation area
 - **Flora Information** with detailed descriptions of local plant species
-- **Contact Form** for visitor inquiries
-- **Dark Mode Support** for comfortable viewing
+- **Contact Form** with modern UI and dark mode support
+- **Dark Mode Support** for comfortable viewing in all lighting conditions
 - **Accessibility Features** including text-to-speech and keyboard navigation
-- **Responsive Design** that works on all devices
+- **Responsive Design** that works seamlessly on all devices
+- **Modern UI** with smooth animations and transitions
+- **Supabase Integration** for scalable data storage
 
 ## 🛠️ Technologies Used
 
 ### Frontend
-- **React 18.3.1** - UI framework
+- **React 18.3.1** - Modern UI framework with hooks
 - **React Router** - Navigation and routing
 - **Axios** - HTTP client for API calls
 - **React Hook Form + Yup** - Form validation
-- **React Toastify** - Notifications
-- **React Calendar** - Event calendar
+- **React Hot Toast** - Beautiful toast notifications
+- **React Calendar** - Interactive event calendar
 - **Date-fns** - Date formatting utilities
-- **React Icons** - Icon library
-- **Tailwind CSS** - Styling framework
-- **Material-UI** - Additional UI components
+- **React Icons** - Comprehensive icon library
+- **Tailwind CSS** - Utility-first CSS framework
+- **Material-UI (MUI)** - React component library
+- **React Leaflet** - Interactive map components
+- **Supabase Client** - Real-time database integration
+- **React Query** - Server state management
 
 ### Backend
-- **Python Flask** - REST API server
-- **DistilGPT-2** - Fine-tuned chatbot model
-- **Transformers** - Hugging Face library for AI model
+- **Python Flask** - Lightweight REST API server
+- **DistilGPT-2** - Fine-tuned AI model for chatbot
+- **Transformers** - Hugging Face library for AI
 - **SMTP** - Email service for booking confirmations
+- **Python-dotenv** - Environment variable management
+- **Flask-CORS** - Cross-Origin Resource Sharing support
 
 ## 📋 Prerequisites
 
@@ -41,7 +48,8 @@ Before you begin, ensure you have the following installed:
 - **Node.js** (v14 or higher) - [Download](https://nodejs.org/)
 - **Python** (v3.8 or higher) - [Download](https://www.python.org/)
 - **npm** (comes with Node.js) or **yarn**
-- **Git** (optional, for cloning)
+- **Git** (optional, for cloning) - [Download](https://git-scm.com/)
+- **Supabase Account** (for database features) - [Sign up](https://supabase.com/)
 
 ## 🚀 Installation & Setup
 
@@ -61,12 +69,24 @@ npm install
 ```
 
 This will install all required npm packages including:
-- react, react-dom, react-router-dom
-- axios, react-hook-form, yup
-- react-calendar, date-fns
-- react-toastify, react-icons
-- tailwindcss, @mui/material
-- concurrently, cross-env (dev dependencies)
+
+**Core Dependencies:**
+- `react`, `react-dom` - React framework
+- `react-router-dom` - Routing
+- `@supabase/supabase-js` - Supabase client
+- `@tanstack/react-query` - Data fetching and caching
+- `axios` - HTTP requests
+- `react-hook-form`, `@hookform/resolvers`, `yup` - Form handling
+- `react-calendar`, `date-fns` - Date/calendar components
+- `react-hot-toast` - Notifications
+- `react-icons` - Icon library
+- `react-leaflet` - Interactive maps
+- `@mui/material`, `@emotion/react`, `@emotion/styled` - Material-UI components
+
+**Dev Dependencies:**
+- `tailwindcss` - CSS framework
+- `concurrently` - Run multiple commands
+- `cross-env` - Cross-platform environment variables
 
 ### Step 3: Install Python Dependencies
 
@@ -75,16 +95,42 @@ pip install -r requirements.txt
 ```
 
 This installs:
-- Flask and Flask-CORS
-- transformers and torch
-- python-dotenv
-- smtplib (for email)
+- `Flask` - Web framework
+- `Flask-CORS` - CORS support
+- `transformers` - AI model library
+- `torch` - PyTorch for AI
+- `python-dotenv` - Environment variables
 
 ### Step 4: Configure Environment Variables
 
-The project uses a `config.env` file for environment configuration. The file is already present with the following settings:
+#### Create `.env` File
+
+Copy the example file and fill in your values:
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` with your actual configuration:
 
 ```env
+# ==================================
+# FRONTEND ENVIRONMENT VARIABLES
+# ==================================
+
+# Supabase Configuration
+# Get these from: https://app.supabase.com -> Project Settings -> API
+REACT_APP_SUPABASE_URL=your-supabase-project-url
+REACT_APP_SUPABASE_ANON_KEY=your-supabase-anon-key
+
+# API Configuration
+REACT_APP_CHATBOT_API_URL=http://localhost:5000
+REACT_APP_EVENTS_API_URL=http://localhost:5001
+
+# ==================================
+# BACKEND ENVIRONMENT VARIABLES
+# ==================================
+
 # Flask API Configuration
 FLASK_APP=events_api.py
 FLASK_ENV=development
@@ -94,7 +140,7 @@ FLASK_PORT=5001
 SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USERNAME=your-email@gmail.com
-SMTP_PASSWORD=your-app-password
+SMTP_PASSWORD=your-16-char-app-password
 EMAIL_FROM=your-email@gmail.com
 
 # Application URLs
@@ -106,15 +152,49 @@ MAX_ATTENDEES_PER_BOOKING=10
 BOOKING_CANCELLATION_HOURS=24
 ```
 
-**Important:** For email functionality to work, you need to:
-1. Use a Gmail account
-2. Enable 2-Factor Authentication
-3. Generate an App Password: [Google App Passwords](https://myaccount.google.com/apppasswords)
-4. Update `SMTP_USERNAME`, `SMTP_PASSWORD`, and `EMAIL_FROM` with your credentials
+#### Setting Up Supabase
+
+1. **Create a Supabase Project:**
+   - Go to [https://app.supabase.com](https://app.supabase.com)
+   - Click "New Project"
+   - Fill in your project details
+   - Wait for the project to be created
+
+2. **Get Your API Credentials:**
+   - Go to Project Settings (⚙️ icon)
+   - Click on "API" in the sidebar
+   - Copy your **Project URL** and **anon/public key**
+   - Add them to your `.env` file
+
+3. **Set Up Database Tables** (if needed):
+   - Go to the Table Editor
+   - Create necessary tables for your application
+   - Set up Row Level Security (RLS) policies
+
+#### Setting Up Gmail SMTP (for Email Notifications)
+
+1. **Enable 2-Factor Authentication:**
+   - Go to [Google Account Settings](https://myaccount.google.com/)
+   - Security → 2-Step Verification
+   - Follow the setup process
+
+2. **Generate App Password:**
+   - Go to [App Passwords](https://myaccount.google.com/apppasswords)
+   - Select "Mail" and "Other (Custom name)"
+   - Name it "Woodland Conservation"
+   - Copy the 16-character password
+   - Add it to `SMTP_PASSWORD` in `.env`
+
+3. **Update Email Settings:**
+   - Set `SMTP_USERNAME` to your Gmail address
+   - Set `EMAIL_FROM` to the same Gmail address
+   - Keep `SMTP_SERVER` as `smtp.gmail.com`
+   - Keep `SMTP_PORT` as `587`
 
 ### Step 5: Verify Project Structure
 
 Ensure you have these key directories and files:
+
 ```
 ReactPoff/
 ├── public/              # Static files
@@ -125,7 +205,9 @@ ReactPoff/
 │   │   ├── pages/       # Page components
 │   │   └── UI/          # Reusable UI components
 │   ├── services/        # API service files
-│   └── utils/           # Utility functions
+│   ├── utils/           # Utility functions
+│   ├── supabase.js      # Supabase client config
+│   └── index.css        # Global styles with animations
 ├── data/                # JSON data files
 │   ├── events.json      # Events data
 │   └── bookings.json    # Bookings data
@@ -134,9 +216,12 @@ ReactPoff/
 ├── distilgpt2-finetuned/ # AI model files
 ├── chatbot_api.py       # Chatbot API server
 ├── events_api.py        # Events API server
-├── config.env           # Environment configuration
+├── .env                 # Environment variables (DO NOT COMMIT)
+├── .env.example         # Environment variables template
+├── config.env           # Legacy config (deprecated)
 ├── package.json         # npm dependencies
-└── requirements.txt     # Python dependencies
+├── requirements.txt     # Python dependencies
+└── README.md           # This file
 ```
 
 ## ▶️ Running the Application
@@ -158,7 +243,7 @@ The browser will automatically open to `http://localhost:3070`.
 
 ### Option 2: Running Services Individually
 
-If you prefer to run services separately:
+If you prefer to run services separately for debugging:
 
 **Terminal 1 - Chatbot API:**
 ```bash
@@ -195,13 +280,17 @@ Once running, you can access:
 - **Events API**: http://localhost:5001
 
 ### Available Pages:
-- **/** - Homepage
+- **/** - Homepage with hero section and features
 - **/about** - About the conservation area
 - **/events** - Browse and book events
 - **/gallery** - Photo gallery
 - **/flora** - Local flora information
-- **/contact** - Contact form
-- **/sitemap** - Site navigation
+- **/contact** - Contact form with modern UI
+- **/sitemap** - Interactive site map
+- **/ecoveg** - Ecosystem and vegetation info
+- **/ecommerce** - Conservation merchandise shop
+- **/cart** - Shopping cart
+- **/natural-burial** - Natural burial information
 
 ## 🎯 Key Features Guide
 
@@ -215,18 +304,47 @@ Once running, you can access:
 6. Get a confirmation email (if SMTP is configured)
 7. Download an `.ics` calendar file to add to your calendar
 
-### Chatbot
+### AI Chatbot
 
 - Click the chatbot bubble in the bottom-right corner
 - Ask questions about the conservation area
 - The AI responds using a fine-tuned model trained on conservation data
+- Get instant answers about trails, wildlife, events, and more
+
+### Contact Form
+
+- Navigate to `/contact`
+- Modern form with animations and dark mode support
+- Text fields are fully visible in both light and dark modes
+- Form validation with helpful error messages
+- Smooth animations and hover effects
+- Includes operating hours and location information
+
+### Dark Mode
+
+- Toggle in the navigation bar (moon/sun icon)
+- Persists across page refreshes
+- All components properly themed
+- Smooth 300ms transitions
+- Custom scrollbar styling
+
+### Shopping Cart
+
+- Browse merchandise at `/ecommerce`
+- Add items to cart with quantity controls
+- View cart at `/cart`
+- Manage quantities and remove items
+- See real-time total calculations
+- Persistent cart using localStorage
 
 ### Accessibility Features
 
-- **Dark Mode Toggle** in the navigation bar
 - **Text-to-Speech** buttons on various elements
-- **Keyboard Navigation** support
-- **Screen Reader** friendly
+- **Keyboard Navigation** support throughout
+- **Screen Reader** friendly with ARIA labels
+- **High Contrast** mode compatible
+- **Focus States** on all interactive elements
+- **Responsive Design** for all screen sizes
 
 ## 🔧 Troubleshooting
 
@@ -236,26 +354,38 @@ If you get a port conflict error:
 
 **Frontend (3070):**
 - Change the port in `package.json` under `start:frontend` script
-- Update `FRONTEND_URL` in `config.env`
+- Update `FRONTEND_URL` in `.env`
 
 **Backend APIs (5000, 5001):**
 - Change ports in `chatbot_api.py` and `events_api.py`
-- Update API URLs in `src/config/config.js`
+- Update `REACT_APP_CHATBOT_API_URL` and `REACT_APP_EVENTS_API_URL` in `.env`
 
 ### Email Not Sending
 
 If confirmation emails aren't being sent:
-1. Verify your Gmail credentials in `config.env`
-2. Make sure you're using an App Password, not your regular Gmail password
-3. Check the console for email-related errors
-4. See `EMAIL_CONFIGURATION_GUIDE.md` for detailed instructions
+1. Verify your Gmail credentials in `.env`
+2. Make sure you're using an **App Password**, not your regular Gmail password
+3. Check that 2-Factor Authentication is enabled
+4. Check the console for email-related errors
+5. Verify `SMTP_SERVER` and `SMTP_PORT` settings
+
+### Supabase Connection Issues
+
+If you can't connect to Supabase:
+1. Verify your Supabase URL and key in `.env`
+2. Check that your Supabase project is active
+3. Verify network connectivity
+4. Check browser console for specific error messages
+5. Ensure Row Level Security (RLS) policies are configured correctly
 
 ### Chatbot Not Responding
 
 If the chatbot doesn't work:
 1. Ensure `distilgpt2-finetuned/` directory exists with model files
 2. Check that the chatbot API is running on port 5000
-3. Verify the API URL in `src/components/chatbot/ChatbotWindow.js`
+3. Verify `REACT_APP_CHATBOT_API_URL` in `.env`
+4. Check Python dependencies are installed
+5. Look for errors in the Python console
 
 ### Events Not Loading
 
@@ -263,11 +393,21 @@ If events don't appear:
 1. Check that `data/events.json` exists
 2. Ensure the Events API is running on port 5001
 3. Check browser console for API errors
-4. Verify API URL in `src/services/eventService.js`
+4. Verify `REACT_APP_EVENTS_API_URL` in `.env`
+5. Check Python console for backend errors
+
+### Text Fields Not Visible in Dark Mode
+
+This should now be fixed! But if you still have issues:
+1. Clear browser cache (Ctrl+Shift+Delete)
+2. Hard refresh the page (Ctrl+Shift+R)
+3. Check that Material-UI theme is properly configured
+4. Verify dark mode class is being applied to body element
 
 ### Build Errors
 
 If you encounter build errors:
+
 ```bash
 # Clear npm cache
 npm cache clean --force
@@ -281,6 +421,15 @@ pip install --upgrade pip
 pip install -r requirements.txt --force-reinstall
 ```
 
+### Environment Variables Not Loading
+
+If environment variables aren't working:
+1. Ensure `.env` file is in the root directory
+2. Restart the development server
+3. Check that variables start with `REACT_APP_` for frontend
+4. Verify no typos in variable names
+5. On Windows, make sure there are no extra spaces
+
 ## 📦 Building for Production
 
 To create a production build:
@@ -291,69 +440,161 @@ npm run build
 
 This creates an optimized build in the `build/` directory ready for deployment.
 
+**Before deploying:**
+1. Update `.env` with production URLs
+2. Set `FLASK_ENV=production`
+3. Update `FRONTEND_URL` to your production domain
+4. Configure production Supabase project
+5. Set up production email credentials
+6. Test all features in production mode
+
 ## 🧪 Running Tests
 
 ```bash
 npm test
 ```
 
-## 📝 Environment Configuration
+Runs the test suite in interactive watch mode.
 
-Key configuration files:
-- **config.env** - Backend configuration (API ports, email settings)
-- **src/config/config.js** - Frontend API endpoints
-- **package.json** - Scripts and dependencies
-- **tailwind.config.js** - Tailwind CSS configuration
+## 📝 Environment Configuration Files
+
+### `.env`
+Main environment configuration file (Git-ignored for security)
+- Contains actual credentials and API keys
+- Must be created from `.env.example`
+- Never commit this file to version control
+
+### `.env.example`
+Template file showing required environment variables
+- Safe to commit to Git
+- Used as reference for setting up `.env`
+- Contains placeholder values
+
+### `config.env` (Deprecated)
+Legacy configuration file
+- Still used by Python backend
+- Will be migrated to `.env` in future updates
+- Contains Flask and email settings
 
 ## 📚 Additional Documentation
 
 - `EVENTS_IMPLEMENTATION_SUMMARY.md` - Events system architecture
 - `EVENTS_SETUP_AND_TESTING.md` - Events testing guide
-- `EMAIL_CONFIGURATION_GUIDE.md` - Email setup instructions
+- `EMAIL_CONFIGURATION_GUIDE.md` - Detailed email setup
 - `IMPLEMENTATION_GUIDE.md` - Development guide
+- `UI_IMPROVEMENTS_README.md` - UI/UX improvements documentation
+- `CHANGES_SUMMARY.md` - Summary of recent changes
+- `NAVIGATION_DARKMODE_IMPROVEMENTS.md` - Dark mode implementation guide
+
+## 🎨 UI/UX Features
+
+### Modern Design Elements
+- **Gradient Backgrounds** - Smooth, adaptive gradients throughout
+- **Smooth Animations** - 300ms transitions on interactive elements
+- **Hover Effects** - Scale transforms and shadow elevations
+- **Glass Morphism** - Semi-transparent containers with backdrop blur
+- **Custom Scrollbars** - Themed for both light and dark modes
+
+### Animation Library
+Built-in CSS animations:
+- `fadeIn` - Smooth entry animation
+- `slideIn` - Side entry animation
+- `pulse` - Attention-grabbing effect
+- `spin-slow` - Slow rotation for icons
+
+### Responsive Breakpoints
+- **Mobile**: < 768px
+- **Tablet**: 768px - 1024px
+- **Desktop**: > 1024px
+
+### Color Palette
+
+**Light Mode:**
+- Primary: Green-600 to Green-700
+- Secondary: Yellow-500 to Yellow-600
+- Background: Green-50 → White → Blue-50
+- Text: Gray-900 to Gray-600
+
+**Dark Mode:**
+- Primary: Green-400 (high contrast)
+- Secondary: Yellow-500
+- Background: Gray-900 → Gray-800
+- Text: White to Gray-300
 
 ## 🤝 Contributing
 
 This project was developed by:
-- Marko Ostrovitsa
-- Lakshay Bansal
-- And team
+- **Marko Ostrovitsa** (A00448932) - Navigation, Layout, UI/UX
+- **Lakshay Bansal** (A00467478) - Contact Form, Accessibility
+- **Sadikshya Oli** - E-commerce, Shopping Cart
+- **Bhanu Prakash** (A00468530) - Site Map, Location Services
+- **Cole Turner** (A00469026) - Map Integration, UI Design
 
 ## 📄 License
 
-This project is part of an academic assignment.
+This project is part of an academic assignment for educational purposes.
+
+## 🔐 Security Notes
+
+- Never commit `.env` file to version control
+- Use environment variables for all sensitive data
+- Rotate API keys regularly
+- Use App Passwords for Gmail (never regular passwords)
+- Enable Row Level Security in Supabase
+- Validate all user inputs server-side
+- Use HTTPS in production
+- Keep dependencies updated
 
 ## 🆘 Need Help?
 
 If you encounter issues:
-1. Check the troubleshooting section above
-2. Review the additional documentation files
-3. Check browser console and terminal logs for error messages
-4. Ensure all dependencies are properly installed
-5. Verify environment configuration in `config.env`
 
-## 🎉 Enjoy!
+1. **Check Troubleshooting Section** - Most common issues are covered above
+2. **Review Documentation** - Check additional documentation files
+3. **Check Console Logs** - Browser console and terminal logs provide valuable info
+4. **Verify Environment Variables** - Ensure all variables in `.env` are correct
+5. **Check Dependencies** - Run `npm install` and `pip install -r requirements.txt`
+6. **Restart Services** - Sometimes a simple restart fixes issues
+7. **Clear Cache** - Clear browser cache and restart dev server
 
-You're all set! The application should now be running and ready to explore.
+### Common Commands
 
+```bash
+# Restart everything
+npm start
 
-### Analyzing the Bundle Size
+# Clear cache and reinstall
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Check for errors
+npm test
 
-### Making a Progressive Web App
+# Build for production
+npm run build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Update dependencies
+npm update
+pip install --upgrade -r requirements.txt
+```
 
-### Advanced Configuration
+## 🎉 You're All Set!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The application should now be running with:
+- ✅ Modern, animated UI
+- ✅ Perfect dark mode support
+- ✅ Visible text fields in all themes
+- ✅ Working Supabase integration
+- ✅ Secure environment variable management
+- ✅ Email notifications configured
+- ✅ All features functional
 
-### Deployment
+**Enjoy exploring the Woodland Conservation Area!** 🌲🦌🌿
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Last Updated:** November 23, 2025  
+**Version:** 2.0.0  
+**Status:** Production Ready ✨
 

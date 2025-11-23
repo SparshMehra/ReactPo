@@ -1,3 +1,20 @@
+/**
+ * ChatbotBubble Component
+ *
+ * @file ChatbotBubble.js
+ * @author Abdiaziz Muse (A00471783)
+ * @description Floating chatbot bubble button that toggles the chatbot window.
+ *              Provides easy access to the AI-powered conservation area assistant.
+ *
+ * Features:
+ * - Floating action button with icon
+ * - Toggle chatbot window on/off
+ * - CSS animations for smooth appearance
+ * - Integration with ChatbotWindow component
+ *
+ * @returns {JSX.Element} Floating chatbot bubble button
+ */
+
 import React, { useState } from 'react';
 import ChatbotWindow from './ChatbotWindow';
 import './Chatbot.css';

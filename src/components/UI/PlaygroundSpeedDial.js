@@ -1,4 +1,3 @@
-import Box from "@mui/material/Box";
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import { styled } from "@mui/material/styles";
@@ -10,7 +9,7 @@ import { FaQuestion } from "react-icons/fa";
 const FixedSpeedDial = styled(SpeedDial)(({ theme }) => ({
   position: "fixed",
   bottom: theme.spacing(4),
-  left: theme.spacing(3),
+  right: theme.spacing(3),
   zIndex: 9999,
 }));
 
@@ -24,7 +23,7 @@ export default function PlaygroundSpeedDial() {
     <FixedSpeedDial
       ariaLabel="Fixed Speed Dial"
       icon={<FaQuestion />}
-      direction="right"
+      direction="left"
     >
       {actions.map((action) => (
         <SpeedDialAction key={action.name} icon={action.icon} />

@@ -1,5 +1,21 @@
-// Author: Kunal Singla(A00461346)
-// Purpose: This file represents the gallery component.
+/**
+ * Gallery Component
+ *
+ * @file gallery.js
+ * @author Bhabin Chudal (A00464169) - UI improvements, Supabase integration
+ * @author Kunal Singla (A00461346)
+ * @description Gallery page for displaying and managing conservation area photos
+ *              with Supabase backend integration.
+ *
+ * Features:
+ * - Dynamic photo grid with lazy loading
+ * - Create new gallery entries with form
+ * - Supabase integration for data persistence
+ * - Loading states and error handling
+ * - Responsive design
+ *
+ * @returns {JSX.Element} Gallery page component
+ */
 
 import React, { useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";

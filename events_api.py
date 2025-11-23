@@ -1,6 +1,32 @@
 """
 Events & Booking API for Woodland Conservation Area
-Flask REST API for managing events and bookings
+
+@file events_api.py
+@author Abdiaziz Muse (A00471783)
+@description Flask REST API server for managing conservation area events and bookings
+             with email confirmation system and real-time availability tracking.
+
+Features:
+- Complete CRUD operations for events and bookings
+- Real-time capacity and availability management
+- Booking code generation and validation
+- Email confirmation system with SendGrid
+- Admin endpoints for booking management
+- CORS enabled for React frontend
+- JSON file-based data persistence
+- Error handling and validation
+
+Endpoints:
+- GET /api/events - List all events with optional filters
+- GET /api/events/<id> - Get specific event details
+- POST /api/bookings - Create new booking with email confirmation
+- GET /api/bookings/<code> - Get booking by confirmation code
+- DELETE /api/bookings/<code> - Cancel booking
+- DELETE /api/admin/bookings - Reset all bookings (admin)
+- POST /api/admin/email/test - Test email configuration
+- GET /api/health - Health check endpoint
+
+Flask REST API for managing events and bookings with email notifications
 """
 
 from flask import Flask, request, jsonify

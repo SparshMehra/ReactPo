@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatDate, formatTime, getRelativeDate } from '../../utils/dateHelpers';
+import { formatTime, getRelativeDate, formatDate } from '../../utils/dateHelpers';
 import { EVENT_CATEGORIES, DIFFICULTY_LEVELS } from '../../config/config';
 
 const EventDetails = ({ event, onClose, onProceedToBook }) => {

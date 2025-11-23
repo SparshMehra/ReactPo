@@ -1,5 +1,22 @@
 """
-Chatbot API using the fine-tuned DistilGPT-2 model
+Chatbot API using Fine-Tuned DistilGPT-2 Model
+
+@file chatbot_api.py
+@author Abdiaziz Muse (A00471783)
+@description Flask API server for the conservation area chatbot using a fine-tuned
+             DistilGPT-2 model to answer questions about the woodland conservation area.
+
+Features:
+- Fine-tuned DistilGPT-2 model for domain-specific responses
+- CORS enabled for React frontend integration
+- GPU acceleration support with fallback to CPU
+- RESTful API endpoint for chat messages
+- Health check endpoint for monitoring
+
+Endpoints:
+- POST /api/chat - Send message and receive AI response
+- GET /api/health - Check API status
+
 This Flask API serves the chatbot requests from the React frontend
 """
 
