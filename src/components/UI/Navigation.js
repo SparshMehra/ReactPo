@@ -28,13 +28,10 @@ const navLinks = [
 
 ];
 
-const Navigation = ({ toggleDarkMode, dark, cart, setCart }) => {
+const Navigation = ({ toggleDarkMode, dark, cart = [] }) => {
   console.log("NAV CART =", cart);
 
-
-
   const [isOpen, setIsOpen] = useState(false);
-const Navigation = ({ toggleDarkMode, dark, cart = [] }) => {
   // ⬇️ replaced isOpen with drawerOpen for MUI
   const [drawerOpen, setDrawerOpen] = useState(false);
 
