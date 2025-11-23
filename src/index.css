@@ -2,21 +2,27 @@
  * Global Styles and Tailwind Configuration
  *
  * @file index.css
- * @description Main stylesheet with Tailwind CSS imports, custom animations,
- *              and global component styles for consistent UI/UX
+ * @description Main stylesheet with Tailwind CSS imports, nature-themed animations,
+ *              and global component styles for woodland conservation website
  */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Global Body Styles */
+/* Global Body Styles - Nature Theme */
 body {
-  font-family: "Calibri", sans-serif;
-  line-height: 1.5;
-  color: #555;
-  font-size: 20px;
+  font-family: "Calibri", "Segoe UI", "Roboto", sans-serif;
+  line-height: 1.6;
+  color: #2a231c;
+  font-size: 18px;
   scroll-behavior: smooth;
+  background: linear-gradient(to bottom, #f9f7f4, #f0ebe4);
+}
+
+body.dark {
+  color: #e1d7c9;
+  background: linear-gradient(to bottom, #1c1917, #292524);
 }
 
 /* Smooth Scrolling for All Elements */
@@ -24,11 +30,27 @@ body {
   scroll-behavior: smooth;
 }
 
-/* Link Styles */
+/* Selection Color - Nature Theme */
+::selection {
+  background-color: #2da160;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #2da160;
+  color: white;
+}
+
+/* Link Styles - Nature Theme */
 a {
   display: block;
   text-decoration: none;
   overflow-wrap: break-word;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #2da160;
 }
 
 /* Custom Clip Path for Hero Sections */
@@ -47,7 +69,7 @@ a {
   );
 }
 
-/* Custom Animations */
+/* Nature-Themed Custom Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -88,17 +110,68 @@ a {
   }
 }
 
+@keyframes leafFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
 /* Animation Utilities */
 .animate-fadeIn {
-  animation: fadeIn 0.5s ease-in-out;
+  animation: fadeIn 0.6s ease-in-out;
 }
 
 .animate-slideIn {
-  animation: slideIn 0.4s ease-out;
+  animation: slideIn 0.5s ease-out;
 }
 
 .animate-spin-slow {
   animation: spin-slow 3s linear infinite;
+}
+
+.animate-leaf-float {
+  animation: leafFloat 4s ease-in-out infinite;
+}
+
+/* Glass Morphism Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Nature Gradient Backgrounds */
+.bg-nature-gradient {
+  background: linear-gradient(135deg, #2da160 0%, #113524 100%);
+}
+
+.bg-earth-gradient {
+  background: linear-gradient(135deg, #a89578 0%, #6b5d47 100%);
+}
+
+.bg-peaceful-gradient {
+  background: linear-gradient(135deg, #7dbfff 0%, #0047a3 100%);
 }
 
 /* Tailwind Component Layer */
@@ -155,7 +228,7 @@ a {
   }
 }
 
-/* Custom File Input Styles */
+/* Custom File Input Styles - Nature Theme */
 input[type="file"]::file-selector-button {
   font: inherit;
   font-weight: 500;
@@ -163,16 +236,18 @@ input[type="file"]::file-selector-button {
   padding: 0.8rem 1.2rem;
   margin-right: 1.2rem;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 8px;
   border: none;
-  color: ghostwhite;
-  background-color: #8c9eff;
+  color: white;
+  background: linear-gradient(135deg, #2da160 0%, #1a653c 100%);
   cursor: pointer;
-  transition: color 0.2s, background-color 0.2s;
+  transition: all 0.3s ease;
 }
 
 input[type="file"]::file-selector-button:hover {
-  background-color: #536dfe;
+  background: linear-gradient(135deg, #47be7d 0%, #2da160 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 161, 96, 0.3);
 }
 
 /* Dark Mode Specific Styles */
@@ -180,33 +255,124 @@ input[type="file"]::file-selector-button:hover {
   color-scheme: dark;
 }
 
-/* Scrollbar Styling */
+/* Scrollbar Styling - Nature Theme */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 14px;
+  height: 14px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #f0ebe4;
+  border-radius: 10px;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #1f2937;
+  background: #292524;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 6px;
+  background: linear-gradient(135deg, #2da160, #1a653c);
+  border-radius: 10px;
+  border: 2px solid #f0ebe4;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: linear-gradient(135deg, #47be7d, #2da160);
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #4b5563;
+  background: linear-gradient(135deg, #47be7d, #2da160);
+  border: 2px solid #292524;
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
+  background: linear-gradient(135deg, #7dd4a3, #47be7d);
+}
+
+/* Focus Styles - Nature Theme */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #2da160;
+  outline-offset: 2px;
+}
+
+/* Loading Spinner - Nature Theme */
+@keyframes spin-nature {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-nature {
+  border: 3px solid #d9f2e3;
+  border-top: 3px solid #2da160;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin-nature 1s linear infinite;
+}
+
+/* Page Transitions */
+.page-transition {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Nature-themed decorative elements */
+.leaf-decoration::before {
+  content: '🍃';
+  display: inline-block;
+  margin-right: 0.5rem;
+  animation: leafFloat 3s ease-in-out infinite;
+}
+
+.tree-decoration::before {
+  content: '🌳';
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+/* Smooth hover transitions for all interactive elements */
+button,
+a,
+input,
+select,
+textarea {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Utility classes for nature theme */
+.text-nature {
+  color: #2da160;
+}
+
+.bg-nature {
+  background-color: #2da160;
+}
+
+.border-nature {
+  border-color: #2da160;
+}
+
+.shadow-nature {
+  box-shadow: 0 4px 14px 0 rgba(45, 161, 96, 0.25);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Memorial/Peaceful theme utilities */
+.text-memorial {
+  color: #f97316;
+}
+
+.text-peaceful {
+  color: #0c7cff;
 }
 
