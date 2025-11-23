@@ -189,24 +189,24 @@ const SiteMap = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-800 via-lime-700 to-green-900">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12 px-4 transition-colors duration-300">
       {/* Page Title */}
-      <h1 className="text-4xl font-bold mb-6 text-white drop-shadow-lg">
+      <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white drop-shadow-lg">
         Woodland Conservation Area
       </h1>
 
       {/* Button to display hardcoded user location */}
       <button
         onClick={handleUserLocation}
-        className="mb-8 px-6 py-3 bg-orange-900 text-white rounded-lg shadow-lg hover:bg-orange-700 transition"
+        className="mb-8 px-6 py-3 bg-green-600 hover:bg-green-500 dark:bg-green-700 dark:hover:bg-green-600 text-white rounded-lg shadow-lg transition-all duration-300 font-semibold"
       >
-        YOU ARE HERE
+        📍 YOU ARE HERE
       </button>
 
-      <div className="flex w-full max-w-7xl mx-auto gap-8">
+      <div className="flex flex-col lg:flex-row w-full max-w-7xl mx-auto gap-8">
         {/* Map Section */}
-        <div className="w-4/5">
-          <div className="rounded-2xl shadow-2xl border-4 border-green-300 overflow-hidden bg-green-950 bg-opacity-80">
+        <div className="w-full lg:w-4/5">
+          <div className="rounded-2xl shadow-2xl border-4 border-green-300 dark:border-green-700 overflow-hidden bg-white dark:bg-gray-800">
             <MapContainer
               center={[44.6245, -63.9209]}
               zoom={16}
@@ -271,7 +271,7 @@ const SiteMap = () => {
           </div>
           {/* Distance display */}
           {tracking && selectedPOI && (
-            <div className="mt-4 text-center text-white text-lg font-semibold">
+            <div className="mt-4 text-center text-gray-900 dark:text-white text-lg font-semibold bg-white dark:bg-gray-800 rounded-lg p-4 shadow-lg">
               Distance to {selectedPOI.name}:{" "}
               {distance
                 ? `${(distance / 1000).toFixed(2)} km (${Math.round(distance)} m)`
@@ -281,15 +281,15 @@ const SiteMap = () => {
         </div>
 
         {/* Points of Interest Section */}
-        <div className="w-1/5 flex flex-col bg-green-950 bg-opacity-90 rounded-2xl p-8 shadow-2xl text-white dark:text-gray-200 border-2 border-green-400">
-          <h2 className="text-2xl font-bold mb-6 text-green-200">Points of Interest</h2>
+        <div className="w-full lg:w-1/5 flex flex-col bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-2xl text-gray-900 dark:text-gray-100 border-2 border-green-300 dark:border-green-700 transition-colors duration-300">
+          <h2 className="text-2xl font-bold mb-6 text-green-700 dark:text-green-400">Points of Interest</h2>
           <ul className="space-y-6">
             {pointsOfInterest.map((poi) => (
               <li key={poi.id} className="flex items-center space-x-4">
                 <img src={poi.icon} alt={poi.name} className="w-10 h-10 drop-shadow-lg" />
                 <div>
-                  <span className="font-semibold text-lg">{poi.name}</span>
-                  <span className="block text-xs text-green-100 dark:text-green-300">
+                  <span className="font-semibold text-lg text-gray-900 dark:text-white">{poi.name}</span>
+                  <span className="block text-xs text-gray-600 dark:text-gray-400">
                     {poiDescriptions[poi.name]}
                   </span>
                 </div>
@@ -300,13 +300,13 @@ const SiteMap = () => {
       </div>
 
       {/* Instructions Section */}
-      <div className="mt-12 text-center text-white dark:text-gray-300">
-        <h2 className="text-2xl font-bold mb-2">Instructions</h2>
-        <p>
-          Click the <span className="font-semibold">Track Route</span> button on any marker to see the route and live distance to the selected point of interest.
+      <div className="mt-12 text-center text-gray-800 dark:text-gray-200 max-w-3xl bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+        <h2 className="text-2xl font-bold mb-4 text-green-700 dark:text-green-400">Instructions</h2>
+        <p className="mb-2">
+          Click the <span className="font-semibold text-blue-600 dark:text-blue-400">Track Route</span> button on any marker to see the route and live distance to the selected point of interest.
         </p>
         <p className="mt-4">
-          You can also click <span className="font-semibold">YOU ARE HERE</span> to display your location on the map.
+          You can also click <span className="font-semibold text-green-600 dark:text-green-400">📍 YOU ARE HERE</span> to display your location on the map.
         </p>
       </div>
     </div>

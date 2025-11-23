@@ -1,6 +1,7 @@
 // Authors: Lakshay Bansal (A00467478), Marko Ostrovitsa (A00448932)
 // Purpose: To display the Contact section of the Woodland Conservation website
 import React from "react";
+import { Link } from "react-router-dom";
 import dayBackground from "../../assets/forest1.png"; // Daytime forest image
 import nightBackground from "../../assets/nightforest.png"; // Nighttime forest image
 import { FaTree, FaLeaf, FaSeedling, FaMapMarkedAlt } from "react-icons/fa";
@@ -149,12 +150,11 @@ const Homepage = ({ dark }) => {
             picnic areas, and more."
           />
         </div>
-        <button
-          className="bg-green-500 hover:bg-green-400 text-white px-8 py-4 rounded-full shadow-lg font-semibold transition mx-auto block"
-          onClick={() => alert("Map Feature Coming Soon!")}
-        >
-          View Map
-        </button>
+        <Link to="/sitemap">
+          <button className="bg-green-500 hover:bg-green-400 text-white px-8 py-4 rounded-full shadow-lg font-semibold transition mx-auto block">
+            View Map
+          </button>
+        </Link>
       </section>
 
       {/* Call-to-Action Section */}
@@ -166,12 +166,11 @@ const Homepage = ({ dark }) => {
           pLabel=" Help us protect the environment. Become a member today and make a
           difference."
         />
-        <button
-          className="bg-white text-green-600 font-semibold px-8 py-4 rounded-full shadow-md hover:shadow-lg hover:bg-gray-200 transition"
-          onClick={() => alert("Membership Coming Soon!")}
-        >
-          Join Us
-        </button>
+        <Link to="/contact">
+          <button className="bg-white text-green-600 font-semibold px-8 py-4 rounded-full shadow-md hover:shadow-lg hover:bg-gray-200 transition">
+            Join Us
+          </button>
+        </Link>
       </section>
     </div>
   );

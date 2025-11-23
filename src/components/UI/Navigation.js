@@ -77,13 +77,41 @@ const Navigation = ({ toggleDarkMode, dark, cart = [] }) => {
     <Box
       sx={{ width: 280 }}
       role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
       className="bg-white dark:bg-gray-800"
     >
-      {/* Drawer Header */}
-      <Box sx={{ p: 2, textAlign: "center", borderBottom: 1, borderColor: "divider" }}>
+      {/* Drawer Header with Close Button */}
+      <Box
+        sx={{
+          p: 2,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          borderBottom: 1,
+          borderColor: 'divider'
+        }}
+      >
         <h2 className="text-xl font-bold text-gray-800 dark:text-white">Menu</h2>
+        {/* X Close Button */}
+        <button
+          onClick={toggleDrawer(false)}
+          className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full"
+          aria-label="Close menu"
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
       </Box>
 
       {/* Navigation Links */}
@@ -93,6 +121,7 @@ const Navigation = ({ toggleDarkMode, dark, cart = [] }) => {
             <ListItemButton
               component={Link}
               to={link.to}
+              onClick={toggleDrawer(false)}
               className="hover:bg-yellow-100 dark:hover:bg-gray-700 transition-colors"
             >
               <ListItemText

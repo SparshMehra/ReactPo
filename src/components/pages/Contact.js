@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import FormError from "../UI/FormError";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
 const Contact = () => {
   let { register, handleSubmit, formState } = useForm();
   let { errors } = formState;
@@ -17,22 +16,22 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="body-text p-8 bg-gradient-to-br from-green-300 to-green-500 dark:from-green-800 dark:to-green-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col items-center"
+      className="body-text p-8 bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col items-center transition-colors duration-300"
     >
       {/* Section Title */}
-      <h1 className="secondary-heading mb-6 text-center">Get in Touch</h1>
-      <p className=" text-center mb-8 max-w-2xl">
-        Wanted to connect or say hello? We'd love to hear from you! Fill out the
+      <h1 className="text-4xl md:text-5xl font-bold mb-6 text-center text-gray-900 dark:text-white">Get in Touch</h1>
+      <p className="text-lg text-center mb-8 max-w-2xl text-gray-700 dark:text-gray-300">
+        Want to connect or say hello? We'd love to hear from you! Fill out the
         form below or connect with us through our social channels.
       </p>
 
       {/* Contact Form */}
-      <div className="bg-white dark:bg-darkerBlue rounded-lg shadow-lg p-6 md:p-10 max-w-4xl w-full">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 md:p-10 max-w-4xl w-full transition-colors duration-300">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             {/* Name Input */}
             <div>
-              <label htmlFor="name" className="form-label">
+              <label htmlFor="name" className="form-label text-gray-900 dark:text-gray-100">
                 Name
                 <Speaker content="please enter a name"></Speaker>
               </label>
@@ -41,6 +40,7 @@ const Contact = () => {
                 label="Your Name"
                 className="form-input"
                 variant="outlined"
+                fullWidth
                 {...register("name", { required: "Name field is mandatory" })}
               />
 
@@ -52,7 +52,7 @@ const Contact = () => {
 
             {/* Email Input */}
             <div>
-              <label htmlFor="email" className="form-label">
+              <label htmlFor="email" className="form-label text-gray-900 dark:text-gray-100">
                 Email
                 <Speaker content="please enter an email"></Speaker>
               </label>
@@ -61,6 +61,7 @@ const Contact = () => {
                 label="Email"
                 className="form-input"
                 variant="outlined"
+                fullWidth
                 {...register("email", {
                   required: "Email field is mandatory",
                   pattern: {
@@ -78,7 +79,7 @@ const Contact = () => {
 
           {/* Message Input */}
           <div className="mb-6">
-            <label htmlFor="message" className="form-label">
+            <label htmlFor="message" className="form-label text-gray-900 dark:text-gray-100">
               Message
               <Speaker content="please enter a message"></Speaker>
             </label>
@@ -87,6 +88,9 @@ const Contact = () => {
               label="Your Message"
               className="form-input"
               variant="outlined"
+              fullWidth
+              multiline
+              rows={4}
               {...register("message", {
                 required: "Message field is mandatory",
               })}
@@ -99,15 +103,21 @@ const Contact = () => {
           </div>
 
           {/* Submit Button */}
-          {/* <button
-            type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 text-white  py-3 px-6 rounded-md transition-all duration-300"
-          >
-            Send Message
-          </button> */}
           <div className="text-right">
-            <Button type="submit" variant="contained">
-              Submit
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              sx={{
+                bgcolor: 'rgb(22, 163, 74)',
+                '&:hover': {
+                  bgcolor: 'rgb(21, 128, 61)',
+                },
+                px: 4,
+                py: 1.5,
+              }}
+            >
+              Send Message
             </Button>
           </div>
         </form>
