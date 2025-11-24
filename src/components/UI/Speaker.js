@@ -1,10 +1,3 @@
-/**
- * Speaker Component (Text-to-Speech)
- *
- * @file Speaker.js
- * @author Abdiaziz Muse (A00471783) - Accessibility, UI revamp, cleanup
- * @description Accessible text-to-speech control button used across pages.
- */
 import { IoVolumeHigh, IoVolumeOff } from "react-icons/io5";
 import { useState, useEffect, useRef } from "react";
 
@@ -27,21 +20,45 @@ const Speaker = ({ content, additionalStyles = "" }) => {
 
   // Handle text-to-speech
   const handleTextToSpeech = () => {
-    // If something is currently speaking and not paused, pause it
+    // Normalize content to a stable key for global comparisons
+    const contentKey = (content || "").replace(/\s+/g, " ").trim();
+    // If something is currently speaking and not paused
     if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-      window.speechSynthesis.pause();
-      setIsPaused(true);
-      return;
+      // If the currently-playing utterance belongs to this Speaker instance, pause it
+      if (
+        window.__speaker_currentUtteranceId &&
+        utteranceRef.current &&
+        window.__speaker_currentUtteranceId === utteranceRef.current._speakerId
+      ) {
+        window.speechSynthesis.pause();
+        setIsPaused(true);
+        return;
+      }
+      // Otherwise cancel current speech so we can start this speaker's content
+      try {
+        window.speechSynthesis.cancel();
+      } catch (e) {}
     }
 
-    // If something is paused, resume it
+    // If something is paused
     if (window.speechSynthesis.speaking && window.speechSynthesis.paused) {
-      window.speechSynthesis.resume();
-      setIsPaused(false);
-      return;
+      // If the paused utterance belongs to this Speaker instance, resume it
+      if (
+        window.__speaker_currentUtteranceId &&
+        utteranceRef.current &&
+        window.__speaker_currentUtteranceId === utteranceRef.current._speakerId
+      ) {
+        window.speechSynthesis.resume();
+        setIsPaused(false);
+        return;
+      }
+      // Otherwise cancel paused speech and continue to start this speaker's content
+      try {
+        window.speechSynthesis.cancel();
+      } catch (e) {}
     }
 
-    // Otherwise start a new utterance (cancel any queued/playing utterances first)
+    // Start a new utterance (any previous speech has been cancelled above)
     textRef.current = `${content}`;
     const utterance = new SpeechSynthesisUtterance(textRef.current);
 
@@ -54,18 +71,24 @@ const Speaker = ({ content, additionalStyles = "" }) => {
     utterance.pitch = 1.4;
     utterance.rate = 0.9;
 
-    // Cancel any global speech to ensure we can start fresh
-    try {
-      window.speechSynthesis.cancel();
-    } catch (err) {
-      // ignore
-    }
+    // Register this utterance as the global current utterance/content (use normalized key)
+    const utteranceId = `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+    utterance._speakerId = utteranceId;
+    window.__speaker_currentUtteranceId = utteranceId;
+    window.__speaker_currentText = contentKey;
+    window.__speaker_currentUtterance = utterance;
 
     utteranceRef.current = utterance;
     window.speechSynthesis.speak(utterance);
     setIsPaused(false);
 
     utterance.onend = () => {
+      // Clear global marker if it still points to this utterance
+      if (window.__speaker_currentUtterance === utterance) {
+        window.__speaker_currentUtterance = null;
+        window.__speaker_currentUtteranceId = null;
+        window.__speaker_currentText = null;
+      }
       utteranceRef.current = null;
       setIsPaused(false);
     };
