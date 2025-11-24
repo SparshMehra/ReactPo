@@ -18,7 +18,7 @@ import useCreateGallery from "./useCreateGallery";
 
 const CreateGalleryForm = () => {
   let { register, handleSubmit, formState, control, reset } = useForm();
-  let { errors, isSubmitting } = formState;
+  let { errors } = formState;
   let { isInserting, mutate } = useCreateGallery();
 
   function onSubmit(data) {

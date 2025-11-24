@@ -1,3 +1,11 @@
+/**
+ * Card Component
+ *
+ * @file Card.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, consistency
+ * @author Bhabin Chudal (A00464169) - UI improvements, cleanup
+ * @description Reusable animated card with padding options and hover effects.
+ */
 import React from 'react';
 import { motion } from 'framer-motion';
 

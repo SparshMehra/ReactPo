@@ -1,5 +1,12 @@
-// Author: Frontend Enhancement - Stats Counter Component
-// Purpose: Animated statistics counter with smooth number animations
+/**
+ * StatsCounter Component
+ *
+ * @file StatsCounter.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, consistency
+ * @author Bhabin Chudal (A00464169) - UI improvements, cleanup
+ * @description Animated statistics counter with smooth number animations and
+ *              reduced‑motion friendly behavior for accessibility.
+ */
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useSpring } from 'framer-motion';

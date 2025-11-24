@@ -1,3 +1,10 @@
+/**
+ * Speaker Component (Text-to-Speech)
+ *
+ * @file Speaker.js
+ * @author Abdiaziz Muse (A00471783) - Accessibility, UI revamp, cleanup
+ * @description Accessible text-to-speech control button used across pages.
+ */
 import { IoVolumeHigh, IoVolumeOff } from "react-icons/io5";
 import { useState, useEffect, useRef } from "react";
 

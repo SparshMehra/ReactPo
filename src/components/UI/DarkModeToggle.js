@@ -2,6 +2,8 @@
  * DarkModeToggle Component
  *
  * @file DarkModeToggle.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, dark mode consistency
+ * @author Bhabin Chudal (A00464169) - UI improvements, cleanup
  * @description Toggle button for switching between light and dark mode themes.
  *              Features smooth transitions and animated icon changes.
  *

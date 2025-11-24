@@ -19,7 +19,7 @@
  * @returns {JSX.Element} Events page with booking system
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import eventService from '../../services/eventService';
@@ -48,12 +48,7 @@ const Events = () => {
   const [currentBooking, setCurrentBooking] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
-  // Fetch events on component mount and when filters change
-  useEffect(() => {
-    fetchEvents();
-  }, [filters]);
-
-  const fetchEvents = async () => {
+  const fetchEvents = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -66,7 +61,12 @@ const Events = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
+
+  // Fetch events on component mount and when filters change
+  useEffect(() => {
+    fetchEvents();
+  }, [fetchEvents]);
 
   const handleFilterChange = (newFilters) => {
     setFilters(newFilters);

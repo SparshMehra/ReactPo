@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { formatDate, formatTime, getRelativeDate } from '../../utils/dateHelpers';
+import { formatTime, getRelativeDate } from '../../utils/dateHelpers';
 import { EVENT_CATEGORIES, DIFFICULTY_LEVELS } from '../../config/config';
 
 const EventCard = ({ event, onBookNow, onLearnMore }) => {

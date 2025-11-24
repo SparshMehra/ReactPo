@@ -16,7 +16,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 
 // Page Components
@@ -128,8 +127,9 @@ function App() {
         </Routes>
       </Router>
 
-      {/* React Query DevTools (only in development) */}
-      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
+      {/* React Query DevTools can be enabled locally for debugging */}
+      {/* import { ReactQueryDevtools } from '@tanstack/react-query-devtools' */}
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 }

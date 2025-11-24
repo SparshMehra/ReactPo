@@ -22,6 +22,7 @@ import React, { useState } from "react";
 import outlookImage from "../../assets/outlook.jpg";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 import Speaker from "../UI/Speaker";
+import AnimatedSection from "../UI/AnimatedSection";
 
 const About = () => {
   const [accordionState, setAccordionState] = useState({
@@ -41,7 +42,7 @@ const About = () => {
   return (
     <div className="p-8 bg-white dark:bg-darkerBlue text-gray-900 dark:text-gray-100 min-h-screen flex flex-col items-center">
       {/* Header Section */}
-      <div className="flex items-center justify-center w-full mb-10">
+      <AnimatedSection className="flex items-center justify-center w-full mb-10">
         <h1 className="text-5xl font-bold text-center flex-1">
           About St. Margaret’s Bay Area Woodland Conservation Site
         </h1>
@@ -52,19 +53,19 @@ const About = () => {
         Our mission is to protect, sustain, and inspire, ensuring that the woodland thrives for future generations."
           additionalStyles={additionStyles}
         />
-      </div>
+      </AnimatedSection>
 
       {/* Hero Image */}
-      <div className="mb-10">
+      <AnimatedSection className="mb-10">
         <img
           src={outlookImage}
           alt="Woodland Outlook"
           className="w-full h-auto max-w-4xl rounded-lg shadow-lg transition-transform transform hover:scale-105"
         />
-      </div>
+      </AnimatedSection>
 
       {/* Accordion Section */}
-      <div className="w-full max-w-4xl mb-12">
+      <AnimatedSection className="w-full max-w-4xl mb-12">
         <div className="mb-4">
           <button
             className="flex justify-between w-full p-4 bg-gray-100 dark:bg-gray-800 text-2xl font-semibold rounded-lg shadow-md focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -125,10 +126,10 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
+      </AnimatedSection>
 
       {/* Mission Section with "Learn More" Toggle */}
-      <div className="w-full max-w-4xl text-left">
+      <AnimatedSection className="w-full max-w-4xl text-left">
         <h2 className="text-4xl font-bold mb-4">Mission Statement</h2>
         <p className="text-2xl leading-relaxed">
           Our mission is to preserve and enhance the ecological integrity of
@@ -148,17 +149,17 @@ const About = () => {
         >
           {showMoreMission ? "Show Less" : "Learn More"}
         </button>
-      </div>
+      </AnimatedSection>
 
       {/* Vision Section */}
-      <div className="w-full max-w-4xl mt-12">
+      <AnimatedSection className="w-full max-w-4xl mt-12">
         <h2 className="text-4xl font-bold mb-4">Vision</h2>
         <p className="text-2xl leading-relaxed">
           We envision a thriving ecosystem that serves as a beacon for
           conservation efforts, inspiring future generations to cherish and
           protect this natural treasure.
         </p>
-      </div>
+      </AnimatedSection>
     </div>
   );
 };

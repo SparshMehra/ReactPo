@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Modal2 from "./Modal2";
-import Footer from "./Footer";
 import { RxAccessibility } from "react-icons/rx";
 import TextAdjustment from "./TextAdjustment";
 import Pagination from "./Pagination";

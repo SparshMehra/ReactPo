@@ -37,7 +37,7 @@ async function createGallery(newGallery, File) {
     throw new Error("Error occured while inserting data in database");
   }
   //upload the image in bucket. if error 1. delete the uploaded data from gallery table, and throw the error.
-  const { data: bucketData, error: bucketError } = await supabase.storage
+  const { error: bucketError } = await supabase.storage
     .from("gallerImages")
     .upload(fileName, File, { upsert: true });
 
