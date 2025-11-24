@@ -66,7 +66,10 @@ const AppLayout = ({ cart, setCart }) => {
       </main>
 
       {/* Floating Speed Dial for Quick Actions */}
-      <PlaygroundSpeedDial />
+      <div>
+        <PlaygroundSpeedDial />
+        </div>
+      
 
       {/* Footer */}
       <Footer />

@@ -1,3 +1,14 @@
+/**
+ * Speaker.js
+ * @author S M Riyad Farhan (A00470224)
+ * Text-to-Speech Speaker Component
+ * 
+ * @description A React component that provides text-to-speech functionality
+ * Using the Web Speech API. It allows users to listen to the provided
+ * Text content with play/pause controls and visual feedback.
+ * 
+ */
+
 import { IoVolumeHigh, IoVolumeOff } from "react-icons/io5";
 import { useState, useEffect, useRef } from "react";
 

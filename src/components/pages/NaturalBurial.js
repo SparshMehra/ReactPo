@@ -1,6 +1,20 @@
-// Author: [Your Name]
-// Purpose: This file represents the Natural Burial page component.
-
+/**
+ * Homepage Component
+ *
+ * @file NaturalBurial.js
+ * @author: S M Riyad Farhan (A00470224)
+ * @description Modern Natural Burial page with improved transition and audio
+ *
+ * Features:
+ * - Clear design for readability
+ * - Accordion sections for content organization
+ * - Text-to-speech integration for accessibility
+ * - Responsive layout with Tailwind CSS
+ * 
+ *
+ * @param {boolean} dark - Current dark mode state
+ * @returns {JSX.Element} Natural Burial page with comprehensive animations and modern UI
+ */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
