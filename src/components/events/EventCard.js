@@ -170,3 +170,11 @@ const EventCard = ({ event, onBookNow, onLearnMore }) => {
 
 export default EventCard;
 
+
+/**
+ * EventCard Component
+ *
+ * @file EventCard.js
+ * @author Abdiaziz Muse (A00471783) - Events UI, booking flow integration
+ * @description Displays a single event card with details, availability, and actions.
+ */

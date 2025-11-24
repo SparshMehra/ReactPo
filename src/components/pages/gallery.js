@@ -3,6 +3,7 @@
  *
  * @file gallery.js
  * @author Bhabin Chudal (A00464169) - UI improvements, Supabase integration
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, code cleanup
  * @author Kunal Singla (A00461346)
  * @description Gallery page for displaying and managing conservation area photos
  *              with Supabase backend integration.
@@ -26,7 +27,6 @@ import useGallery from "../features/gallery/useGallery";
 import CircularProgress from "@mui/material/CircularProgress";
 const Gallery = () => {
   const [isFormOpen, setFormOpen] = useState(false);
-  console.log(isFormOpen);
   const { isLoading, galleries, error } = useGallery();
   if (isLoading)
     return (

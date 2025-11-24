@@ -201,3 +201,11 @@ const EventDetails = ({ event, onClose, onProceedToBook }) => {
 
 export default EventDetails;
 
+
+/**
+ * EventDetails Component
+ *
+ * @file EventDetails.js
+ * @author Abdiaziz Muse (A00471783) - Events UI, booking flow integration
+ * @description Modal with detailed event information and proceed-to-book action.
+ */

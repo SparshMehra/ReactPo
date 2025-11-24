@@ -1,8 +1,20 @@
+/**
+ * Gallery Utilities
+ *
+ * @file helper.js
+ * @author Bhabin Chudal (A00464169) - Database/utils integration
+ * @author Abdiaziz Muse (A00471783) - Cleanup, error handling, UI integration
+ * @description Supabase helpers for fetching and creating gallery entries.
+ */
+
 import { supabaseUrl, supabase } from "../../supabase";
+
 async function getGallery() {
-  let { data: gallery, error } = await supabase.from("gallery").select("*");
-  console.log(gallery); // shows array of rows
-  if (error) console.error(error); // always good to log errors
+  const { data: gallery, error } = await supabase.from("gallery").select("*");
+  if (error) {
+    console.error(error);
+    return [];
+  }
   return gallery;
 }
 
@@ -14,17 +26,14 @@ async function createGallery(newGallery, File) {
   const fileName = `${Date.now()}-${originalName}`;
   const newUrl = `${supabaseUrl}/storage/v1/object/public/gallerImages/${fileName}`;
   const updatedGalleryRecord = { ...newGallery, imageUrl: newUrl };
-  console.log("---------updatedGalleryRecord------\n", updatedGalleryRecord);
 
   const { data: insertedData, error } = await supabase
     .from("gallery")
     .insert([updatedGalleryRecord])
     .select();
 
-  console.log("---------insertedData------\n", insertedData);
-
   if (error) {
-    console.log(error);
+    console.error(error);
     throw new Error("Error occured while inserting data in database");
   }
   //upload the image in bucket. if error 1. delete the uploaded data from gallery table, and throw the error.
@@ -32,7 +41,6 @@ async function createGallery(newGallery, File) {
     .from("gallerImages")
     .upload(fileName, File, { upsert: true });
 
-  console.log("---------storage Bucket------\n", bucketData);
   if (bucketError) {
     console.error("Supabase Storage Upload Error:", bucketError);
     await supabase.from("gallery").delete().eq("id", insertedData[0].id);
@@ -51,7 +59,3 @@ function sanitizeFileName(fileName) {
     .replace(/[^a-zA-Z0-9\-_.]/g, ""); // remove other special chars
 }
 export { getGallery, createGallery };
-
-//https://flnvwhzhgfouhdxyajml.supabase.co/storage/v1/object/public/gallerImages/cabin01.png
-//
-console.log(supabaseUrl);

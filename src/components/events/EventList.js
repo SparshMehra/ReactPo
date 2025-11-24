@@ -1,3 +1,11 @@
+/**
+ * EventList Component
+ *
+ * @file EventList.js
+ * @author Abdiaziz Muse (A00471783) - Events UI, booking flow integration
+ * @description Displays a grid of event cards with loading skeletons and empty state.
+ */
+
 import React from 'react';
 import EventCard from './EventCard';
 
@@ -52,4 +60,3 @@ const EventList = ({ events, onBookNow, onLearnMore, loading }) => {
 };
 
 export default EventList;
-

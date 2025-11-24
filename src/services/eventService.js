@@ -1,3 +1,10 @@
+/**
+ * Event Service
+ *
+ * @file eventService.js
+ * @author Abdiaziz Muse (A00471783) - Events/booking integration and API wiring
+ * @description Axios-based client for events and bookings API used by the React app.
+ */
 import axios from 'axios';
 import { API_BASE_URL } from '../config/config';
 

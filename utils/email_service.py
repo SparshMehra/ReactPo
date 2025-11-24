@@ -1,6 +1,11 @@
 """
 Email Service for Event Booking Confirmations
-Uses Gmail SMTP for sending confirmation emails
+
+@file email_service.py
+@author Bhabin Chudal (A00464169) - Database/utils integration, cleanup
+@author Abdiaziz Muse (A00471783) - Events email workflow, maintenance
+@description SMTP email utilities used by the events API to send confirmations
+             and cancellations. Loads configuration from environment variables.
 """
 
 import smtplib

@@ -2,7 +2,7 @@
  * ChatbotWindow Component
  *
  * @file ChatbotWindow.js
- * @author Abdiaziz Muse (A00471783)
+ * @author Abdiaziz Muse (A00471783) - Chatbot UI/UX, API integration, animations
  * @description Main chatbot interface window with AI-powered conversation capabilities.
  *              Connects to the chatbot API for intelligent responses about the conservation area.
  *
