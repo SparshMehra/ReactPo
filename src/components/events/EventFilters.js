@@ -118,3 +118,11 @@ const EventFilters = ({ filters, onFilterChange }) => {
 
 export default EventFilters;
 
+
+/**
+ * EventFilters Component
+ *
+ * @file EventFilters.js
+ * @author Abdiaziz Muse (A00471783) - Events UI, filtering logic integration
+ * @description Filter controls for events: category, date, and search with debounce.
+ */

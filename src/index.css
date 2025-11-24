@@ -2,6 +2,8 @@
  * Global Styles and Tailwind Configuration
  *
  * @file index.css
+ * @author Abdiaziz Muse (A00471783) - UI revamp, scroll animations, code cleanup
+ * @author Bhabin Chudal (A00464169) - Code cleanup, UI improvements
  * @description Main stylesheet with Tailwind CSS imports, nature-themed animations,
  *              and global component styles for woodland conservation website
  */
@@ -107,6 +109,15 @@ a:hover {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
 

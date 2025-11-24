@@ -1,6 +1,11 @@
 """
 Email Service for Event Booking Confirmations
-Uses Gmail SMTP for sending confirmation emails
+
+@file email_service.py
+@author Bhabin Chudal (A00464169) - Database/utils integration, cleanup
+@author Abdiaziz Muse (A00471783) - Events email workflow, maintenance
+@description SMTP email utilities used by the events API to send confirmations
+             and cancellations. Loads configuration from environment variables.
 """
 
 import smtplib
@@ -8,9 +13,13 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 import os
-from dotenv import load_dotenv
-
-load_dotenv('config.env')
+# Optional dotenv import for environments where it's available
+try:
+    from dotenv import load_dotenv  # type: ignore
+    load_dotenv('config.env')
+except Exception:
+    # If python-dotenv isn't installed or loading fails, proceed with environment defaults
+    pass
 
 
 class EmailService:

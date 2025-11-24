@@ -1,3 +1,11 @@
+/**
+ * Button Component
+ *
+ * @file Button.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, consistency
+ * @author Bhabin Chudal (A00464169) - UI improvements, cleanup
+ * @description Reusable animated button with variants, sizes, icons, and full-width option.
+ */
 import React from 'react';
 import { motion } from 'framer-motion';
 

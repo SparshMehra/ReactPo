@@ -1,3 +1,12 @@
+/**
+ * Global App Styles (legacy CRA styles)
+ *
+ * @file App.css
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, consistency
+ * @author Bhabin Chudal (A00464169) - Code cleanup and minor UI improvements
+ * @description Legacy App styles kept for compatibility. Tailwind is the primary styling system.
+ */
+
 .App {
   text-align: center;
 }

@@ -1,3 +1,11 @@
+/**
+ * Tailwind Configuration
+ *
+ * @file tailwind.config.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animation tokens, palette
+ * @author Bhabin Chudal (A00464169) - UI consistency, cleanup
+ * @description Tailwind setup with extended nature-inspired palette and animations.
+ */
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [

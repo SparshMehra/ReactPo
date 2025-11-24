@@ -3,6 +3,7 @@
  *
  * @file gallery.js
  * @author Bhabin Chudal (A00464169) - UI improvements, Supabase integration
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, code cleanup
  * @author Kunal Singla (A00461346)
  * @description Gallery page for displaying and managing conservation area photos
  *              with Supabase backend integration.
@@ -26,8 +27,7 @@ import useGallery from "../features/gallery/useGallery";
 import CircularProgress from "@mui/material/CircularProgress";
 const Gallery = () => {
   const [isFormOpen, setFormOpen] = useState(false);
-  console.log(isFormOpen);
-  const { isLoading, galleries, error } = useGallery();
+  const { isLoading, galleries } = useGallery();
   if (isLoading)
     return (
       <div className="flex justify-center items-center min-h-screen  bg-gray-100">
@@ -58,6 +58,8 @@ const Gallery = () => {
             {/* Image */}
             <img
               src={gallery.imageUrl}
+              alt={gallery.imageDescription ? `Photo: ${gallery.imageDescription}` : 'Gallery image from Woodland Conservation'}
+              loading="lazy"
               className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
             />
             {/* Overlay with name */}

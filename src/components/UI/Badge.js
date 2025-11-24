@@ -1,3 +1,11 @@
+/**
+ * Badge Component
+ *
+ * @file Badge.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, consistency
+ * @author Bhabin Chudal (A00464169) - UI improvements, cleanup
+ * @description Small pill-shaped label with variants and sizes, animated with framer-motion.
+ */
 import React from 'react';
 import { motion } from 'framer-motion';
 

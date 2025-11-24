@@ -132,6 +132,11 @@ const MapCenterController = ({ center, zoom }) => {
 
 /**
  * Framer Motion animation variants for scroll-triggered animations
+ *
+ * @file Sitemap.js
+ * @author Tongol Banguot (A00479259) - Sitemap architecture and implementation
+ * @author Abdiaziz Muse (A00471783) - UI polish and consistency
+ * @description Interactive sitemap with categorized links and responsive layout.
  */
 const fadeInUpVariants = {
   hidden: { opacity: 0, y: 60 },
@@ -169,17 +174,6 @@ const fadeInRightVariants = {
   }
 };
 
-const scaleInVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    transition: { 
-      duration: 0.6,
-      ease: "easeOut"
-    }
-  }
-};
 
 const containerVariants = {
   hidden: { opacity: 0, y: 50 },
@@ -194,14 +188,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, x: -30 },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
-};
+// Note: remove unused animation variant objects to avoid lint warnings.
 
 const titleVariants = {
   hidden: { opacity: 0, scale: 0.9, y: -20 },

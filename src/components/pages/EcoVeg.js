@@ -2,7 +2,8 @@
  * EcoVeg Component (Ecosystem & Vegetation)
  *
  * @file EcoVeg.js
- * @author Sadikshya Oli (A00457938) - Merging vegetation and ecosystem sections
+ * @author Sadikshya Oli (A00457938) - Ecosystem/vegetation merge, navbar/ecommerce ties
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, cleanup
  * @author Kunal Singla (A00461346)
  * @author Cole Turner (A00469026)
  * @author Bhanu Prakash (A00468530)

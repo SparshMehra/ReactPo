@@ -1,5 +1,11 @@
-// Author: Frontend Enhancement - Testimonial Carousel
-// Purpose: Beautiful animated testimonial slider with images
+/**
+ * TestimonialCarousel Component
+ *
+ * @file TestimonialCarousel.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, consistency
+ * @author Bhabin Chudal (A00464169) - UI improvements, cleanup
+ * @description Animated testimonial slider with avatars, stars, and progress bar.
+ */
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';

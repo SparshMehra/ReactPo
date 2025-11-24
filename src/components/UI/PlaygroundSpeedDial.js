@@ -1,3 +1,11 @@
+/**
+ * PlaygroundSpeedDial Component
+ *
+ * @file PlaygroundSpeedDial.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, accessibility, integrations
+ * @author Bhabin Chudal (A00464169) - UI improvements, cleanup
+ * @description Floating Speed Dial for quick actions like Accessibility panel and Chatbot.
+ */
 import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import { styled } from "@mui/material/styles";
@@ -15,7 +23,7 @@ const FixedSpeedDial = styled(SpeedDial)(({ theme }) => ({
 
 const actions = [
   { icon: <StyleModalContext />, name: "Accessibility" },
-  { icon: <ChatbotBubble />, name: "Chat bot" },
+  { icon: <ChatbotBubble />, name: "Chatbot" },
 ];
 
 export default function PlaygroundSpeedDial() {
@@ -24,9 +32,14 @@ export default function PlaygroundSpeedDial() {
       ariaLabel="Fixed Speed Dial"
       icon={<FaQuestion />}
       direction="left"
-    >
+      >
       {actions.map((action) => (
-        <SpeedDialAction key={action.name} icon={action.icon} />
+        <SpeedDialAction
+          key={action.name}
+          icon={action.icon}
+          tooltipTitle={action.name}
+          aria-label={action.name}
+        />
       ))}
     </FixedSpeedDial>
   );

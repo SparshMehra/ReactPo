@@ -2,6 +2,9 @@
  * AppLayout Component
  *
  * @file AppLayout.js
+ * @author Sadikshya Oli (A00457938) - Navbar and cart integration
+ * @author Sparsh Mehra (A00472261) - Sidebar/navigation patterns
+ * @author Abdiaziz Muse (A00471783) - UI revamp, scroll animations, code cleanup
  * @description Main application layout wrapper that provides consistent
  *              structure with navigation, footer, and dark mode support.
  *

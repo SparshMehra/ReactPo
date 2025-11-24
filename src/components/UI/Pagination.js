@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 export default function Pagination({
   num = 3,
@@ -11,7 +11,11 @@ export default function Pagination({
     document.body.classList.remove(...classes);
     if (tracker === 1 || tracker === 2)
       return document.body.classList.add(classes[tracker - 1]);
-  }, [tracker]);
+    return () => {
+      // Cleanup on unmount to avoid leaving stray classes
+      document.body.classList.remove(...classes);
+    };
+  }, [tracker, classes]);
   return (
     <div className="flex gap-4">
       {Array.from({ length: num }, (_, i) => (

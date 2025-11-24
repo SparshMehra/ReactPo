@@ -1,5 +1,11 @@
-// Author: Frontend Enhancement - Feature Card Component
-// Purpose: Beautiful animated feature cards with icons and hover effects
+/**
+ * FeatureCard Component
+ *
+ * @file FeatureCard.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, consistency
+ * @author Bhabin Chudal (A00464169) - UI improvements, cleanup
+ * @description Beautiful animated feature cards with icons, hover effects, and optional link.
+ */
 
 import React from 'react';
 import { motion } from 'framer-motion';

@@ -1,5 +1,10 @@
-// Author: [Your Name]
-// Purpose: This file represents the Natural Burial page component.
+/**
+ * NaturalBurial Component
+ *
+ * @file NaturalBurial.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, scroll animations, code cleanup
+ * @description Natural Burial information page with accessible accordions and narration.
+ */
 
 import React, { useState } from "react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";

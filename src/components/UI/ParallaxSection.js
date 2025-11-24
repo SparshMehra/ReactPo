@@ -1,5 +1,11 @@
-// Author: Frontend Enhancement - Parallax Section Component
-// Purpose: Create immersive parallax scrolling effects with images
+/**
+ * ParallaxSection Component
+ *
+ * @file ParallaxSection.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, animations, consistency
+ * @author Bhabin Chudal (A00464169) - UI improvements, cleanup
+ * @description Create immersive parallax scrolling effects with background images.
+ */
 
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';

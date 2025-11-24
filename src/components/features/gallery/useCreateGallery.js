@@ -1,5 +1,12 @@
+/**
+ * useCreateGallery Hook
+ *
+ * @file useCreateGallery.js
+ * @author Bhabin Chudal (A00464169) - Gallery data layer and utils
+ * @author Abdiaziz Muse (A00471783) - UI integration and cleanup
+ * @description React Query mutation hook for creating a gallery item and uploading image.
+ */
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import { createGallery } from "../../utils/helper";
 import toast from "react-hot-toast";
 

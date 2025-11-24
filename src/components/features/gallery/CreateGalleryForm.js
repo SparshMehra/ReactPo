@@ -1,5 +1,11 @@
-// Author: Lakshay Bansal (A00467478)
-// Purpose: To display the Contact section of the Woodland Conservation website.
+/**
+ * CreateGalleryForm Component
+ *
+ * @file CreateGalleryForm.js
+ * @author Bhabin Chudal (A00464169) - Gallery feature, Supabase integration
+ * @author Abdiaziz Muse (A00471783) - UI revamp, validation, cleanup
+ * @description Form to upload a new gallery image with description and photographer name.
+ */
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -7,13 +13,12 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import FormError from "../../UI/FormError";
 import Speaker from "../../UI/Speaker";
-import { IoSend } from "react-icons/io5";
-import { useFormStatus } from "react-dom";
+// Note: Keep dependencies minimal; Tailwind and MUI provide UI.
 import useCreateGallery from "./useCreateGallery";
 
 const CreateGalleryForm = () => {
   let { register, handleSubmit, formState, control, reset } = useForm();
-  let { errors, isSubmitting } = formState;
+  let { errors } = formState;
   let { isInserting, mutate } = useCreateGallery();
 
   function onSubmit(data) {
@@ -24,8 +29,6 @@ const CreateGalleryForm = () => {
       imageUrl: file.name,
       imageDescription,
     };
-    console.log("--------------updatedGallery------------\n", updatedGallery);
-    console.log("--------------File------------\n", file);
     mutate(
       { gallery: updatedGallery, file },
       {
@@ -36,7 +39,7 @@ const CreateGalleryForm = () => {
     );
   }
   function onError(error) {
-    console.log(error);
+    // Surface error via toast in hook; keep console quiet in production
   }
   return (
     <div className="mt-4 bg-white dark:bg-darkerBlue rounded-lg shadow-lg p-6 md:p-10 max-w-4xl w-full">

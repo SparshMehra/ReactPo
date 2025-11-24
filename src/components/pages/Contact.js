@@ -28,6 +28,7 @@ import Button from "@mui/material/Button";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { motion, useInView } from "framer-motion";
 import { FaEnvelope, FaUser, FaCommentDots } from "react-icons/fa";
+import AnimatedSection from "../UI/AnimatedSection";
 
 const Contact = () => {
   const { register, handleSubmit, formState, reset } = useForm();
@@ -95,7 +96,7 @@ const Contact = () => {
         className="body-text p-8 bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col items-center transition-colors duration-300"
       >
         {/* Section Title with Animation */}
-        <div className="text-center mb-12 animate-fadeIn">
+        <AnimatedSection className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
             Get in Touch
           </h1>
@@ -105,13 +106,13 @@ const Contact = () => {
           </p>
 
           {/* Contact Info Cards */}
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
+          <AnimatedSection className="flex flex-wrap justify-center gap-4 mt-8">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 hover:shadow-xl transition-all duration-300 transform hover:scale-105">
               <FaEnvelope className="text-green-600 dark:text-green-400 text-2xl mx-auto mb-2" />
               <p className="text-sm font-semibold">info@woodlandconservation.ca</p>
             </div>
-          </div>
-        </div>
+          </AnimatedSection>
+        </AnimatedSection>
 
         {/* Contact Form with Enhanced Styling and Scroll Animation */}
         <motion.div

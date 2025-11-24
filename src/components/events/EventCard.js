@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { formatDate, formatTime, getRelativeDate } from '../../utils/dateHelpers';
+import { formatTime, getRelativeDate } from '../../utils/dateHelpers';
 import { EVENT_CATEGORIES, DIFFICULTY_LEVELS } from '../../config/config';
 
 const EventCard = ({ event, onBookNow, onLearnMore }) => {
@@ -170,3 +170,11 @@ const EventCard = ({ event, onBookNow, onLearnMore }) => {
 
 export default EventCard;
 
+
+/**
+ * EventCard Component
+ *
+ * @file EventCard.js
+ * @author Abdiaziz Muse (A00471783) - Events UI, booking flow integration
+ * @description Displays a single event card with details, availability, and actions.
+ */

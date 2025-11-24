@@ -1,3 +1,11 @@
+/**
+ * Container and Section Components
+ *
+ * @file Container.js
+ * @author Abdiaziz Muse (A00471783) - UI revamp, layout consistency, animations
+ * @author Bhabin Chudal (A00464169) - UI improvements, cleanup
+ * @description Layout primitives for max-width containers and animated sections.
+ */
 import React from 'react';
 import { motion } from 'framer-motion';
 

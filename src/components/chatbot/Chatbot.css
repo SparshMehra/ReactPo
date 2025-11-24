@@ -1,3 +1,11 @@
+/*
+ * Chatbot Styles
+ *
+ * @file Chatbot.css
+ * @author Abdiaziz Muse (A00471783) - Chatbot UI, animations, integration styling
+ * @description Styles for chatbot bubble and window with animations.
+ */
+
 /* Chatbot Bubble */
 .chatbot-bubble {
   /* position: fixed;

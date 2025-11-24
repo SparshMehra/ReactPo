@@ -1,5 +1,13 @@
-//Authors: Kunal Singla(A00461346), Cole Turner (A00469026)/Author: Bahnu Prakash (A00468530)
-//Purpose: This file represents a component to display a flora fauna fungi page.
+/**
+ * FloraFaunaFungi Component
+ *
+ * @file flora.js
+ * @author Kunal Singla (A00461346)
+ * @author Cole Turner (A00469026)
+ * @author Bhanu Prakash (A00468530)
+ * @author Abdiaziz Muse (A00471783) - UI consistency, code cleanup
+ * @description Component to display Flora, Fauna, and Fungi with filtering and modal details.
+ */
 
 import React, { useState } from "react";
 import redMaple from "../../assets/download-4.jpg";
