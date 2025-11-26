@@ -31,7 +31,7 @@ export default function PlaygroundSpeedDial() {
     <FixedSpeedDial
       ariaLabel="Fixed Speed Dial"
       icon={<FaQuestion />}
-      direction="left"
+      direction="right"
       >
       {actions.map((action) => (
         <SpeedDialAction
