@@ -1,7 +1,7 @@
 /**
  * Speaker.js
  * @author S M Riyad Farhan (A00470224)
- * Text-to-Speech Speaker Component
+ * Text-to-Speech Speaker Component file
  * 
  * @description A React component that provides text-to-speech functionality
  * Using the Web Speech API. It allows users to listen to the provided

@@ -3,7 +3,7 @@
  *
  * @file NaturalBurial.js
  * @author: S M Riyad Farhan (A00470224)
- * @description Modern Natural Burial page with improved transition and audio
+ * @description Modern Natural Burial page with improved transition and audio speaker
  *
  * Features:
  * - Clear design for readability
