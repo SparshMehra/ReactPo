@@ -5,24 +5,28 @@ export default function Pagination({
   classes = ["bodyTextxlg", "bodyTextxxlg"],
   tracker,
   setTracker,
+  storageKey = "textSizePreference",
 }) {
   useEffect(() => {
     // First, remove any previous size classes
     document.body.classList.remove(...classes);
-    if (tracker === 1 || tracker === 2)
-      return document.body.classList.add(classes[tracker - 1]);
-    return () => {
-      // Cleanup on unmount to avoid leaving stray classes
-      document.body.classList.remove(...classes);
-    };
-  }, [tracker, classes]);
+
+    // Apply the selected class based on tracker
+    if (tracker === 1 || tracker === 2) {
+      document.body.classList.add(classes[tracker - 1]);
+    }
+
+    // Save preference to localStorage
+    localStorage.setItem(storageKey, tracker.toString());
+  }, [tracker, classes, storageKey]);
+
   return (
     <div className="flex gap-4">
       {Array.from({ length: num }, (_, i) => (
         <div
           key={i}
           onClick={() => setTracker(i)}
-          className={`h-8 w-8 rounded-full flex ring-amber-400 ring-2 items-center justify-center${
+          className={`h-8 w-8 rounded-full flex ring-amber-400 ring-2 items-center justify-center cursor-pointer transition-all hover:scale-110${
             i <= tracker ? " bg-yellow-200 shadow-gray-500 shadow-lg" : ""
           }`}
         >

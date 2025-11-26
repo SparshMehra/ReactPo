@@ -212,30 +212,111 @@ a:hover {
 
   /* Accessibility - Extra Large Text Sizes */
   .bodyTextxlg {
-    @apply text-2xl;
+    font-size: 1.25rem !important;
   }
-  .bodyTextxlg .primaryHeading {
-    @apply text-6xl;
+
+  .bodyTextxlg * {
+    font-size: inherit !important;
   }
-  .bodyTextxlg .secondaryHeading {
-    @apply text-5xl;
+
+  .bodyTextxlg p,
+  .bodyTextxlg span,
+  .bodyTextxlg div,
+  .bodyTextxlg li,
+  .bodyTextxlg a,
+  .bodyTextxlg label,
+  .bodyTextxlg button {
+    font-size: 1.25rem !important;
   }
-  .bodyTextxlg .tertiaryHeading {
-    @apply text-4xl;
+
+  .bodyTextxlg .primaryHeading,
+  .bodyTextxlg h1 {
+    font-size: 3.75rem !important;
+  }
+
+  .bodyTextxlg .secondaryHeading,
+  .bodyTextxlg h2 {
+    font-size: 3rem !important;
+  }
+
+  .bodyTextxlg .tertiaryHeading,
+  .bodyTextxlg h3 {
+    font-size: 2.25rem !important;
+  }
+
+  .bodyTextxlg h4 {
+    font-size: 1.875rem !important;
+  }
+
+  .bodyTextxlg h5 {
+    font-size: 1.5rem !important;
+  }
+
+  .bodyTextxlg h6 {
+    font-size: 1.375rem !important;
+  }
+
+  .bodyTextxlg small {
+    font-size: 1rem !important;
   }
 
   /* Accessibility - Extra Extra Large Text Sizes */
   .bodyTextxxlg {
-    @apply text-3xl;
+    font-size: 1.5rem !important;
   }
-  .bodyTextxxlg .primaryHeading {
-    @apply text-7xl;
+
+  .bodyTextxxlg * {
+    font-size: inherit !important;
   }
-  .bodyTextxxlg .secondaryHeading {
-    @apply text-6xl;
+
+  .bodyTextxxlg p,
+  .bodyTextxxlg span,
+  .bodyTextxxlg div,
+  .bodyTextxxlg li,
+  .bodyTextxxlg a,
+  .bodyTextxxlg label,
+  .bodyTextxxlg button {
+    font-size: 1.5rem !important;
   }
-  .bodyTextxxlg .tertiaryHeading {
-    @apply text-5xl;
+
+  .bodyTextxxlg .primaryHeading,
+  .bodyTextxxlg h1 {
+    font-size: 4.5rem !important;
+  }
+
+  .bodyTextxxlg .secondaryHeading,
+  .bodyTextxxlg h2 {
+    font-size: 3.75rem !important;
+  }
+
+  .bodyTextxxlg .tertiaryHeading,
+  .bodyTextxxlg h3 {
+    font-size: 3rem !important;
+  }
+
+  .bodyTextxxlg h4 {
+    font-size: 2.25rem !important;
+  }
+
+  .bodyTextxxlg h5 {
+    font-size: 1.875rem !important;
+  }
+
+  .bodyTextxxlg h6 {
+    font-size: 1.5rem !important;
+  }
+
+  .bodyTextxxlg small {
+    font-size: 1.25rem !important;
+  }
+
+  /* Accessibility - Line Height Adjustments */
+  .lineHeightBigger {
+    line-height: 2;
+  }
+
+  .lineHeightBiggest {
+    line-height: 2.5;
   }
 }
 

@@ -31,8 +31,36 @@ const FixedSpeedDial = styled(SpeedDial)(({ theme }) => ({
 export default function PlaygroundSpeedDial() {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const [isAccessibilityOpen, setIsAccessibilityOpen] = useState(false);
-  const [lineHeightTracker, setLineHeightTracker] = useState(0);
-  const [fontTracker, setFontTracker] = useState(0);
+  
+  // Load saved preferences from localStorage on mount
+  const [lineHeightTracker, setLineHeightTracker] = useState(() => {
+    const saved = localStorage.getItem("lineHeightPreference");
+    return saved ? parseInt(saved, 10) : 0;
+  });
+  
+  const [fontTracker, setFontTracker] = useState(() => {
+    const saved = localStorage.getItem("textSizePreference");
+    return saved ? parseInt(saved, 10) : 0;
+  });
+
+  // Apply saved preferences on component mount
+  React.useEffect(() => {
+    const textSizeClasses = ["bodyTextxlg", "bodyTextxxlg"];
+    const lineHeightClasses = ["lineHeightBigger", "lineHeightBiggest"];
+    
+    // Remove all classes first
+    document.body.classList.remove(...textSizeClasses, ...lineHeightClasses);
+    
+    // Apply saved text size
+    if (fontTracker === 1 || fontTracker === 2) {
+      document.body.classList.add(textSizeClasses[fontTracker - 1]);
+    }
+    
+    // Apply saved line height
+    if (lineHeightTracker === 1 || lineHeightTracker === 2) {
+      document.body.classList.add(lineHeightClasses[lineHeightTracker - 1]);
+    }
+  }, []);
 
   const handleChatbotToggle = () => {
     setIsChatbotOpen(!isChatbotOpen);
@@ -134,7 +162,11 @@ export default function PlaygroundSpeedDial() {
           </h3>
           <TextAdjustment>
             <MdOutlineTextIncrease className="secondaryHeading" />
-            <Pagination tracker={fontTracker} setTracker={setFontTracker} />
+            <Pagination 
+              tracker={fontTracker} 
+              setTracker={setFontTracker}
+              storageKey="textSizePreference"
+            />
           </TextAdjustment>
           <TextAdjustment>
             <CiLineHeight className="secondaryHeading" />
@@ -142,6 +174,7 @@ export default function PlaygroundSpeedDial() {
               classes={["lineHeightBigger", "lineHeightBiggest"]}
               tracker={lineHeightTracker}
               setTracker={setLineHeightTracker}
+              storageKey="lineHeightPreference"
             />
           </TextAdjustment>
         </div>
