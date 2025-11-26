@@ -22,10 +22,8 @@
  * @returns {JSX.Element} Homepage with comprehensive animations and modern UI
  */
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import dayBackground from "../../assets/forest1.png";
-import nightBackground from "../../assets/nightforest.png";
 import { FaTree, FaLeaf, FaSeedling, FaMapMarkedAlt, FaCalendarAlt, FaUsers } from "react-icons/fa";
 import Button from "../UI/Button";
 import Container from "../UI/Container";
@@ -33,12 +31,26 @@ import Badge from "../UI/Badge";
 import ParallaxSection from "../UI/ParallaxSection";
 import FeatureCard from "../UI/FeatureCard";
 import TestimonialCarousel from "../UI/TestimonialCarousel";
-import forestImage from "../../assets/forest1.png"; // Using forest1.png instead of deleted forest.jpg
-import hikingImage from "../../assets/hiking.png";
-import birchImage from "../../assets/birch.png";
+
+// High-resolution background images from Unsplash
+const dayBackground = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=95";
+const nightBackground = "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1920&q=95";
+
+// High-quality feature images from Unsplash
+const forestImage = "https://images.unsplash.com/photo-1511497584788-876760111969?w=1200&q=90";
+const hikingImage = "https://images.unsplash.com/photo-1551632811-561732d1e306?w=1200&q=90";
+const birchImage = "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1200&q=90";
 
 
 const Homepage = ({ dark }) => {
+  const navigate = useNavigate();
+
+  // Function to navigate and scroll to top
+  const handleNavigate = (path) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate(path);
+  };
+
   const features = [
     {
       icon: <FaTree />,
@@ -101,15 +113,68 @@ const Homepage = ({ dark }) => {
     <div className="min-h-screen bg-gradient-to-b from-earth-50 via-white to-forest-50 dark:from-stone-900 dark:via-stone-800 dark:to-forest-900">
       {/* Hero Section */}
       <section
-        className="relative min-h-[92vh] flex items-center justify-center bg-cover bg-center bg-fixed"
+        className="relative min-h-[92vh] flex items-center justify-center bg-cover bg-center bg-fixed overflow-hidden"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.65)), url(${
             dark ? nightBackground : dayBackground
           })`,
         }}
       >
+        {/* Animated floating particles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-white/20 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                x: [0, Math.random() * 20 - 10, 0],
+                opacity: [0.2, 0.5, 0.2],
+                scale: [1, 1.5, 1],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+
         {/* Overlay gradient for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40 pointer-events-none"></div>
+
+        {/* Animated radial gradients */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/10 rounded-full filter blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.5, 0.3, 0.5],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
 
         <Container className="text-center text-white relative z-10 px-4">
           <motion.div
@@ -119,40 +184,83 @@ const Homepage = ({ dark }) => {
             className="space-y-6"
           >
             <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ scale: 1.05 }}
             >
-              <Badge variant="success" size="lg" className="mb-6 shadow-2xl backdrop-blur-sm bg-forest-600/90 border-2 border-forest-400/50">
+              <Badge variant="success" size="lg" className="mb-6 shadow-2xl backdrop-blur-sm bg-forest-600/90 border-2 border-forest-400/50 animate-pulse">
                 🌿 Protecting Nature Since 1995
               </Badge>
             </motion.div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl leading-tight">
-              Woodland Conservation Area
-            </h1>
+            <motion.h1
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white drop-shadow-2xl leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <motion.span
+                className="inline-block"
+                animate={{
+                  textShadow: [
+                    "0 0 20px rgba(255,255,255,0.3)",
+                    "0 0 40px rgba(255,255,255,0.5)",
+                    "0 0 20px rgba(255,255,255,0.3)",
+                  ],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                St. Margaret's Bay Area Woodland Conservation Site
+              </motion.span>
+            </motion.h1>
 
-            <p className="text-lg md:text-xl lg:text-2xl text-white/95 max-w-4xl mx-auto mb-10 drop-shadow-lg leading-relaxed font-medium">
+            <motion.p
+              className="text-lg md:text-xl lg:text-2xl text-white/95 max-w-4xl mx-auto mb-10 drop-shadow-lg leading-relaxed font-medium"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.6 }}
+            >
               Immerse yourself in nature's wonders. Discover pristine trails, protect biodiversity,
               and connect with the environment like never before.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap gap-4 justify-center pt-4">
-              <Link to="/events">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" variant="primary" icon={<FaCalendarAlt />} className="shadow-2xl">
-                    Explore Events
-                  </Button>
-                </motion.div>
-              </Link>
-              <Link to="/about">
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" variant="secondary" className="shadow-2xl backdrop-blur-md bg-white/95 dark:bg-stone-800/95">
-                    Learn More
-                  </Button>
-                </motion.div>
-              </Link>
-            </div>
+            <motion.div
+              className="flex flex-wrap gap-4 justify-center pt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.08, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Button
+                  size="lg"
+                  variant="primary"
+                  icon={<FaCalendarAlt />}
+                  className="shadow-2xl hover:shadow-green-500/50 transition-shadow duration-300"
+                  onClick={() => handleNavigate('/events')}
+                >
+                  Explore Events
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.08, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="shadow-2xl backdrop-blur-md bg-white/95 dark:bg-stone-800/95 hover:shadow-white/50 transition-shadow duration-300"
+                  onClick={() => handleNavigate('/about')}
+                >
+                  Learn More
+                </Button>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </Container>
 
@@ -230,13 +338,16 @@ const Homepage = ({ dark }) => {
             <p className="text-xl md:text-2xl text-white/95 max-w-3xl mx-auto mb-8 drop-shadow-lg font-medium">
               Every trail tells a story. Every tree holds a memory.
             </p>
-            <Link to="/gallery">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" variant="primary" className="shadow-2xl backdrop-blur-sm">
-                  View Gallery
-                </Button>
-              </motion.div>
-            </Link>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                size="lg"
+                variant="primary"
+                className="shadow-2xl backdrop-blur-sm bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold border-2 border-white/30 relative z-30"
+                onClick={() => handleNavigate('/gallery')}
+              >
+                View Gallery
+              </Button>
+            </motion.div>
           </motion.div>
         </Container>
       </ParallaxSection>
@@ -371,20 +482,28 @@ const Homepage = ({ dark }) => {
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center">
-                <Link to="/contact">
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button size="lg" variant="primary" icon={<FaUsers />} className="shadow-2xl backdrop-blur-sm bg-gradient-to-r from-memorial-500 to-memorial-600 text-white hover:from-memorial-400 hover:to-memorial-500 border-2 border-white/30">
-                      Join Us Today
-                    </Button>
-                  </motion.div>
-                </Link>
-                <Link to="/events">
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button size="lg" variant="secondary" icon={<FaMapMarkedAlt />} className="shadow-2xl backdrop-blur-md bg-white/10 border-2 border-white/70 text-white hover:bg-white/20 hover:border-white">
-                      View Events
-                    </Button>
-                  </motion.div>
-                </Link>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    size="lg"
+                    variant="primary"
+                    icon={<FaUsers />}
+                    className="shadow-2xl backdrop-blur-sm bg-gradient-to-r from-memorial-500 to-memorial-600 text-white hover:from-memorial-400 hover:to-memorial-500 border-2 border-white/30"
+                    onClick={() => handleNavigate('/contact')}
+                  >
+                    Join Us Today
+                  </Button>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    size="lg"
+                    variant="secondary"
+                    icon={<FaMapMarkedAlt />}
+                    className="shadow-2xl backdrop-blur-md bg-white/10 border-2 border-white/70 text-white hover:bg-white/20 hover:border-white"
+                    onClick={() => handleNavigate('/events')}
+                  >
+                    View Events
+                  </Button>
+                </motion.div>
               </div>
             </div>
           </motion.div>

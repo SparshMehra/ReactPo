@@ -308,7 +308,7 @@ const SiteMap = () => {
         initial="hidden"
         animate="visible"
       >
-        Woodland Conservation Area
+        St. Margaret's Bay Area Woodland Conservation Site
       </motion.h1>
 
       {/* YOU ARE HERE Button with Animation */}

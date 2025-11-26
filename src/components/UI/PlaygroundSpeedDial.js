@@ -10,37 +10,142 @@ import SpeedDial from "@mui/material/SpeedDial";
 import SpeedDialAction from "@mui/material/SpeedDialAction";
 import { styled } from "@mui/material/styles";
 import * as React from "react";
-import ChatbotBubble from "../chatbot/ChatbotBubble";
-import StyleModalContext from "./StyleModalContext";
-import { FaQuestion } from "react-icons/fa";
+import { useState } from "react";
+import ChatbotWindow from "../chatbot/ChatbotWindow";
+import Modal2 from "./Modal2";
+import TextAdjustment from "./TextAdjustment";
+import Pagination from "./Pagination";
+import Box from "./Box";
+import { FaQuestion, FaComments } from "react-icons/fa";
+import { RxAccessibility } from "react-icons/rx";
+import { MdOutlineTextIncrease } from "react-icons/md";
+import { CiLineHeight } from "react-icons/ci";
 
 const FixedSpeedDial = styled(SpeedDial)(({ theme }) => ({
   position: "fixed",
-  bottom: theme.spacing(4),
+  bottom: theme.spacing(3),
   right: theme.spacing(3),
   zIndex: 9999,
 }));
 
-const actions = [
-  { icon: <StyleModalContext />, name: "Accessibility" },
-  { icon: <ChatbotBubble />, name: "Chatbot" },
-];
-
 export default function PlaygroundSpeedDial() {
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [isAccessibilityOpen, setIsAccessibilityOpen] = useState(false);
+  const [lineHeightTracker, setLineHeightTracker] = useState(0);
+  const [fontTracker, setFontTracker] = useState(0);
+
+  const handleChatbotToggle = () => {
+    setIsChatbotOpen(!isChatbotOpen);
+  };
+
+  const handleAccessibilityToggle = () => {
+    setIsAccessibilityOpen(!isAccessibilityOpen);
+  };
+
+  const actions = [
+    {
+      icon: <RxAccessibility style={{ fontSize: '24px' }} />,
+      name: "Accessibility",
+      onClick: handleAccessibilityToggle
+    },
+    {
+      icon: <FaComments style={{ fontSize: '24px' }} />,
+      name: "Chatbot",
+      onClick: handleChatbotToggle
+    },
+  ];
+
   return (
-    <FixedSpeedDial
-      ariaLabel="Fixed Speed Dial"
-      icon={<FaQuestion />}
-      direction="right"
+    <>
+      <FixedSpeedDial
+        ariaLabel="Quick Actions Speed Dial"
+        icon={<FaQuestion style={{ fontSize: '20px' }} />}
+        direction="up"
       >
-      {actions.map((action) => (
-        <SpeedDialAction
-          key={action.name}
-          icon={action.icon}
-          tooltipTitle={action.name}
-          aria-label={action.name}
-        />
-      ))}
-    </FixedSpeedDial>
+        {actions.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            aria-label={action.name}
+            onClick={action.onClick}
+          />
+        ))}
+      </FixedSpeedDial>
+
+      {/* Chatbot Window */}
+      {isChatbotOpen && (
+        <div style={{
+          position: 'fixed',
+          bottom: '80px',
+          right: '24px',
+          zIndex: 10000
+        }}>
+          <ChatbotWindow onClose={handleChatbotToggle} />
+        </div>
+      )}
+
+      {/* Accessibility Panel */}
+      {isAccessibilityOpen && (
+        <div style={{
+          position: 'fixed',
+          bottom: '80px',
+          right: '24px',
+          zIndex: 10000,
+          background: 'white',
+          borderRadius: '16px',
+          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+          padding: '24px',
+          minWidth: '320px'
+        }}>
+          <button
+            onClick={handleAccessibilityToggle}
+            style={{
+              position: 'absolute',
+              right: '16px',
+              top: '16px',
+              background: 'none',
+              border: 'none',
+              fontSize: '28px',
+              cursor: 'pointer',
+              color: '#666',
+              lineHeight: 1,
+              width: '32px',
+              height: '32px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '50%',
+              transition: 'background 0.2s'
+            }}
+            onMouseEnter={(e) => e.target.style.background = '#f3f4f6'}
+            onMouseLeave={(e) => e.target.style.background = 'none'}
+            aria-label="Close accessibility panel"
+          >
+            ×
+          </button>
+          <h3 style={{
+            fontSize: '20px',
+            fontWeight: 'bold',
+            marginBottom: '20px',
+            color: '#1f2937'
+          }}>
+            Accessibility Options
+          </h3>
+          <TextAdjustment>
+            <MdOutlineTextIncrease className="secondaryHeading" />
+            <Pagination tracker={fontTracker} setTracker={setFontTracker} />
+          </TextAdjustment>
+          <TextAdjustment>
+            <CiLineHeight className="secondaryHeading" />
+            <Pagination
+              classes={["lineHeightBigger", "lineHeightBiggest"]}
+              tracker={lineHeightTracker}
+              setTracker={setLineHeightTracker}
+            />
+          </TextAdjustment>
+        </div>
+      )}
+    </>
   );
 }

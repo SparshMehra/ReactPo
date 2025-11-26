@@ -107,7 +107,25 @@
       "reminderSent": false,
       "createdAt": "2025-11-03T15:01:23.284080Z",
       "updatedAt": "2025-11-03T15:01:23.284335Z"
+    },
+    {
+      "id": "bkg_007",
+      "eventId": "evt_005",
+      "confirmationCode": "WCA-05674",
+      "attendeeInfo": {
+        "firstName": "Abdiaziz Aden",
+        "lastName": "Muse",
+        "email": "Abdiaziz.Muse@smu.ca",
+        "phone": "00000000",
+        "numberOfAttendees": 1,
+        "specialRequirements": "No"
+      },
+      "status": "confirmed",
+      "bookingDate": "2025-11-26T04:17:47.204281Z",
+      "reminderSent": false,
+      "createdAt": "2025-11-26T04:17:47.204958Z",
+      "updatedAt": "2025-11-26T04:17:47.205001Z"
     }
   ],
-  "lastId": 6
+  "lastId": 7
 }
