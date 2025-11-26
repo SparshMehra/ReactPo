@@ -51,10 +51,12 @@ const ParallaxSection = ({
       )}
 
       <motion.div
-        className="relative z-10 h-full flex items-center justify-center"
+        className="relative z-20 h-full flex items-center justify-center pointer-events-none"
         style={{ opacity }}
       >
-        {children}
+        <div className="pointer-events-auto">
+          {children}
+        </div>
       </motion.div>
     </div>
   );

@@ -12,7 +12,7 @@
  */
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaPhone,
   FaEnvelope,
@@ -24,6 +24,14 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  // Function to navigate and scroll to top
+  const handleNavigate = (path) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigate(path);
+  };
+
   // Quick navigation links
   const quickLinks = [
     { to: "/about", label: "About Us" },
@@ -57,13 +65,13 @@ const Footer = () => {
             </h3>
             <nav className="flex flex-col space-y-2">
               {quickLinks.map((link) => (
-                <Link
+                <button
                   key={link.to}
-                  to={link.to}
-                  className="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:translate-x-2 transform inline-block"
+                  onClick={() => handleNavigate(link.to)}
+                  className="text-gray-300 hover:text-green-400 transition-colors duration-300 hover:translate-x-2 transform inline-block text-left"
                 >
                   → {link.label}
-                </Link>
+                </button>
               ))}
             </nav>
           </div>
@@ -146,9 +154,12 @@ const Footer = () => {
 
             {/* Legal Links */}
             <div className="flex gap-4">
-              <Link to="/sitemap" className="hover:text-green-400 transition-colors">
+              <button
+                onClick={() => handleNavigate('/sitemap')}
+                className="hover:text-green-400 transition-colors"
+              >
                 Site Map
-              </Link>
+              </button>
               <span className="text-gray-500">|</span>
               <button className="hover:text-green-400 transition-colors">
                 Privacy Policy

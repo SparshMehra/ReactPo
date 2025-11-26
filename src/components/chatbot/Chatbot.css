@@ -6,11 +6,8 @@
  * @description Styles for chatbot bubble and window with animations.
  */
 
-/* Chatbot Bubble */
+/* Chatbot Bubble - No longer used, replaced by SpeedDial */
 .chatbot-bubble {
-  /* position: fixed;
-  bottom: 24px;
-  left: 24px; */
   width: 40px;
   height: 40px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -22,7 +19,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
     0 8px 24px rgba(102, 126, 234, 0.4);
   transition: all 0.3s ease;
-
   animation: pulse 2s infinite;
 }
 
@@ -56,18 +52,15 @@
 
 /* Chatbot Window */
 .chatbot-window {
-  position: relative;
-  bottom: 250px;
-  left: 24px;
-  width: 380px;
+  width: 400px;
   height: 600px;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  /* z-index: 10; */
   animation: slideUp 0.3s ease;
+  overflow: hidden;
 }
 
 @keyframes slideUp {
@@ -114,15 +107,17 @@
 }
 
 .chatbot-title {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 19px;
+  font-weight: 700;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 .chatbot-subtitle {
-  font-size: 12px;
+  font-size: 13px;
   margin: 0;
-  opacity: 0.9;
+  opacity: 0.95;
+  font-weight: 400;
 }
 
 .chatbot-close-btn {
@@ -200,22 +195,27 @@
 
 .message-content {
   max-width: 75%;
-  padding: 12px 16px;
-  border-radius: 16px;
+  padding: 14px 18px;
+  border-radius: 18px;
   word-wrap: break-word;
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
 .message.user .message-content {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border-bottom-right-radius: 4px;
+  font-weight: 500;
 }
 
 .message.bot .message-content {
   background: white;
-  color: #374151;
+  color: #1f2937;
   border-bottom-left-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-weight: 400;
 }
 
 /* Typing Indicator */
@@ -270,20 +270,23 @@
 
 .suggested-question-btn {
   background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 10px 14px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 16px;
   text-align: left;
   cursor: pointer;
   transition: all 0.2s;
-  font-size: 13px;
+  font-size: 14px;
   color: #374151;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .suggested-question-btn:hover {
-  background: #f3f4f6;
+  background: #f9fafb;
   border-color: #667eea;
   transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
 }
 
 /* Input Form */
@@ -298,21 +301,30 @@
 
 .chatbot-input {
   flex: 1;
-  padding: 12px 16px;
-  border: 1px solid #e5e7eb;
+  padding: 12px 18px;
+  border: 2px solid #e5e7eb;
   border-radius: 24px;
   outline: none;
-  font-size: 14px;
-  transition: border-color 0.2s;
+  font-size: 15px;
+  line-height: 1.5;
+  transition: all 0.2s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
 }
 
 .chatbot-input:focus {
   border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 .chatbot-input:disabled {
   background: #f9fafb;
   cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.chatbot-input::placeholder {
+  color: #9ca3af;
+  font-size: 14px;
 }
 
 .chatbot-send-btn {

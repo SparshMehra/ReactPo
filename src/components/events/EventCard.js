@@ -154,10 +154,10 @@ const EventCard = ({ event, onBookNow, onLearnMore }) => {
             disabled={isFull}
             whileHover={!isFull ? { scale: 1.02 } : {}}
             whileTap={!isFull ? { scale: 0.98 } : {}}
-            className={`flex-1 py-2.5 px-4 rounded-xl font-semibold transition-all duration-200 ${
+            className={`flex-1 py-2.5 px-4 rounded-xl font-bold transition-all duration-200 ${
               isFull
                 ? 'bg-neutral-300 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-500 cursor-not-allowed'
-                : 'bg-gradient-to-r from-primary-600 to-primary-500 text-white hover:from-primary-700 hover:to-primary-600 shadow-soft hover:shadow-soft-lg'
+                : 'bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700 hover:to-emerald-700 shadow-lg hover:shadow-xl border-2 border-green-500'
             }`}
           >
             {isFull ? 'Fully Booked' : 'Book Now'}

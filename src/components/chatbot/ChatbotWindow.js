@@ -23,11 +23,34 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Chatbot.css';
 
-const SUGGESTED_QUESTIONS = [
+// Expanded suggested questions from training data
+const ALL_SUGGESTED_QUESTIONS = [
   "What are the local fauna?",
   "Can I see a map of the area?",
-  "I'd like to volunteer"
+  "I'd like to volunteer",
+  "How do I register?",
+  "Where is this organization based?",
+  "What animals might I encounter here?",
+  "Can I upload my own photos?",
+  "How do I contact support?",
+  "What sections are available on the site?",
+  "How do I find directions to a location?",
+  "What are the support hours?",
+  "Can I explore animals or fungi too?",
+  "What's going on at the Woodland Conservation Area?",
+  "Do you support accessibility features?",
+  "What do visitors say about it?",
+  "How can I get in touch with support?",
+  "What browsers do you support?",
+  "I want to support your cause",
+  "How do I share my favorite nature shots?"
 ];
+
+// Function to get random suggested questions
+const getRandomQuestions = (count = 3) => {
+  const shuffled = [...ALL_SUGGESTED_QUESTIONS].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+};
 
 const ChatbotWindow = ({ onClose }) => {
   const [messages, setMessages] = useState([
@@ -39,6 +62,7 @@ const ChatbotWindow = ({ onClose }) => {
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [suggestedQuestions, setSuggestedQuestions] = useState(getRandomQuestions(3));
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -81,6 +105,9 @@ const ChatbotWindow = ({ onClose }) => {
         timestamp: new Date()
       };
       setMessages(prev => [...prev, botMessage]);
+
+      // Refresh suggested questions after each interaction
+      setSuggestedQuestions(getRandomQuestions(3));
     } catch (error) {
       console.error('Error sending message:', error);
       const errorMessage = {
@@ -89,6 +116,9 @@ const ChatbotWindow = ({ onClose }) => {
         timestamp: new Date()
       };
       setMessages(prev => [...prev, errorMessage]);
+
+      // Refresh suggested questions even on error
+      setSuggestedQuestions(getRandomQuestions(3));
     } finally {
       setIsLoading(false);
     }
@@ -164,11 +194,11 @@ const ChatbotWindow = ({ onClose }) => {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Suggested Questions */}
-      {messages.length === 1 && (
+      {/* Suggested Questions - Show after first interaction */}
+      {messages.length > 1 && !isLoading && (
         <div className="suggested-questions">
-          <p className="suggested-questions-title">Suggested questions:</p>
-          {SUGGESTED_QUESTIONS.map((question, index) => (
+          <p className="suggested-questions-title">You might also ask:</p>
+          {suggestedQuestions.map((question, index) => (
             <button
               key={index}
               className="suggested-question-btn"

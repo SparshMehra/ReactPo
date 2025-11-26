@@ -9,7 +9,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaArrowRight } from 'react-icons/fa';
 
 const FeatureCard = ({
@@ -21,6 +21,15 @@ const FeatureCard = ({
   imageUrl,
   size = 'default'
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    if (link) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => navigate(link), 300);
+    }
+  };
   const colorClasses = {
     primary: {
       bg: 'from-primary-500 to-primary-600',
@@ -52,6 +61,7 @@ const FeatureCard = ({
       whileHover={{ y: -10 }}
       transition={{ duration: 0.3 }}
       className="card group h-full relative overflow-hidden cursor-pointer"
+      onClick={handleClick}
     >
       {/* Background Image */}
       {imageUrl && (
@@ -115,13 +125,7 @@ const FeatureCard = ({
     </motion.div>
   );
 
-  return link ? (
-    <Link to={link} className="block h-full">
-      {cardContent}
-    </Link>
-  ) : (
-    cardContent
-  );
+  return cardContent;
 };
 
 export default FeatureCard;
