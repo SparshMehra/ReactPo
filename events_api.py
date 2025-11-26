@@ -37,10 +37,19 @@ from datetime import datetime
 import random
 import string
 from dotenv import load_dotenv
-from utils.email_service import email_service
+import sys
+from pathlib import Path
+
+# Add src/utils to the Python path
+sys.path.insert(0, str(Path(__file__).parent / 'src'))
+
+from utils.email_service import EmailService
 
 # Load configuration from config.env file
 load_dotenv('config.env')
+
+# Initialize email service
+email_service = EmailService()
 
 app = Flask(__name__)
 CORS(app, origins=['http://localhost:3070'])

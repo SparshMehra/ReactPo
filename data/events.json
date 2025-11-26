@@ -175,7 +175,7 @@
         "lng": -63.5748
       },
       "capacity": 40,
-      "spotsAvailable": 34,
+      "spotsAvailable": 33,
       "price": 0,
       "imageUrl": "https://images.unsplash.com/photo-1476234251651-f353703a034d?w=800&q=80",
       "requirements": [
@@ -200,7 +200,7 @@
         "photo": "/images/instructor-jennifer.jpg"
       },
       "createdAt": "2025-11-01T10:00:00Z",
-      "updatedAt": "2025-11-03T02:01:07.474855Z"
+      "updatedAt": "2025-11-26T04:17:47.205041Z"
     },
     {
       "id": "evt_006",

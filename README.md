@@ -2,6 +2,15 @@
 
 A comprehensive web application for the St. Margaret's Bay Woodland Conservation Area featuring an interactive chatbot, events booking system, gallery, and educational content about local flora and fauna.
 
+## 👥 Authors
+
+- **Abdiaziz Muse** (A00471783)
+- **Bhabin Chudal** (A00464169)
+- **Sparsh Mehra** (A00472261)
+- **Sadikshya Oli** (A00457938)
+- **Tongol Banguot** (A00479259)
+- **S M Riyad Farhan** (A00470224)
+
 ## 🌟 Features
 
 - **Interactive Homepage** with forest conservation information
@@ -20,26 +29,34 @@ A comprehensive web application for the St. Margaret's Bay Woodland Conservation
 
 ### Frontend
 - **React 18.3.1** - Modern UI framework with hooks
-- **React Router** - Navigation and routing
-- **Axios** - HTTP client for API calls
-- **React Hook Form + Yup** - Form validation
-- **React Hot Toast** - Beautiful toast notifications
-- **React Calendar** - Interactive event calendar
-- **Date-fns** - Date formatting utilities
-- **React Icons** - Comprehensive icon library
-- **Tailwind CSS** - Utility-first CSS framework
-- **Material-UI (MUI)** - React component library
-- **React Leaflet** - Interactive map components
-- **Supabase Client** - Real-time database integration
-- **React Query** - Server state management
+- **React Router DOM 6.27.0** - Navigation and routing
+- **Framer Motion 12.23.24** - Advanced animations and transitions
+- **Axios 1.13.1** - HTTP client for API calls
+- **React Hook Form 7.66.0 + Yup 1.7.1** - Form validation and handling
+- **React Hot Toast 2.6.0** - Beautiful toast notifications
+- **React Toastify 11.0.5** - Additional toast notifications
+- **React Calendar 6.0.0** - Interactive event calendar
+- **Date-fns 4.1.0** - Modern date formatting utilities
+- **React Icons 5.3.0** - Comprehensive icon library (15k+ icons)
+- **Tailwind CSS 3.4.17** - Utility-first CSS framework
+- **Material-UI (MUI) 7.3.5** - React component library with speed dial, modals
+- **React Leaflet 4.2.1** - Interactive map components (Leaflet 1.9.4)
+- **Supabase Client 2.83.0** - Real-time database integration
+- **React Query (@tanstack/react-query 5.90.10)** - Server state management
 
 ### Backend
-- **Python Flask** - Lightweight REST API server
-- **DistilGPT-2** - Fine-tuned AI model for chatbot
-- **Transformers** - Hugging Face library for AI
-- **SMTP** - Email service for booking confirmations
-- **Python-dotenv** - Environment variable management
+- **Python 3.8+** - Backend programming language
+- **Flask** - Lightweight REST API server
 - **Flask-CORS** - Cross-Origin Resource Sharing support
+- **DistilGPT-2** - Fine-tuned AI model for chatbot
+- **Transformers (Hugging Face)** - AI model library
+- **PyTorch** - Deep learning framework
+- **Python-dotenv** - Environment variable management
+- **SMTP (Gmail)** - Email service for booking confirmations
+
+### Development Tools
+- **Concurrently** - Run multiple npm scripts simultaneously
+- **Cross-env** - Cross-platform environment variables
 
 ## 📋 Prerequisites
 
@@ -56,7 +73,7 @@ Before you begin, ensure you have the following installed:
 ### Step 1: Clone or Download the Project
 
 ```bash
-git clone https://github.com/Prezzo-K/ReactPoff.git
+git clone https://github.com/yourusername/ReactPoff.git
 cd ReactPoff
 ```
 
@@ -70,23 +87,38 @@ npm install
 
 This will install all required npm packages including:
 
-**Core Dependencies:**
-- `react`, `react-dom` - React framework
-- `react-router-dom` - Routing
-- `@supabase/supabase-js` - Supabase client
-- `@tanstack/react-query` - Data fetching and caching
-- `axios` - HTTP requests
-- `react-hook-form`, `@hookform/resolvers`, `yup` - Form handling
-- `react-calendar`, `date-fns` - Date/calendar components
-- `react-hot-toast` - Notifications
-- `react-icons` - Icon library
-- `react-leaflet` - Interactive maps
-- `@mui/material`, `@emotion/react`, `@emotion/styled` - Material-UI components
+**Core React Dependencies:**
+- `react@18.3.1`, `react-dom@18.3.1` - React framework
+- `react-router-dom@6.27.0` - Routing
+- `react-scripts@5.0.1` - Build tooling
+
+**UI Libraries:**
+- `@mui/material@7.3.5`, `@mui/icons-material@7.3.5` - Material-UI components
+- `@emotion/react@11.14.0`, `@emotion/styled@11.14.1` - CSS-in-JS styling
+- `framer-motion@12.23.24` - Animation library
+- `react-icons@5.3.0` - Icon library
+
+**Data & API:**
+- `@supabase/supabase-js@2.83.0` - Supabase client
+- `@tanstack/react-query@5.90.10` - Data fetching and caching
+- `axios@1.13.1` - HTTP requests
+
+**Forms & Validation:**
+- `react-hook-form@7.66.0` - Form handling
+- `@hookform/resolvers@5.2.2` - Form validators
+- `yup@1.7.1` - Schema validation
+
+**UI Components:**
+- `react-calendar@6.0.0` - Calendar component
+- `react-hot-toast@2.6.0` - Toast notifications
+- `react-toastify@11.0.5` - Additional notifications
+- `react-leaflet@4.2.1` - Map components
+- `date-fns@4.1.0` - Date utilities
 
 **Dev Dependencies:**
-- `tailwindcss` - CSS framework
-- `concurrently` - Run multiple commands
-- `cross-env` - Cross-platform environment variables
+- `tailwindcss@latest` - CSS framework
+- `concurrently@latest` - Run multiple commands
+- `cross-env@latest` - Cross-platform environment variables
 
 ### Step 3: Install Python Dependencies
 
@@ -95,29 +127,22 @@ pip install -r requirements.txt
 ```
 
 This installs:
-- `Flask` - Web framework
-- `Flask-CORS` - CORS support
-- `transformers` - AI model library
-- `torch` - PyTorch for AI
-- `python-dotenv` - Environment variables
+- `flask` - Web framework for REST APIs
+- `flask-cors` - CORS support for React integration
+- `transformers` - Hugging Face library for AI models
+- `datasets` - Dataset utilities for AI training
+- `accelerate` - Model optimization
+- `torch` - PyTorch deep learning framework
+- `safetensors` - Secure model serialization
+- `python-dotenv` - Environment variable management
 
 ### Step 4: Configure Environment Variables
 
-#### Create `.env` File
+#### Frontend Configuration (Create `.env` file)
 
-Copy the example file and fill in your values:
-
-```bash
-cp .env.example .env
-```
-
-Then edit `.env` with your actual configuration:
+Create a `.env` file in the root directory with the following variables:
 
 ```env
-# ==================================
-# FRONTEND ENVIRONMENT VARIABLES
-# ==================================
-
 # Supabase Configuration
 # Get these from: https://app.supabase.com -> Project Settings -> API
 REACT_APP_SUPABASE_URL=your-supabase-project-url
@@ -126,28 +151,31 @@ REACT_APP_SUPABASE_ANON_KEY=your-supabase-anon-key
 # API Configuration
 REACT_APP_CHATBOT_API_URL=http://localhost:5000
 REACT_APP_EVENTS_API_URL=http://localhost:5001
+```
 
-# ==================================
-# BACKEND ENVIRONMENT VARIABLES
-# ==================================
+**Note:** You can copy `.env.example` to `.env` as a starting point:
+```bash
+copy .env.example .env
+```
 
-# Flask API Configuration
+#### Backend Configuration (Edit `config.env` file)
+
+The backend uses `config.env` for configuration. Update the following values:
+
+```env
 FLASK_APP=events_api.py
 FLASK_ENV=development
 FLASK_PORT=5001
 
-# Email Configuration (Gmail SMTP)
+# Email Configuration - Update these values to enable email sending
 SMTP_SERVER=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USERNAME=your-email@gmail.com
 SMTP_PASSWORD=your-16-char-app-password
 EMAIL_FROM=your-email@gmail.com
 
-# Application URLs
 FRONTEND_URL=http://localhost:3070
 ADMIN_EMAIL=admin@woodlandconservation.ca
-
-# Booking Configuration
 MAX_ATTENDEES_PER_BOOKING=10
 BOOKING_CANCELLATION_HOURS=24
 ```
@@ -183,9 +211,9 @@ BOOKING_CANCELLATION_HOURS=24
    - Select "Mail" and "Other (Custom name)"
    - Name it "Woodland Conservation"
    - Copy the 16-character password
-   - Add it to `SMTP_PASSWORD` in `.env`
+   - Add it to `SMTP_PASSWORD` in `config.env`
 
-3. **Update Email Settings:**
+3. **Update Email Settings in config.env:**
    - Set `SMTP_USERNAME` to your Gmail address
    - Set `EMAIL_FROM` to the same Gmail address
    - Keep `SMTP_SERVER` as `smtp.gmail.com`
@@ -197,32 +225,50 @@ Ensure you have these key directories and files:
 
 ```
 ReactPoff/
-├── public/              # Static files
-├── src/                 # React source code
+├── public/              # ✅ REQUIRED - Static files (favicon, manifest, index.html)
+├── src/                 # ✅ REQUIRED - React source code
 │   ├── components/      # React components
+│   │   ├── chatbot/     # Chatbot components (ChatbotBubble, ChatbotWindow)
 │   │   ├── events/      # Event booking components
-│   │   ├── chatbot/     # Chatbot components
-│   │   ├── pages/       # Page components
-│   │   └── UI/          # Reusable UI components
-│   ├── services/        # API service files
-│   ├── utils/           # Utility functions
-│   ├── supabase.js      # Supabase client config
+│   │   ├── features/    # Feature-specific components (gallery, user)
+│   │   ├── pages/       # Page components (Homepage, Events, Gallery, etc.)
+│   │   └── UI/          # Reusable UI components (Button, Card, etc.)
+│   ├── services/        # API service files (eventService.js)
+│   ├── utils/           # Frontend utility functions (dateHelpers.js)
+│   ├── assets/          # Images and media files
+│   ├── config/          # Configuration files
+│   ├── supabase.js      # Supabase client configuration
+│   ├── App.js           # Main React component
+│   ├── index.js         # React entry point
 │   └── index.css        # Global styles with animations
+├── utils/               # Backend Python utilities
+│   └── email_service.py # Email service for bookings
 ├── data/                # JSON data files
 │   ├── events.json      # Events data
 │   └── bookings.json    # Bookings data
-├── utils/               # Python utilities
-│   └── email_service.py # Email service
-├── distilgpt2-finetuned/ # AI model files
-├── chatbot_api.py       # Chatbot API server
-├── events_api.py        # Events API server
-├── .env                 # Environment variables (DO NOT COMMIT)
+├── distilgpt2-finetuned/ # Fine-tuned AI model files
+│   ├── config.json
+│   ├── model.safetensors
+│   ├── tokenizer.json
+│   └── vocab.json
+├── build/               # ⚠️ AUTO-GENERATED - Created by 'npm run build' (not in Git)
+├── chatbot_api.py       # Chatbot API server (Port 5000)
+├── events_api.py        # Events & Booking API server (Port 5001)
+├── config.env           # Backend environment configuration
+├── .env                 # Frontend environment variables (create from .env.example)
 ├── .env.example         # Environment variables template
-├── config.env           # Legacy config (deprecated)
-├── package.json         # npm dependencies
+├── package.json         # npm dependencies and scripts
 ├── requirements.txt     # Python dependencies
-└── README.md           # This file
+├── tailwind.config.js   # Tailwind CSS configuration
+├── README.md           # This file
+└── .gitignore          # Git ignore rules
 ```
+
+**Important Notes:**
+- ✅ **`public/` is REQUIRED** - Contains essential files like `index.html`, `manifest.json`, favicon
+- ✅ **`src/` is REQUIRED** - Your React application source code
+- ⚠️ **`build/` is AUTO-GENERATED** - Created by `npm run build`, not tracked in Git
+- 🔒 **`.env` must be created** - Copy from `.env.example` and fill in your values
 
 ## ▶️ Running the Application
 
@@ -263,13 +309,6 @@ npm run start:frontend
 # or directly: cross-env PORT=3070 react-scripts start
 ```
 
-### Option 3: Using Batch Files (Windows)
-
-Double-click any of these files:
-- `START_HERE.bat` - Starts all services
-- `start_both.bat` - Starts both backend APIs
-- `start_backend.bat` - Starts chatbot API only
-- `start_frontend.bat` - Starts React app only
 
 ## 🌐 Accessing the Application
 
@@ -363,11 +402,11 @@ If you get a port conflict error:
 ### Email Not Sending
 
 If confirmation emails aren't being sent:
-1. Verify your Gmail credentials in `.env`
+1. Verify your Gmail credentials in `config.env`
 2. Make sure you're using an **App Password**, not your regular Gmail password
 3. Check that 2-Factor Authentication is enabled
 4. Check the console for email-related errors
-5. Verify `SMTP_SERVER` and `SMTP_PORT` settings
+5. Verify `SMTP_SERVER` and `SMTP_PORT` settings in `config.env`
 
 ### Supabase Connection Issues
 
@@ -381,11 +420,24 @@ If you can't connect to Supabase:
 ### Chatbot Not Responding
 
 If the chatbot doesn't work:
-1. Ensure `distilgpt2-finetuned/` directory exists with model files
+1. Ensure `distilgpt2-finetuned/` directory exists with model files:
+   - `config.json`
+   - `model.safetensors`
+   - `tokenizer.json`
+   - `vocab.json`
+   - `merges.txt`
 2. Check that the chatbot API is running on port 5000
 3. Verify `REACT_APP_CHATBOT_API_URL` in `.env`
-4. Check Python dependencies are installed
+4. Check Python dependencies are installed:
+   ```bash
+   pip install transformers torch flask flask-cors
+   ```
 5. Look for errors in the Python console
+6. Check if PyTorch is properly installed:
+   ```bash
+   python -c "import torch; print(torch.__version__)"
+   ```
+7. If GPU issues, the model will automatically fall back to CPU
 
 ### Events Not Loading
 
@@ -421,6 +473,25 @@ pip install --upgrade pip
 pip install -r requirements.txt --force-reinstall
 ```
 
+### Python Module Import Errors
+
+If you get `ModuleNotFoundError`:
+
+```bash
+# Windows PowerShell
+pip install -r requirements.txt
+
+# Verify Python version (needs 3.8+)
+python --version
+
+# Check if modules are installed
+pip list | Select-String -Pattern "flask|transformers|torch"
+
+# If still having issues, try:
+pip uninstall flask flask-cors transformers torch
+pip install flask flask-cors transformers torch
+```
+
 ### Environment Variables Not Loading
 
 If environment variables aren't working:
@@ -442,11 +513,23 @@ This creates an optimized build in the `build/` directory ready for deployment.
 
 **Before deploying:**
 1. Update `.env` with production URLs
-2. Set `FLASK_ENV=production`
+2. Set `FLASK_ENV=production` in `config.env`
 3. Update `FRONTEND_URL` to your production domain
 4. Configure production Supabase project
 5. Set up production email credentials
 6. Test all features in production mode
+7. Run `npm test` to ensure all tests pass
+8. Optimize images and assets for faster loading
+
+**Deployment Checklist:**
+- [ ] Environment variables configured for production
+- [ ] Supabase RLS policies properly set
+- [ ] Email service tested and working
+- [ ] All API endpoints secured
+- [ ] CORS configured for production domain
+- [ ] SSL/HTTPS enabled
+- [ ] Error tracking configured
+- [ ] Analytics integrated (if needed)
 
 ## 🧪 Running Tests
 
@@ -470,11 +553,11 @@ Template file showing required environment variables
 - Used as reference for setting up `.env`
 - Contains placeholder values
 
-### `config.env` (Deprecated)
-Legacy configuration file
-- Still used by Python backend
-- Will be migrated to `.env` in future updates
-- Contains Flask and email settings
+### `config.env`
+Backend configuration file
+- Contains Python backend settings
+- Includes Flask and email SMTP configuration
+- Not tracked in Git for security
 
 ## 📚 Additional Documentation
 
@@ -521,14 +604,15 @@ Built-in CSS animations:
 - Background: Gray-900 → Gray-800
 - Text: White to Gray-300
 
-## 🤝 Contributing
+## 🤝 Project Team
 
 This project was developed by:
-- **Marko Ostrovitsa** (A00448932) - Navigation, Layout, UI/UX
-- **Lakshay Bansal** (A00467478) - Contact Form, Accessibility
-- **Sadikshya Oli** - E-commerce, Shopping Cart
-- **Bhanu Prakash** (A00468530) - Site Map, Location Services
-- **Cole Turner** (A00469026) - Map Integration, UI Design
+- **Abdiaziz Muse** (A00471783) - Lead UI/UX, Chatbot Integration, Events System, Animations, Dark Mode
+- **Bhabin Chudal** (A00464169) - Backend APIs, Database Integration, Code Cleanup, Email Services
+- **Sparsh Mehra** (A00472261) - Features Development, Testing, Documentation
+- **Sadikshya Oli** (A00457938) - E-commerce System, Shopping Cart, Payment Integration
+- **Tongol Banguot** (A00479259) - Sitemap, Content Management
+- **S M Riyad Farhan** (A00470224) - Content Management, Data Integration, Quality Assurance
 
 ## 📄 License
 
@@ -579,6 +663,24 @@ npm update
 pip install --upgrade -r requirements.txt
 ```
 
+### Quick Reference
+
+**Main Files to Edit:**
+- `src/App.js` - Main React application and routing
+- `src/components/pages/` - Page components (Homepage, Events, Contact, etc.)
+- `chatbot_api.py` - Chatbot API server (Port 5000)
+- `events_api.py` - Events & Booking API server (Port 5001)
+- `config.env` - Backend configuration
+- `.env` - Frontend environment variables
+
+**Key Directories:**
+- `src/components/chatbot/` - Chatbot UI components
+- `src/components/events/` - Event and booking components
+- `src/components/UI/` - Reusable UI components
+- `src/services/` - API service files
+- `data/` - JSON data files for events and bookings
+- `distilgpt2-finetuned/` - AI model files
+
 ## 🎉 You're All Set!
 
 The application should now be running with:
@@ -594,7 +696,7 @@ The application should now be running with:
 
 ---
 
-**Last Updated:** November 23, 2025  
-**Version:** 2.0.0  
+**Last Updated:** November 26, 2024
+**Version:** 2.5.0
 **Status:** Production Ready ✨
 

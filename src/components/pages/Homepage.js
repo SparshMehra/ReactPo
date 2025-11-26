@@ -211,7 +211,7 @@ const Homepage = ({ dark }) => {
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
-                Woodland Conservation Area
+                St. Margaret's Bay Area Woodland Conservation Site
               </motion.span>
             </motion.h1>
 
