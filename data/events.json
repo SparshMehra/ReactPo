@@ -14,7 +14,7 @@
         "lng": -63.5752
       },
       "capacity": 15,
-      "spotsAvailable": 12,
+      "spotsAvailable": 11,
       "price": 0,
       "imageUrl": "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=800&q=80",
       "requirements": [
@@ -38,7 +38,7 @@
         "photo": "/images/instructor-sarah.jpg"
       },
       "createdAt": "2025-11-01T10:00:00Z",
-      "updatedAt": "2025-11-03T15:01:23.284629Z"
+      "updatedAt": "2025-11-26T17:51:27.517736Z"
     },
     {
       "id": "evt_002",
@@ -175,7 +175,7 @@
         "lng": -63.5748
       },
       "capacity": 40,
-      "spotsAvailable": 33,
+      "spotsAvailable": 32,
       "price": 0,
       "imageUrl": "https://images.unsplash.com/photo-1476234251651-f353703a034d?w=800&q=80",
       "requirements": [
@@ -200,7 +200,7 @@
         "photo": "/images/instructor-jennifer.jpg"
       },
       "createdAt": "2025-11-01T10:00:00Z",
-      "updatedAt": "2025-11-26T04:17:47.205041Z"
+      "updatedAt": "2025-11-26T15:04:24.595894Z"
     },
     {
       "id": "evt_006",
