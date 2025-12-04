@@ -48,9 +48,10 @@ except Exception as e:
     model = None
 
 
-def generate_response(user_message, max_length=100):
+def generate_response(user_message, max_length=120):
     """
     Generate a response using the fine-tuned model
+    Balanced for speed and completeness
     """
     if model is None or tokenizer is None:
         return "Sorry, the chatbot model is not available at the moment."
@@ -62,12 +63,12 @@ def generate_response(user_message, max_length=100):
         # Tokenize the input
         inputs = tokenizer(prompt, return_tensors="pt", padding=True, truncation=True, max_length=512)
 
-        # Generate response
+        # Generate response with balanced parameters
         with torch.no_grad():
             outputs = model.generate(
                 inputs.input_ids,
                 attention_mask=inputs.attention_mask,
-                max_length=max_length,
+                max_new_tokens=100,
                 num_return_sequences=1,
                 temperature=0.7,
                 top_p=0.9,
@@ -143,6 +144,6 @@ def health():
 
 if __name__ == '__main__':
     print("Starting chatbot API server...")
-    print("Server will be available at http://localhost:5000")
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    print("Server will be available at http://localhost:8744")
+    app.run(debug=True, port=8744, host='0.0.0.0')
 

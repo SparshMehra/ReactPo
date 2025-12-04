@@ -1,3 +1,34 @@
+"""
+Data Augmentation Script
+
+@file generate_data.py
+@author Abdiaziz Muse (A00471783)
+@description Script to augment conversational training data using Google's Gemini AI.
+             Parses existing User/Assistant conversations and generates variations
+             to expand the training dataset for the chatbot model.
+
+Features:
+- Parse conversational text files (User:/Assistant: format)
+- Generate user message variations using Gemini AI
+- Support for casual, formal, and different phrasings
+- Output in multiple formats (TXT, JSONL)
+- Configurable number of variations per message
+
+Functions:
+- parse_conversational_txt: Parse User/Assistant conversation format
+- generate_user_variations: Create alternative phrasings using Gemini
+- augment_conversations: Expand dataset with generated variations
+- save_as_txt: Export conversations in text format
+- save_as_jsonl: Export conversations in JSONL format
+
+Requirements:
+- Google Generative AI SDK (google-generativeai)
+- Valid Gemini API key
+
+Usage:
+    Configure API key and run the script to augment training data.
+"""
+
 import google.generativeai as genai
 import json
 import re

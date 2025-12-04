@@ -34,7 +34,7 @@
     "start": "concurrently \"npm run start:backend\" \"npm run start:events\" \"npm run start:frontend\"",
     "start:backend": "python chatbot_api.py",
     "start:events": "python events_api.py",
-    "start:frontend": "cross-env BROWSER=default PORT=3070 react-scripts start",
+    "start:frontend": "cross-env BROWSER=default PORT=8742 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -1,3 +1,24 @@
+/**
+ * EventFilters Component
+ *
+ * @file EventFilters.js
+ * @author Abdiaziz Muse (A00471783)
+ * @description Filter panel for event listings with category, date, and search filters.
+ *              Includes debounced search input and active filter indicators.
+ *
+ * Features:
+ * - Category dropdown with all event types
+ * - Date filter (upcoming, past, all)
+ * - Debounced search input (500ms delay)
+ * - Active filter badges with clear buttons
+ * - Responsive grid layout
+ * - Dark mode support
+ *
+ * @param {Object} filters - Current filter state object
+ * @param {Function} onFilterChange - Callback when filters are updated
+ * @returns {JSX.Element} Event filters panel
+ */
+
 import React, { useState } from 'react';
 import { EVENT_CATEGORIES } from '../../config/config';
 
@@ -118,11 +139,3 @@ const EventFilters = ({ filters, onFilterChange }) => {
 
 export default EventFilters;
 
-
-/**
- * EventFilters Component
- *
- * @file EventFilters.js
- * @author Abdiaziz Muse (A00471783) - Events UI, filtering logic integration
- * @description Filter controls for events: category, date, and search with debounce.
- */

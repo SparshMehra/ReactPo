@@ -1,3 +1,25 @@
+/**
+ * EventDetails Component
+ *
+ * @file EventDetails.js
+ * @author Abdiaziz Muse (A00471783)
+ * @description Modal component displaying comprehensive event information including
+ *              description, location, capacity, age restrictions, pricing, and requirements.
+ *
+ * Features:
+ * - Full event details with image gallery
+ * - Category and difficulty badges
+ * - Availability status with capacity indicator
+ * - What to bring and requirements sections
+ * - Proceed to booking action button
+ * - Responsive modal with backdrop blur
+ *
+ * @param {Object} event - Event object with full details
+ * @param {Function} onClose - Callback to close the modal
+ * @param {Function} onProceedToBook - Callback to initiate booking flow
+ * @returns {JSX.Element} Event details modal
+ */
+
 import React from 'react';
 import { formatTime, getRelativeDate } from '../../utils/dateHelpers';
 import { EVENT_CATEGORIES, DIFFICULTY_LEVELS } from '../../config/config';
@@ -201,11 +223,3 @@ const EventDetails = ({ event, onClose, onProceedToBook }) => {
 
 export default EventDetails;
 
-
-/**
- * EventDetails Component
- *
- * @file EventDetails.js
- * @author Abdiaziz Muse (A00471783) - Events UI, booking flow integration
- * @description Modal with detailed event information and proceed-to-book action.
- */
