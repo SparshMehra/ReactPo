@@ -55,6 +55,9 @@ END:VCALENDAR`;
             </div>
             <h2 className="text-2xl font-bold mb-1">Booking Confirmed! 🎉</h2>
             <p className="text-sm opacity-90">See you at the event!</p>
+            <p className="text-xs opacity-80 mt-2 bg-white bg-opacity-20 rounded-full px-3 py-1 inline-block">
+              📧 You'll receive a confirmation email in ~10 seconds
+            </p>
           </div>
         </div>
 
@@ -112,7 +115,7 @@ END:VCALENDAR`;
             <ul className="space-y-1.5 text-xs text-gray-700 dark:text-gray-300">
               <li className="flex items-start gap-1.5">
                 <span className="text-green-500 mt-0.5 text-sm">✓</span>
-                <span>Email sent to {booking.attendeeInfo.email}</span>
+                <span>Confirmation email sent to {booking.attendeeInfo.email} (check inbox in ~10 sec)</span>
               </li>
               <li className="flex items-start gap-1.5">
                 <span className="text-green-500 mt-0.5 text-sm">✓</span>

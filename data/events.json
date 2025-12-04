@@ -93,7 +93,7 @@
         "lng": -63.5755
       },
       "capacity": 30,
-      "spotsAvailable": 22,
+      "spotsAvailable": 21,
       "price": 0,
       "imageUrl": "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=800&q=80",
       "requirements": [
@@ -118,7 +118,7 @@
         "photo": "/images/instructor-mark.jpg"
       },
       "createdAt": "2025-11-01T10:00:00Z",
-      "updatedAt": "2025-11-01T10:00:00Z"
+      "updatedAt": "2025-12-04T04:24:27.864275Z"
     },
     {
       "id": "evt_004",
@@ -175,7 +175,7 @@
         "lng": -63.5748
       },
       "capacity": 40,
-      "spotsAvailable": 32,
+      "spotsAvailable": 31,
       "price": 0,
       "imageUrl": "https://images.unsplash.com/photo-1476234251651-f353703a034d?w=800&q=80",
       "requirements": [
@@ -200,7 +200,7 @@
         "photo": "/images/instructor-jennifer.jpg"
       },
       "createdAt": "2025-11-01T10:00:00Z",
-      "updatedAt": "2025-11-26T15:04:24.595894Z"
+      "updatedAt": "2025-12-04T04:27:55.092158Z"
     },
     {
       "id": "evt_006",

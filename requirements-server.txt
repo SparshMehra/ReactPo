@@ -1,0 +1,36 @@
+# ============================================================================
+# Server Requirements (Minimal Installation)
+#
+# @file requirements-server.txt
+# @author Abdiaziz Muse (A00471783)
+# @description Minimal Python dependencies for servers with limited disk space.
+#              Use this file when the server cannot accommodate PyTorch (~5GB).
+#              The chatbot will automatically use rule-based fallback responses.
+#
+# Installation:
+#     pip install -r requirements-server.txt
+#
+# Storage Required: ~10MB (vs ~5GB for full requirements.txt)
+#
+# What's NOT included (to save space):
+#     - torch (PyTorch) - ~2GB
+#     - transformers - ~500MB
+#     - CUDA libraries - ~3GB
+#     - datasets, accelerate, safetensors
+#
+# Chatbot Behavior:
+#     Without PyTorch, the chatbot uses an intelligent rule-based system that:
+#     - Covers 150+ topics about the conservation area
+#     - Responds instantly without ML inference delay
+#     - Handles greetings, events, wildlife, trails, facilities, etc.
+#     - Provides helpful responses for common visitor questions
+#
+# ============================================================================
+
+# Web Framework (for REST APIs)
+flask
+flask-cors
+
+# Utilities
+python-dotenv
+
