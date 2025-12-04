@@ -23,6 +23,9 @@ export default function Pagination({
     localStorage.setItem(storageKey, tracker.toString());
   }, [tracker, classes, storageKey]);
 
+  // Labels for font size: 1 = small, 2 = medium, 3 = large
+  const sizeLabels = ["S", "M", "L"];
+
   return (
     <div className="flex gap-4">
       {Array.from({ length: num }, (_, i) => (
@@ -32,8 +35,9 @@ export default function Pagination({
           className={`h-8 w-8 rounded-full flex ring-amber-400 ring-2 items-center justify-center cursor-pointer transition-all hover:scale-110${
             tracker === i ? " bg-yellow-200 shadow-gray-500 shadow-lg" : ""
           }`}
+          title={i === 0 ? "Small (Default)" : i === 1 ? "Medium" : "Large"}
         >
-          {i + 1}
+          {sizeLabels[i] || (i + 1)}
         </div>
       ))}
     </div>

@@ -215,13 +215,9 @@ a:hover {
     font-size: 1.25rem !important;
   }
 
-  .bodyTextxlg * {
-    font-size: inherit !important;
-  }
-
   .bodyTextxlg p,
-  .bodyTextxlg span,
-  .bodyTextxlg div,
+  .bodyTextxlg span:not(.text-5xl):not(.text-6xl):not(.text-7xl),
+  .bodyTextxlg div:not([class*="text-"]),
   .bodyTextxlg li,
   .bodyTextxlg a,
   .bodyTextxlg label,
@@ -265,13 +261,9 @@ a:hover {
     font-size: 1.5rem !important;
   }
 
-  .bodyTextxxlg * {
-    font-size: inherit !important;
-  }
-
   .bodyTextxxlg p,
-  .bodyTextxxlg span,
-  .bodyTextxxlg div,
+  .bodyTextxxlg span:not(.text-5xl):not(.text-6xl):not(.text-7xl),
+  .bodyTextxxlg div:not([class*="text-"]),
   .bodyTextxxlg li,
   .bodyTextxxlg a,
   .bodyTextxxlg label,
