@@ -3,7 +3,10 @@ datasets
 accelerate
 torch
 safetensors
+
+# Web Framework (for REST APIs)
 flask
 flask-cors
-python-dotenv
 
+# Utilities
+python-dotenv

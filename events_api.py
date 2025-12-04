@@ -547,7 +547,7 @@ if __name__ == '__main__':
     # Create data directory if it doesn't exist
     os.makedirs('./data', exist_ok=True)
     
-    port = int(os.getenv('FLASK_PORT', 5001))
+    port = int(os.getenv('FLASK_PORT', 8743))
     print(f"\n>> Events API starting on port {port}...")
     print(f">> Events file: {EVENTS_FILE}")
     print(f">> Bookings file: {BOOKINGS_FILE}")

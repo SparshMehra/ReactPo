@@ -144,6 +144,6 @@ def health():
 
 if __name__ == '__main__':
     print("Starting chatbot API server...")
-    print("Server will be available at http://localhost:5000")
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    print("Server will be available at http://localhost:8744")
+    app.run(debug=True, port=8744, host='0.0.0.0')
 
