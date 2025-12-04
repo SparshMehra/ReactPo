@@ -1,3 +1,20 @@
+/**
+ * Application Configuration
+ *
+ * @file config.js
+ * @author Abdiaziz Muse (A00471783)
+ * @description Central configuration file containing API settings, booking limits,
+ *              pagination settings, calendar configuration, event categories, and difficulty levels.
+ *
+ * Configuration Sections:
+ * - API Configuration: Base URL for backend services
+ * - Booking Configuration: Attendee limits and cancellation policies
+ * - Pagination: Events per page settings
+ * - Calendar Configuration: Operating hours for event scheduling
+ * - Event Categories: Category definitions with labels, icons, and colors
+ * - Difficulty Levels: Activity difficulty classifications
+ */
+
 // API Configuration
 export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
 
@@ -79,4 +96,3 @@ export const DIFFICULTY_LEVELS = {
     color: 'red'
   }
 };
-

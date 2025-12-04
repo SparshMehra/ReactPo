@@ -1,3 +1,24 @@
+/**
+ * EventCard Component
+ *
+ * @file EventCard.js
+ * @author Abdiaziz Muse (A00471783)
+ * @description Animated card component displaying event summary with image, category badge,
+ *              availability status, and action buttons. Used in the event listing grid.
+ *
+ * Features:
+ * - Framer Motion animations for hover and entrance effects
+ * - Dynamic category and difficulty badges
+ * - Availability status indicators (full, almost full)
+ * - Responsive image with fallback handling
+ * - Book Now and Learn More action buttons
+ *
+ * @param {Object} event - Event object containing details
+ * @param {Function} onBookNow - Callback when booking is initiated
+ * @param {Function} onLearnMore - Callback to view event details
+ * @returns {JSX.Element} Animated event card
+ */
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { formatTime, getRelativeDate } from '../../utils/dateHelpers';
@@ -170,11 +191,3 @@ const EventCard = ({ event, onBookNow, onLearnMore }) => {
 
 export default EventCard;
 
-
-/**
- * EventCard Component
- *
- * @file EventCard.js
- * @author Abdiaziz Muse (A00471783) - Events UI, booking flow integration
- * @description Displays a single event card with details, availability, and actions.
- */

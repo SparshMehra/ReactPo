@@ -1,14 +1,40 @@
 #!/usr/bin/env python
 """
-Minimal script to fine-tune distilgpt2 on a plain text training file where examples are formatted
-as conversational pairs (User: ... \n Assistant: ...). This uses Hugging Face Transformers + Datasets.
+Fine-Tune DistilGPT-2 Script
 
-Usage (example):
-python fine_tune_gpt2.py --train_file train_data_gpt2.txt --output_dir ./distil_gpt2_finetuned --epochs 3 --per_device_train_batch_size 4
+@file fine_tune_gpt2.py
+@author Abdiaziz Muse (A00471783)
+@description Minimal script to fine-tune DistilGPT-2 on a plain text training file
+             where examples are formatted as conversational pairs (User: ... \n Assistant: ...).
+             Uses Hugging Face Transformers + Datasets libraries.
 
-Notes:
-- Requires a GPU for reasonable speed.
-- Install dependencies from requirements.txt.
+Features:
+- GPU-accelerated training with CUDA support
+- Mixed precision training (fp16/bf16)
+- Checkpoint resumption support
+- Configurable hyperparameters (epochs, batch size, learning rate)
+- Automatic validation split for monitoring
+- Sample generation during training
+- Gradient accumulation for memory efficiency
+
+Usage:
+    python fine_tune_gpt2.py --train_file train_data_gpt2.txt --output_dir ./distil_gpt2_finetuned --epochs 3 --per_device_train_batch_size 4
+
+Requirements:
+    - Requires a GPU for reasonable training speed
+    - Install dependencies from requirements.txt
+
+Command Line Arguments:
+    --train_file: Path to the plain-text training file (required)
+    --output_dir: Where to save the fine-tuned model (default: ./distilgpt2-finetuned)
+    --model_name: Base model to fine-tune (default: distilgpt2)
+    --epochs: Number of training epochs (default: 3)
+    --per_device_train_batch_size: Batch size per device (default: 4)
+    --learning_rate: Learning rate (default: 5e-5)
+    --block_size: Max token length for truncation (default: 256)
+    --fp16: Enable fp16 mixed precision training
+    --bf16: Enable bf16 mixed precision (Ampere+ GPUs)
+    --resume_from_checkpoint: Path to checkpoint directory to resume from
 """
 import argparse
 import os

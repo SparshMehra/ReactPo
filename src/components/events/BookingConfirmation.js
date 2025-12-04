@@ -1,3 +1,11 @@
+/**
+ * BookingForm Component
+ *
+ * @file BookingConfirmation.js
+ * @author Abdiaziz Muse (A00471783)
+ * @description Modal confirmation dialog shown after successful booking. Includes attendee details, event summary, and add-to-calendar action.
+ *               Displays confirmation code, reminders, and action buttons.
+ */
 import React from 'react';
 import { formatDate, formatTime } from '../../utils/dateHelpers';
 
