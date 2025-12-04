@@ -106,7 +106,7 @@ const ChatbotWindow = ({ onClose }) => {
 
     try {
       // Call the backend API
-      const response = await fetch('http://localhost:8744/api/chat', {
+      const response = await fetch('http://ugdev.cs-smu.ca:8744/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

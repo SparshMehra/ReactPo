@@ -52,7 +52,7 @@ load_dotenv('config.env')
 email_service = EmailService()
 
 app = Flask(__name__)
-CORS(app, origins=['http://localhost:3070'])
+CORS(app, origins=['http://localhost:8742', 'http://ugdev.cs-smu.ca:8742'])
 
 # Data file paths
 EVENTS_FILE = './data/events.json'
