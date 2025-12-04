@@ -67,25 +67,20 @@ const ChatbotWindow = ({ onClose }) => {
   const messagesContainerRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  };
-
-  const scrollToShowLatestMessage = () => {
     if (messagesContainerRef.current) {
       const container = messagesContainerRef.current;
-      const lastMessage = container.lastElementChild?.previousElementSibling;
-      if (lastMessage) {
-        lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      // Scroll to bottom of container smoothly
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: 'smooth'
+      });
     }
   };
 
   useEffect(() => {
     // Delay scroll slightly to ensure DOM has updated
     const timer = setTimeout(() => {
-      if (messages.length > 1 && !isLoading) {
-        scrollToShowLatestMessage();
-      }
+      scrollToBottom();
     }, 100);
 
     return () => clearTimeout(timer);
