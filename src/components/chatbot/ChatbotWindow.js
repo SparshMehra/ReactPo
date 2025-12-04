@@ -64,14 +64,32 @@ const ChatbotWindow = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [suggestedQuestions, setSuggestedQuestions] = useState(getRandomQuestions(3));
   const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  };
+
+  const scrollToShowLatestMessage = () => {
+    if (messagesContainerRef.current) {
+      const container = messagesContainerRef.current;
+      const lastMessage = container.lastElementChild?.previousElementSibling;
+      if (lastMessage) {
+        lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
+    // Delay scroll slightly to ensure DOM has updated
+    const timer = setTimeout(() => {
+      if (messages.length > 1 && !isLoading) {
+        scrollToShowLatestMessage();
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [messages, isLoading]);
 
   const sendMessage = async (text) => {
     if (!text.trim()) return;
@@ -172,7 +190,7 @@ const ChatbotWindow = ({ onClose }) => {
       </div>
 
       {/* Messages */}
-      <div className="chatbot-messages">
+      <div className="chatbot-messages" ref={messagesContainerRef}>
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.type}`}>
             <div className="message-content">

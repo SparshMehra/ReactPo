@@ -12,7 +12,10 @@ export default function Pagination({
     document.body.classList.remove(...classes);
 
     // Apply the selected class based on tracker
-    if (tracker === 1 || tracker === 2) {
+    // tracker 0 = no class (smallest/default)
+    // tracker 1 = first class (medium)
+    // tracker 2 = second class (large)
+    if (tracker >= 1 && tracker <= classes.length) {
       document.body.classList.add(classes[tracker - 1]);
     }
 
@@ -27,7 +30,7 @@ export default function Pagination({
           key={i}
           onClick={() => setTracker(i)}
           className={`h-8 w-8 rounded-full flex ring-amber-400 ring-2 items-center justify-center cursor-pointer transition-all hover:scale-110${
-            i <= tracker ? " bg-yellow-200 shadow-gray-500 shadow-lg" : ""
+            tracker === i ? " bg-yellow-200 shadow-gray-500 shadow-lg" : ""
           }`}
         >
           {i + 1}

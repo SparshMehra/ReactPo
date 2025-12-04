@@ -7,7 +7,7 @@ import { MdOutlineTextIncrease } from "react-icons/md";
 import { CiLineHeight } from "react-icons/ci";
 import Box from "./Box";
 export default function StyleModalContext() {
-  // Load saved preferences from localStorage on mount
+  // Load saved preferences from localStorage on mount (default to level 1 = tracker 0)
   const [lineHeightTracker, setLineHeightTracker] = useState(() => {
     const saved = localStorage.getItem("lineHeightPreference");
     return saved ? parseInt(saved, 10) : 0;
@@ -26,13 +26,13 @@ export default function StyleModalContext() {
     // Remove all classes first
     document.body.classList.remove(...textSizeClasses, ...lineHeightClasses);
 
-    // Apply saved text size
-    if (fontTracker === 1 || fontTracker === 2) {
+    // Apply saved text size (tracker 0 = no class, 1 = first class, 2 = second class)
+    if (fontTracker >= 1 && fontTracker <= textSizeClasses.length) {
       document.body.classList.add(textSizeClasses[fontTracker - 1]);
     }
 
     // Apply saved line height
-    if (lineHeightTracker === 1 || lineHeightTracker === 2) {
+    if (lineHeightTracker >= 1 && lineHeightTracker <= lineHeightClasses.length) {
       document.body.classList.add(lineHeightClasses[lineHeightTracker - 1]);
     }
   }, []);
