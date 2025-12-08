@@ -108,7 +108,7 @@ npm install
 # Option A: Full (with ML chatbot, ~5GB)
 pip install -r requirements.txt
 
-# Option B: Minimal (rule-based chatbot, ~10MB) ✅ Recommended for servers
+# Option B: Minimal (rule-based chatbot, ~10MB) ✅ Recommended for ugdev servers if space is an issue
 pip install -r requirements-server.txt
 ```
 
@@ -278,3 +278,4 @@ Academic project for educational purposes.
 ---
 
 **Last Updated:** December 4, 2025 | **Version:** 2.6.0 | **Status:** Production Ready ✨
+
