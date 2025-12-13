@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+//Author: Sadikshya oli A00457938
 
 describe("About Page E2E Test", () => {
   beforeEach(() => {
