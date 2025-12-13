@@ -1,3 +1,8 @@
+/**
+This file performs component testing of the EventCard React component, validating UI rendering, availability states, button behavior, and user interaction callbacks.
+@Author: Bhabin Chudal (A00464169)
+*/
+
 import React from 'react';
 import EventCard from '../../src/components/events/EventCard';
 import '../../src/index.css';
