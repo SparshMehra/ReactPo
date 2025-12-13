@@ -271,6 +271,20 @@ Creates optimized build in `build/` directory.
 
 ---
 
+## 🖼️ Image Credits
+
+Some images on this website are sourced from the following:
+
+1. **"Natural History of the French Village Conservation Woodland: A Report to the French Village Conservation Woodland Committee"**
+   - Authors: David Patriquin, Jess Lewis, Livy Fraser, Liam Holwell, Rohan Kariyawansa
+   - Date: November 2021
+
+2. **[iNaturalist.org](https://www.inaturalist.org)**
+
+All images are used for educational purposes only and will be individually cited.
+
+---
+
 ## 📄 License
 
 Academic project for educational purposes.

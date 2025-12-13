@@ -439,5 +439,5 @@ def health():
 if __name__ == '__main__':
     print("Starting chatbot API server...")
     print(f"Mode: {'ML Model' if USE_ML_MODEL else 'Rule-based Fallback'}")
-    print("Server will be available at http://ugdev.cs-smu.ca:8744")
+    print("Server will be available at http://ugdev.cs-smu.ca:8742")
     app.run(debug=True, port=8744, host='0.0.0.0')
