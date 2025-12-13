@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-
+//S M Riyad Farhan — A00470224
 describe("Gallery Page E2E Test", () => {
   beforeEach(() => {
     cy.visit("http://localhost:8742/gallery");
