@@ -1,3 +1,4 @@
+//Author: Sadikshya Oli A00457938
 import React from 'react';
 import DarkModeToggle from '../../src/components/UI/DarkModeToggle';
 import '../../src/index.css';
