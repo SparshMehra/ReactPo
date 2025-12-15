@@ -197,7 +197,25 @@
       "reminderSent": false,
       "createdAt": "2025-12-04T04:27:55.092145Z",
       "updatedAt": "2025-12-04T04:27:55.092149Z"
+    },
+    {
+      "id": "bkg_012",
+      "eventId": "evt_002",
+      "confirmationCode": "WCA-21131",
+      "attendeeInfo": {
+        "firstName": "Merina",
+        "lastName": "Silva",
+        "email": "Withanalage.Merina.Dishani.Silva@smu.ca",
+        "phone": "902000000000",
+        "numberOfAttendees": 1,
+        "specialRequirements": ""
+      },
+      "status": "confirmed",
+      "bookingDate": "2025-12-12T22:35:55.626201Z",
+      "reminderSent": false,
+      "createdAt": "2025-12-12T22:35:55.626211Z",
+      "updatedAt": "2025-12-12T22:35:55.626212Z"
     }
   ],
-  "lastId": 11
+  "lastId": 12
 }

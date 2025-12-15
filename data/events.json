@@ -5,7 +5,7 @@
       "title": "Morning Bird Watching Tour",
       "description": "Join us for an early morning bird watching adventure! Our experienced guides will help you spot and identify various bird species native to the St. Margaret's Bay woodland area. Bring your binoculars and camera to capture these beautiful creatures in their natural habitat. Perfect for both beginners and experienced bird watchers.",
       "category": "wildlife",
-      "date": "2025-12-08",
+      "date": "2025-12-28",
       "startTime": "06:00",
       "endTime": "08:00",
       "location": "Main Trail Entrance",
@@ -45,7 +45,7 @@
       "title": "Native Plant Identification Workshop",
       "description": "Learn to identify native plants, trees, and shrubs found throughout the conservation area. This hands-on workshop will teach you about the ecological importance of native species and how they support local wildlife. Perfect for gardeners, nature enthusiasts, and anyone interested in botany.",
       "category": "workshop",
-      "date": "2025-12-14",
+      "date": "2025-12-24",
       "startTime": "14:00",
       "endTime": "16:00",
       "location": "Education Center",
@@ -54,7 +54,7 @@
         "lng": -63.575
       },
       "capacity": 25,
-      "spotsAvailable": 20,
+      "spotsAvailable": 19,
       "price": 0,
       "imageUrl": "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&q=80",
       "requirements": [
@@ -77,7 +77,7 @@
         "photo": "/images/instructor-james.jpg"
       },
       "createdAt": "2025-11-01T10:00:00Z",
-      "updatedAt": "2025-11-01T10:00:00Z"
+      "updatedAt": "2025-12-12T22:35:55.626216Z"
     },
     {
       "id": "evt_003",
@@ -125,7 +125,7 @@
       "title": "Winter Landscape Photography Walk",
       "description": "Capture the serene beauty of winter in the woodland conservation area! This guided photography walk will take you to the most scenic winter spots while our instructor shares tips on landscape and nature photography in cold conditions. All skill levels welcome, from smartphone photographers to DSLR enthusiasts.",
       "category": "seasonal",
-      "date": "2026-01-10",
+      "date": "2026-10-10",
       "startTime": "10:00",
       "endTime": "12:00",
       "location": "Main Trail Entrance",
@@ -207,7 +207,7 @@
       "title": "Guided Nature Walk: Winter Wildlife",
       "description": "Discover the fascinating world of winter wildlife! This educational walk will explore how local flora and fauna survive harsh winter conditions. Learn about hibernation, migration, and dormancy while enjoying a peaceful walk through the snowy woods. See animal tracks and signs of winter activity.",
       "category": "guided-tour",
-      "date": "2026-01-18",
+      "date": "2026-12-18",
       "startTime": "14:00",
       "endTime": "16:00",
       "location": "Main Trail Entrance",
