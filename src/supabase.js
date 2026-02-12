@@ -15,7 +15,7 @@ import { createClient } from "@supabase/supabase-js";
 
 // Get Supabase configuration from environment variables
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL || "https://flnvwhzhgfouhdxyajml.supabase.co";
-const supabaseKey = process.env.REACT_APP_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZsbnZ3aHpoZ2ZvdWhkeHlham1sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM0ODY1NjYsImV4cCI6MjA3OTA2MjU2Nn0.sKQegnlFQasAGFw_H_8FA5TO8RtkjpGkdlJ0DoMtcXc";
+const supabaseKey = process.env.REACT_APP_SUPABASE_ANON_KEY || "SUPABASE ANON KEY";
 
 // Validate environment variables
 if (!supabaseUrl || !supabaseKey) {
